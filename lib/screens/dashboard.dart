@@ -1,21 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const StudentPortalApp());
-}
-
-class StudentPortalApp extends StatelessWidget {
-  const StudentPortalApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const StudentPortalScreen(),
-    );
-  }
-}
-
 class StudentPortalScreen extends StatelessWidget {
   const StudentPortalScreen({Key? key}) : super(key: key);
 
@@ -94,7 +78,8 @@ class StudentPortalScreen extends StatelessWidget {
               // Buttons: Get Started & Learn More
               ElevatedButton(
                 onPressed: () {
-                  // Handle "Get Started" button press
+                  // Navigate to the login screen
+                  Navigator.pushNamed(context, '/login');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue, // Updated to backgroundColor
@@ -111,7 +96,8 @@ class StudentPortalScreen extends StatelessWidget {
               const SizedBox(height: 10),
               TextButton(
                 onPressed: () {
-                  // Handle "Learn More" button press
+                  // Placeholder for Learn More action
+                  // Implement navigation or information here
                 },
                 child: const Text(
                   'Learn More',

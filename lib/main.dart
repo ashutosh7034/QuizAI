@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'screens/dashboard.dart'; // Import the dashboard.dart file
+import 'screens/dashboard.dart'; // Import dashboard
+import 'screens/login_screen.dart'; // Import login screen
+import 'screens/register_screen.dart'; // Import register screen
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +18,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // Set the home to StudentPortalScreen
-      home: const StudentPortalScreen(), // Replaces MyHomePage with the dashboard screen
+      home: const StudentPortalScreen(), // Set the home to the dashboard
+      routes: {
+        '/login': (context) => const LoginScreen(), // Define the login route
+        '/register': (context) => const RegisterScreen(), // Define the register route
+      },
     );
   }
 }
