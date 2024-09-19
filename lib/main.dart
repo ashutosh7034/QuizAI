@@ -18,10 +18,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const StudentPortalScreen(), // Set the home to the dashboard
+      home: const StudentPortalScreen(), // Set the home to dashboard initially
       routes: {
-        '/login': (context) => const LoginScreen(), // Define the login route
-        '/register': (context) => const RegisterScreen(), // Define the register route
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+        '/dashboard': (context) => const StudentPortalScreen(),
       },
     );
   }
