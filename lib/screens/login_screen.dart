@@ -80,7 +80,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      // Perform login
+                      // Navigate to Select Quiz Screen after login
+                      Navigator.pushNamed(context, '/select_quiz');
                     }
                   },
                   style: ElevatedButton.styleFrom(
