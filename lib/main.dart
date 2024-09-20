@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_ai/screens/Select_Quiz.dart';  // Assuming the correct file name is Select_Quiz.dart
+import 'package:quiz_ai/screens/Select_Quiz.dart'; // Assuming the correct file name is Select_Quiz.dart
 import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/dashboard.dart';
+import 'screens/Profile_Screen.dart'; // Import the ProfileScreen
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => const RegisterScreen(),
         '/select_quiz': (context) => const SelectQuizScreen(),  // Route to the Select Quiz screen
         '/dashboard': (context) => const StudentPortalScreen(),
+        '/profile': (context) => const ProfileScreen(), // Route to the Profile screen
       },
     );
   }
