@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Profile_Screen.dart';
 
-
 class SelectQuizScreen extends StatefulWidget {
   const SelectQuizScreen({Key? key}) : super(key: key);
 
@@ -134,7 +133,7 @@ class SelectQuizScreenBody extends StatelessWidget {
               // Create Quiz Button
               ElevatedButton.icon(
                 onPressed: () {
-                  // Handle Create Quiz action
+                  Navigator.pushNamed(context, '/create_quiz');  // Navigate to the Create Quiz screen
                 },
                 icon: const Icon(Icons.edit),
                 label: const Text(
