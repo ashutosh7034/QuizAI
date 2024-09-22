@@ -158,7 +158,7 @@ class ProfileScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      /*bottomNavigationBar: BottomNavigationBar(
         currentIndex: 2, // Set profile as the selected tab
         items: const [
           BottomNavigationBarItem(
@@ -174,9 +174,9 @@ class ProfileScreen extends StatelessWidget {
             label: 'Profile',
           ),
         ],
-        onTap: (index) {
+        onTap: (index) {*/
           // Handle bottom nav bar tap
-          switch (index) {
+          /*switch (index) {
             case 0:
               Navigator.pushNamed(context, '/dashboard');
               break;
@@ -188,7 +188,7 @@ class ProfileScreen extends StatelessWidget {
               break;
           }
         },
-      ),
+      ),*/
     );
   }
 
