@@ -5,6 +5,7 @@ import 'screens/Profile_Screen.dart';
 import 'screens/Create_Quiz.dart';
 import 'screens/HomePage.dart';  // Import HomePage for Bottom Navigation
 import 'screens/sidebar.dart';   // Import Sidebar
+import 'screens/dashboard.dart'; // Import StudentPortalScreen
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginScreen(),  // LoginScreen is the home screen
+      home: const StudentPortalScreen(), // Changed to StudentPortalScreen
       routes: {
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),

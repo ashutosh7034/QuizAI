@@ -1,4 +1,3 @@
-// login_screen.dart
 import 'package:flutter/material.dart';
 import 'package:quiz_ai/screens/HomePage.dart';  // Import HomePage
 
