@@ -1,4 +1,6 @@
+// login_screen.dart
 import 'package:flutter/material.dart';
+import 'package:quiz_ai/screens/HomePage.dart';  // Import HomePage
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -80,8 +82,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      // Navigate to Select Quiz Screen after login
-                      Navigator.pushNamed(context, '/select_quiz');
+                      // Navigate to HomePage (Bottom Navigation) after login
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
                     }
                   },
                   style: ElevatedButton.styleFrom(

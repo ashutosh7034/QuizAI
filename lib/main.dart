@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'screens/Select_Quiz.dart'; // Assuming the correct file name is Select_Quiz.dart
-import 'screens/login_screen.dart';
+import 'screens/login_screen.dart';  // Ensure the correct file paths
 import 'screens/register_screen.dart';
-import 'screens/dashboard.dart';
-import 'screens/Profile_Screen.dart'; // Import the ProfileScreen
-import 'screens/Create_Quiz.dart'; // Import the new CreateQuizScreen
+import 'screens/Profile_Screen.dart';
+import 'screens/Create_Quiz.dart';
+import 'screens/HomePage.dart';  // Import HomePage for Bottom Navigation
+import 'screens/sidebar.dart';   // Import Sidebar
 
 void main() {
   runApp(const MyApp());
@@ -16,19 +16,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Quiz App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const StudentPortalScreen(),
+      home: const LoginScreen(),  // LoginScreen is the home screen
       routes: {
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
-        '/select_quiz': (context) => const SelectQuizScreen(),  // Route to the Select Quiz screen
-        '/dashboard': (context) => const StudentPortalScreen(),
-        '/profile': (context) => const ProfileScreen(), // Route to the Profile screen
-        '/create_quiz': (context) => const CreateQuizScreen(), // Route to the Create Quiz screen
+        '/home': (context) => HomePage(),  // Route to HomePage (Bottom Navigation and Sidebar)
+        '/profile': (context) => const ProfileScreen(),
+        '/create_quiz': (context) => const CreateQuizScreen(),
       },
     );
   }

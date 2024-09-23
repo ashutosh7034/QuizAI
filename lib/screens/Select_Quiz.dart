@@ -1,3 +1,4 @@
+// SelectQuizScreen.dart
 import 'package:flutter/material.dart';
 import 'Profile_Screen.dart';
 
@@ -11,10 +12,10 @@ class SelectQuizScreen extends StatefulWidget {
 class _SelectQuizScreenState extends State<SelectQuizScreen> {
   int _currentIndex = 0;
 
-  // List of screens to switch between
+  // List of screens for the bottom navigation inside the SelectQuizScreen
   final List<Widget> _screens = [
-    SelectQuizScreenBody(),
-    Container(), // Placeholder for Search (if you want to implement it later)
+    SelectQuizScreenBody(),  // Main Quiz selection screen
+    Container(), // Placeholder for Search tab (if needed)
     const ProfileScreen(), // Profile Screen
   ];
 
@@ -41,11 +42,11 @@ class _SelectQuizScreenState extends State<SelectQuizScreen> {
           ),
         ],
       ),
-      body: _screens[_currentIndex], // Switch between screens here
+      body: _screens[_currentIndex], // Switch between screens here based on bottom navigation
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        onTap: _onTap,
+        onTap: _onTap, // Handle bottom navigation tap
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -65,7 +66,7 @@ class _SelectQuizScreenState extends State<SelectQuizScreen> {
   }
 }
 
-// Extract the body of the SelectQuizScreen into a separate widget to avoid rebuilds
+// Main body content for the SelectQuizScreen
 class SelectQuizScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class SelectQuizScreenBody extends StatelessWidget {
             children: [
               // Quiz Header Image
               Image.network(
-                'https://via.placeholder.com/400x200', // Replace with your actual image
+                'https://via.placeholder.com/400x200', // Replace with your actual image URL
                 height: 200,
               ),
               const SizedBox(height: 20),
