@@ -1,133 +1,38 @@
+// File: lib/screens/leaderboard_screen.dart
+
 import 'package:flutter/material.dart';
+import '../data/leaderboard_data.dart';
+import '../models/leaderboard_entry.dart';
 
 class LeaderboardScreen extends StatelessWidget {
-  final List<Map<String, dynamic>> leaderboardData = [
-    {'rank': 1, 'name': 'User A', 'score': 950},
-    {'rank': 2, 'name': 'User B', 'score': 900},
-    {'rank': 3, 'name': 'User C', 'score': 850},
-    {'rank': 4, 'name': 'User D', 'score': 800},
-    {'rank': 5, 'name': 'User E', 'score': 750},
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Leaderboard'),
-        backgroundColor: Colors.blue,
-        centerTitle: true,
-        elevation: 2,
+        title: Text('Leaderboard'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Top Performers',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+      body: leaderboardEntries.isNotEmpty
+          ? ListView.builder(
+        itemCount: leaderboardEntries.length,
+        itemBuilder: (context, index) {
+          final LeaderboardEntry entry = leaderboardEntries[index];
+          return ListTile(
+            leading: CircleAvatar(
+              child: Text(entry.rank.toString()),
+              backgroundColor: Colors.blueAccent,
+              foregroundColor: Colors.white,
             ),
-            const SizedBox(height: 16), // Space between title and list
-            Expanded(
-              child: ListView.builder(
-                itemCount: leaderboardData.length,
-                itemBuilder: (context, index) {
-                  return LeaderboardItem(
-                    rank: leaderboardData[index]['rank'],
-                    name: leaderboardData[index]['name'],
-                    score: leaderboardData[index]['score'],
-                  );
-                },
-              ),
+            title: Text(entry.name),
+            subtitle: Text('Score: ${entry.score}'),
+            trailing: Icon(
+              Icons.star,
+              color: Colors.orangeAccent,
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class LeaderboardItem extends StatelessWidget {
-  final int rank;
-  final String name;
-  final int score;
-
-  const LeaderboardItem({
-    Key? key,
-    required this.rank,
-    required this.name,
-    required this.score,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            blurRadius: 6,
-            spreadRadius: 2,
-            offset: const Offset(0, 4), // Slight elevation effect
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // Column 1: Rank
-          CircleAvatar(
-            backgroundColor: Colors.blue,
-            radius: 24,
-            child: Text(
-              '#$rank',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          // Column 2: Profile Picture (Placeholder)
-          const CircleAvatar(
-            radius: 24,
-            backgroundColor: Colors.grey,
-            child: Icon(
-              Icons.person,
-              color: Colors.white,
-              size: 24,
-            ),
-          ),
-          // Column 3: Username
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                name,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-          // Column 4: Score
-          Text(
-            '$score pts',
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue,
-            ),
-          ),
-        ],
+          );
+        },
+      )
+          : Center(
+        child: Text('No leaderboard data available!'),
       ),
     );
   }
