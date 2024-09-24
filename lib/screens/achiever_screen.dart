@@ -1,7 +1,7 @@
 // File: lib/screens/achiever_screen.dart
 
 import 'package:flutter/material.dart';
-import '../widgets/achiever_data.dart';
+import '../data/achiever_data.dart';
 import '../models/achiever.dart';
 
 class AchieverScreen extends StatefulWidget {

@@ -1,27 +1,58 @@
-// categories_screen.dart
+// File: lib/screens/categories_screen.dart
+
 import 'package:flutter/material.dart';
+import '../data/category_data.dart';
+import '../models/category.dart';
+import 'quiz_screen.dart';
 
 class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Categories'),
+        title: Text('Programming Languages'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navigate to Select Quiz screen
-            Navigator.pushNamed(context, '/select_quiz');
-          },
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-          ),
-          child: const Text(
-            'Go to Select Quiz',
-            style: TextStyle(fontSize: 18),
-          ),
+      body: GridView.builder(
+        padding: const EdgeInsets.all(10),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
         ),
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final Category category = categories[index];
+          return GestureDetector(
+            onTap: () {
+              // Correctly pass the category name to QuizScreen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => QuizScreen(category: category.name),
+                ),
+              );
+            },
+            child: Card(
+              elevation: 5,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.network(
+                    category.imageUrl,
+                    height: 60,
+                    errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    category.name,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

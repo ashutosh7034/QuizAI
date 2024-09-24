@@ -82,22 +82,9 @@ class SelectQuizScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // Practice Programming Section
-              const Text(
-                'Practice Programming',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                'Sharpen your coding skills with our AI-generated programming quizzes.',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
-              ),
+
+
+
             ],
           ),
         ),
