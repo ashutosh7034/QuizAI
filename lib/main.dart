@@ -4,7 +4,6 @@ import 'screens/register_screen.dart';
 import 'screens/Profile_Screen.dart';
 import 'screens/Create_Quiz.dart';
 import 'screens/HomePage.dart';  // Import HomePage for Bottom Navigation
-import 'screens/sidebar.dart';   // Import Sidebar
 import 'screens/dashboard.dart'; // Import StudentPortalScreen
 import 'screens/my_quizzes_screen.dart';
 
