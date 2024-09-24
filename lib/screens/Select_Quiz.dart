@@ -11,9 +11,14 @@ class SelectQuizScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Quiz Header Image
-              Image.network(
-                'https://via.placeholder.com/400x200',
-                height: 200,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12.0),
+                child: Image.asset(
+                  'assets/home.png',
+                  height: 200,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
               const SizedBox(height: 20),
 
@@ -21,22 +26,23 @@ class SelectQuizScreen extends StatelessWidget {
               const Text(
                 'Quiz Time',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent,
                 ),
               ),
               const SizedBox(height: 10),
               const Text(
                 'Start Your Quiz',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   color: Colors.grey,
                 ),
               ),
               const SizedBox(height: 10),
               const Text(
                 'Welcome to QuizApp, your ultimate destination for testing your knowledge and improving your skills. Whether you\'re a student looking to ace your exams or a faculty member aiming to create engaging quizzes, we have the tools for you.',
-                style: TextStyle(fontSize: 14, color: Colors.grey),
+                style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
               const SizedBox(height: 20),
 
@@ -46,14 +52,18 @@ class SelectQuizScreen extends StatelessWidget {
                   // Handle Attempt Quiz action
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.blueAccent,
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  elevation: 5,
                   minimumSize: const Size.fromHeight(50),
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.play_circle_fill),
+                    Icon(Icons.play_circle_fill, size: 24),
                     SizedBox(width: 10),
                     Text(
                       'Attempt Quiz',
@@ -69,7 +79,7 @@ class SelectQuizScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, '/create_quiz');
                 },
-                icon: const Icon(Icons.edit),
+                icon: const Icon(Icons.edit, size: 24),
                 label: const Text(
                   'Create Quiz',
                   style: TextStyle(fontSize: 18),
@@ -77,14 +87,14 @@ class SelectQuizScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey.shade300,
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  elevation: 5,
                   minimumSize: const Size.fromHeight(50),
                 ),
               ),
               const SizedBox(height: 20),
-
-
-
-
             ],
           ),
         ),

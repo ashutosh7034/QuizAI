@@ -40,7 +40,10 @@ flutter:
 
   # Assets used in the app
   assets:
-    - assets/icon/Quizai_logo.png         # Use the new PNG icon instead of JPG
+    - assets/icon/Quizai_logo.png
+    - assets/home.png
+    - assets/dashboard.png
+    # Use the new PNG icon instead of JPG
 
   # Fonts can be added here if needed
   # fonts:

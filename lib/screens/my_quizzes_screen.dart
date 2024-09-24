@@ -29,6 +29,7 @@ class MyQuizzesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Quizzes'),
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
         centerTitle: true,
       ),

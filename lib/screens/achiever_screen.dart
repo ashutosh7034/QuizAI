@@ -15,6 +15,7 @@ class _AchieverScreenState extends State<AchieverScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Top Achievers'),
+        automaticallyImplyLeading: false,
       ),
       body: achievers.isNotEmpty ? ListView.builder(
         itemCount: achievers.length,

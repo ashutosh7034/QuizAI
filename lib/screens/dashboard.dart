@@ -19,17 +19,18 @@ class StudentPortalScreen extends StatelessWidget {
                   const Text(
                     'Student Portal',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent,
                     ),
                   ),
                   Row(
                     children: const [
-                      Icon(Icons.wifi),
+                      Icon(Icons.wifi, color: Colors.blueAccent),
                       SizedBox(width: 10),
-                      Icon(Icons.battery_full),
+                      Icon(Icons.battery_full, color: Colors.blueAccent),
                       SizedBox(width: 10),
-                      Icon(Icons.notifications),
+                      Icon(Icons.notifications, color: Colors.blueAccent),
                     ],
                   ),
                 ],
@@ -37,8 +38,8 @@ class StudentPortalScreen extends StatelessWidget {
               const SizedBox(height: 20),
 
               // Image section
-              Image.network(
-                'https://via.placeholder.com/150', // replace with your actual image URL
+              Image.asset(
+                'assets/dashboard.png',
                 height: 200,
               ),
               const SizedBox(height: 20),
@@ -47,15 +48,16 @@ class StudentPortalScreen extends StatelessWidget {
               const Text(
                 'Welcome to Your Dashboard',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
+                  color: Colors.black87,
                 ),
               ),
               const SizedBox(height: 10),
               const Text(
                 'Access your courses, assignments, and more from here.',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   color: Colors.grey,
                 ),
                 textAlign: TextAlign.center,
@@ -68,7 +70,7 @@ class StudentPortalScreen extends StatelessWidget {
                     'you need to succeed in your studies. From accessing course materials to '
                     'submitting assignments and checking your grades, everything is at your fingertips.',
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 16,
                   color: Colors.grey,
                 ),
                 textAlign: TextAlign.center,
@@ -82,9 +84,12 @@ class StudentPortalScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/login');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // Updated to backgroundColor
+                  backgroundColor: Colors.blueAccent,
                   padding: const EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: 30.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
                 child: const Text(
                   'Get Started',
@@ -103,7 +108,7 @@ class StudentPortalScreen extends StatelessWidget {
                   'Learn More',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.blue,
+                    color: Colors.blueAccent,
                   ),
                 ),
               ),

@@ -11,6 +11,7 @@ class CategoriesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Programming Languages'),
+        automaticallyImplyLeading: false,
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(10),
@@ -34,19 +35,30 @@ class CategoriesScreen extends StatelessWidget {
               );
             },
             child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
               elevation: 5,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.network(
-                    category.imageUrl,
-                    height: 60,
-                    errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: Image.network(
+                      category.imageUrl,
+                      height: 60,
+                      errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   SizedBox(height: 10),
                   Text(
                     category.name,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent,
+                    ),
                   ),
                 ],
               ),

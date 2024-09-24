@@ -10,6 +10,7 @@ class LeaderboardScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Leaderboard'),
+        automaticallyImplyLeading: false, // Hides the back arrow
       ),
       body: leaderboardEntries.isNotEmpty
           ? ListView.builder(
