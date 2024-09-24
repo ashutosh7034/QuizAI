@@ -14,28 +14,66 @@ class _AchieverScreenState extends State<AchieverScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Top Achievers'),
+        title: const Text('Top Achievers'),
         automaticallyImplyLeading: false,
+        backgroundColor: Colors.blue,
+        centerTitle: true,
       ),
-      body: achievers.isNotEmpty ? ListView.builder(
+      body: achievers.isNotEmpty
+          ? ListView.builder(
+        padding: const EdgeInsets.all(16.0),
         itemCount: achievers.length,
         itemBuilder: (context, index) {
           final Achiever achiever = achievers[index];
           return Card(
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            margin: const EdgeInsets.only(bottom: 16.0),
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: ListTile(
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(achiever.imageUrl),
-                onBackgroundImageError: (_, __) => Icon(Icons.error),
+                onBackgroundImageError: (_, __) => const Icon(Icons.error, color: Colors.red),
+                radius: 30,
               ),
-              title: Text(achiever.name),
-              subtitle: Text('Score: ${achiever.score}'),
-              trailing: Text(achiever.badge),
+              title: Text(
+                achiever.name,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              subtitle: Text(
+                'Score: ${achiever.score}',
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 14,
+                ),
+              ),
+              trailing: Container(
+                padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                decoration: BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child: Text(
+                  achiever.badge,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
           );
         },
-      ) : Center(
-        child: Text('No achievers yet!'),
+      )
+          : const Center(
+        child: Text(
+          'No achievers yet!',
+          style: TextStyle(fontSize: 18, color: Colors.grey),
+        ),
       ),
     );
   }

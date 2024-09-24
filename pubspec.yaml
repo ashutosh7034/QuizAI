@@ -1,5 +1,5 @@
 name: quiz_ai
-description: "A new Flutter project."
+description: A new Flutter project.
 
 # Prevent accidental publishing to pub.dev
 publish_to: 'none'
@@ -9,30 +9,30 @@ version: 1.0.0+1
 
 # SDK environment
 environment:
-  sdk: ^3.5.0
+  sdk: '>=2.12.0 <3.0.0'
 
 # Dependencies for the Flutter app
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  google_sign_in: ^6.2.1                # Updated to the latest version
-  flutter_facebook_auth: ^7.1.1          # Updated to the latest version
+  google_sign_in: ^6.2.1
+  flutter_facebook_auth: ^7.1.1
 
 # Development dependencies
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
-  flutter_launcher_icons: ^0.14.1        # Updated to the latest version
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.14.1
 
 # Flutter launcher icons configuration
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/icon/Quizai_logo.png"  # Path to the new PNG app icon
-  adaptive_icon_background: "#FFFFFF"        # Background color for Android adaptive icons
-  adaptive_icon_foreground: "assets/icon/Quizai_logo.png"  # Foreground image for adaptive icon
+  image_path: "assets/icon/Quizai_logo.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/icon/Quizai_logo.png"
 
 # Flutter-specific configuration
 flutter:
@@ -43,7 +43,9 @@ flutter:
     - assets/icon/Quizai_logo.png
     - assets/home.png
     - assets/dashboard.png
-    # Use the new PNG icon instead of JPG
+    - assets/python.png
+    - assets/c++.png
+    - assets/java.png
 
   # Fonts can be added here if needed
   # fonts:

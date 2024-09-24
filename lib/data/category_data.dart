@@ -5,7 +5,8 @@ import '../models/category.dart';
 List<Category> categories = [
   Category(
     name: 'Python',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg',
+    imageUrl: 'assets/python.png',
+    isAsset: true,
   ),
   Category(
     name: 'JavaScript',
@@ -13,11 +14,13 @@ List<Category> categories = [
   ),
   Category(
     name: 'Java',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg',
+    imageUrl: 'assets/java.png',
+    isAsset: true,
   ),
   Category(
     name: 'C++',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg',
+    imageUrl: 'assets/c++.png',
+    isAsset: true,
   ),
   Category(
     name: 'Dart',

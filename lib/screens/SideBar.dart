@@ -10,19 +10,23 @@ class Sidebar extends StatelessWidget {
         children: <Widget>[
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.white,
+              gradient: LinearGradient(
+                colors: [Colors.blue, Colors.blueAccent],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
             accountName: Text(
               "Oliver Smith",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 18,
               ),
             ),
             accountEmail: Text(
               "@oliversmith",
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: Colors.white70),
             ),
             currentAccountPicture: CircleAvatar(
               backgroundImage: NetworkImage(
@@ -33,8 +37,11 @@ class Sidebar extends StatelessWidget {
             title: Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey.shade200,
+                  backgroundColor: Colors.blueAccent,
                   minimumSize: const Size.fromHeight(40), // Height of the button
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
                 onPressed: () {
                   // Action when 'View Profile' is clicked
@@ -42,7 +49,7 @@ class Sidebar extends StatelessWidget {
                 },
                 child: const Text(
                   'View Profile',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ),
@@ -95,8 +102,11 @@ class Sidebar extends StatelessWidget {
             title: Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey.shade300,
+                  backgroundColor: Colors.redAccent,
                   minimumSize: const Size.fromHeight(40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
                 onPressed: () {
                   // Action for logout
@@ -105,7 +115,7 @@ class Sidebar extends StatelessWidget {
                 },
                 child: const Text(
                   'Logout',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ),
@@ -122,8 +132,11 @@ class Sidebar extends StatelessWidget {
     GestureTapCallback? onTap,
   }) {
     return ListTile(
-      leading: Icon(icon),
-      title: Text(text),
+      leading: Icon(icon, color: Colors.blueAccent),
+      title: Text(
+        text,
+        style: TextStyle(color: Colors.black87),
+      ),
       onTap: onTap,
     );
   }
