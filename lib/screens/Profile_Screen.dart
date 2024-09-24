@@ -1,22 +1,40 @@
 import 'package:flutter/material.dart';
+import 'edit_profile_screen.dart'; // Make sure to create this file
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  String name = 'Oliver Smith';
+  String username = '@oliversmith';
+  String bio = 'Avid quiz taker and trivia enthusiast. Always up for a challenge!';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text('Profile', style: TextStyle(color: Colors.black)),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.settings),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            // Handle settings action
+            Navigator.pop(context); // Navigate back to the previous screen
           },
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings, color: Colors.black),
+            onPressed: () {
+              // Handle settings action
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -24,33 +42,33 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 20),
             // Profile Section
             Column(
-              children: const [
-                CircleAvatar(
+              children: [
+                const CircleAvatar(
                   radius: 50,
                   backgroundImage: NetworkImage(
                       'https://via.placeholder.com/100'), // Replace with user's profile image URL
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
-                  'Oliver Smith',
-                  style: TextStyle(
+                  name,
+                  style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  '@oliversmith',
-                  style: TextStyle(
+                  username,
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Text(
-                    'Avid quiz taker and trivia enthusiast. Always up for a challenge!',
+                    bio,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                    style: const TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                 ),
               ],
@@ -95,8 +113,25 @@ class ProfileScreen extends StatelessWidget {
 
             // Edit Profile Button
             ElevatedButton(
-              onPressed: () {
-                // Handle edit profile action
+              onPressed: () async {
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditProfileScreen(
+                      currentName: name,
+                      currentUsername: username,
+                      currentBio: bio,
+                    ),
+                  ),
+                );
+
+                if (result != null) {
+                  setState(() {
+                    name = result['name'];
+                    username = result['username'];
+                    bio = result['bio'];
+                  });
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
@@ -127,7 +162,7 @@ class ProfileScreen extends StatelessWidget {
                         _buildAchievementBadge('Quiz Master'),
                         _buildAchievementBadge('Top Scorer'),
                         _buildAchievementBadge('Fast Learner'),
-                        _buildAchievementBadge('Consistent'),
+                        _buildAchievementBadge ('Consistent'),
                         _buildAchievementBadge('All-Rounder'),
                       ],
                     ),
@@ -135,86 +170,27 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
-
-            // Recent Activities Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Recent Activities',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  // Add widgets to show recent activities
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
           ],
         ),
       ),
-      /*bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2, // Set profile as the selected tab
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        onTap: (index) {*/
-          // Handle bottom nav bar tap
-          /*switch (index) {
-            case 0:
-              Navigator.pushNamed(context, '/dashboard');
-              break;
-            case 1:
-              Navigator.pushNamed(context, '/search');
-              break;
-            case 2:
-              Navigator.pushNamed(context, '/profile');
-              break;
-          }
-        },
-      ),*/
     );
   }
 
-  // Helper method to build statistics items
   Widget _buildStatItem(String value, String label) {
     return Column(
       children: [
         Text(
           value,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 5),
         Text(
           label,
-          style: const TextStyle(
-            color: Colors.grey,
-          ),
+          style: const TextStyle(fontSize: 14, color: Colors.grey),
         ),
       ],
     );
   }
 
-  // Helper method to build achievement badges
   Widget _buildAchievementBadge(String label) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),

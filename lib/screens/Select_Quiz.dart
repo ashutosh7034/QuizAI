@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'CreateQuizOptionScreen.dart'; // Import the CreateQuizOptionScreen
 
 class SelectQuizScreen extends StatelessWidget {
   @override
@@ -77,7 +78,10 @@ class SelectQuizScreen extends StatelessWidget {
               // Create Quiz Button
               ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/create_quiz');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const CreateQuizOptionScreen()),
+                  );
                 },
                 icon: const Icon(Icons.edit, size: 24),
                 label: const Text(

@@ -41,55 +41,58 @@ class MyQuizzesScreen extends StatelessWidget {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: ListView.builder(
-          padding: const EdgeInsets.all(16.0),
-          itemCount: quizzes.length,
-          itemBuilder: (context, index) {
-            return Card(
-              margin: const EdgeInsets.only(bottom: 16.0),
-              elevation: 6,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: ListTile(
-                contentPadding: const EdgeInsets.all(16.0),
-                leading: CircleAvatar(
-                  backgroundColor: Colors.blue.shade100,
-                  child: Icon(
-                    Icons.school,
-                    color: Colors.blue.shade800,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: quizzes.map((quiz) {
+                return Card(
+                  margin: const EdgeInsets.only(bottom: 16.0),
+                  elevation: 6,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                ),
-                title: Text(
-                  quizzes[index]['title']!,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.black87,
-                  ),
-                ),
-                subtitle: Text(
-                  quizzes[index]['description']!,
-                  style: const TextStyle(
-                    color: Colors.black54,
-                    fontSize: 14,
-                  ),
-                ),
-                trailing: const Icon(Icons.play_arrow, color: Colors.blue),
-                onTap: () {
-                  // Navigate to the specific quiz screen
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => QuizDetailScreen(
-                        quizTitle: quizzes[index]['title']!,
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(16.0),
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.blue.shade100,
+                      child: Icon(
+                        Icons.school,
+                        color: Colors.blue.shade800,
                       ),
                     ),
-                  );
-                },
-              ),
-            );
-          },
+                    title: Text(
+                      quiz['title']!,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    subtitle: Text(
+                      quiz['description']!,
+                      style: const TextStyle(
+                        color: Colors.black54,
+                        fontSize: 14,
+                      ),
+                    ),
+                    trailing: const Icon(Icons.play_arrow, color: Colors.blue),
+                    onTap: () {
+                      // Navigate to the specific quiz screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => QuizDetailScreen(
+                            quizTitle: quiz['title']!,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
         ),
       ),
     );
