@@ -6,6 +6,7 @@ import 'screens/Create_Quiz.dart';
 import 'screens/HomePage.dart';  // Import HomePage for Bottom Navigation
 import 'screens/sidebar.dart';   // Import Sidebar
 import 'screens/dashboard.dart'; // Import StudentPortalScreen
+import 'screens/my_quizzes_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),  // Route to HomePage (Bottom Navigation and Sidebar)
         '/profile': (context) => const ProfileScreen(),
         '/create_quiz': (context) => const CreateQuizScreen(),
+        'MyQuizzesScreen': (context) =>  MyQuizzesScreen(),  // Fixed 'const' keyword
       },
     );
   }

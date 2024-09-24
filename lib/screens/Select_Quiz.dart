@@ -1,73 +1,6 @@
-// SelectQuizScreen.dart
 import 'package:flutter/material.dart';
-import 'Profile_Screen.dart';
 
-class SelectQuizScreen extends StatefulWidget {
-  const SelectQuizScreen({Key? key}) : super(key: key);
-
-  @override
-  _SelectQuizScreenState createState() => _SelectQuizScreenState();
-}
-
-class _SelectQuizScreenState extends State<SelectQuizScreen> {
-  int _currentIndex = 0;
-
-  // List of screens for the bottom navigation inside the SelectQuizScreen
-  final List<Widget> _screens = [
-    SelectQuizScreenBody(),  // Main Quiz selection screen
-    Container(), // Placeholder for Search tab (if needed)
-    const ProfileScreen(), // Profile Screen
-  ];
-
-  void _onTap(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("QuizApp"),
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              // Handle notifications
-            },
-          ),
-        ],
-      ),
-      body: _screens[_currentIndex], // Switch between screens here based on bottom navigation
-
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onTap, // Handle bottom navigation tap
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// Main body content for the SelectQuizScreen
-class SelectQuizScreenBody extends StatelessWidget {
+class SelectQuizScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -79,7 +12,7 @@ class SelectQuizScreenBody extends StatelessWidget {
             children: [
               // Quiz Header Image
               Image.network(
-                'https://via.placeholder.com/400x200', // Replace with your actual image URL
+                'https://via.placeholder.com/400x200',
                 height: 200,
               ),
               const SizedBox(height: 20),
@@ -134,7 +67,7 @@ class SelectQuizScreenBody extends StatelessWidget {
               // Create Quiz Button
               ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/create_quiz');  // Navigate to the Create Quiz screen
+                  Navigator.pushNamed(context, '/create_quiz');
                 },
                 icon: const Icon(Icons.edit),
                 label: const Text(
@@ -161,25 +94,8 @@ class SelectQuizScreenBody extends StatelessWidget {
               const Text(
                 'Sharpen your coding skills with our AI-generated programming quizzes.',
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 16,
                   color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              // Practice Programming Quiz Button
-              OutlinedButton.icon(
-                onPressed: () {
-                  // Handle Practice Programming Quiz action
-                },
-                icon: const Icon(Icons.code),
-                label: const Text(
-                  'Practice Programming Quiz',
-                  style: TextStyle(fontSize: 18),
-                ),
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  minimumSize: const Size.fromHeight(50),
                 ),
               ),
             ],
