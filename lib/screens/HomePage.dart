@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
     MyQuizzesScreen(),      // Index 2 for My Quizzes
     LeaderboardScreen(), // Index 3 for Leaderboard
     AchieverScreen(),
-       // Index 4 for Achievements
+    // Index 4 for Achievements
   ];
 
   void _onTap(int index) {

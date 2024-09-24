@@ -3,6 +3,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:quiz_ai/screens/HomePage.dart';  // Import HomePage
 
+bool isAuthenticated = false;
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -22,6 +24,9 @@ class _LoginScreenState extends State<LoginScreen> {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       if (googleUser != null) {
         // Successful login
+        setState(() {
+          isAuthenticated = true;
+        });
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
@@ -39,6 +44,9 @@ class _LoginScreenState extends State<LoginScreen> {
       final LoginResult result = await FacebookAuth.instance.login(); // Facebook login
       if (result.status == LoginStatus.success) {
         // Successful login
+        setState(() {
+          isAuthenticated = true;
+        });
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
@@ -154,6 +162,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       // Navigate to HomePage after successful login
+                      setState(() {
+                        isAuthenticated = true;
+                      });
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => HomePage()),

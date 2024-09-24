@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_ai/screens/login_screen.dart'; // Import LoginScreen to manage the logout
 
 class Sidebar extends StatelessWidget {
   @override
@@ -76,7 +77,7 @@ class Sidebar extends StatelessWidget {
             },
           ),
           _createDrawerItem(
-            icon: Icons.privacy_tip ,
+            icon: Icons.privacy_tip,
             text: 'Privacy Policy',
             onTap: () {
               Navigator.pushNamed(context, '/privacy_policy');
@@ -99,6 +100,7 @@ class Sidebar extends StatelessWidget {
                 ),
                 onPressed: () {
                   // Action for logout
+                  isAuthenticated = false;
                   Navigator.pushReplacementNamed(context, '/login');
                 },
                 child: const Text(
