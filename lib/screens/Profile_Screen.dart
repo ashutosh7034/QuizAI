@@ -54,6 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
+                    color: Color(0xFF9C27B0), // Changed to purple
                   ),
                 ),
                 Text(
@@ -86,6 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      color: Color(0xFF9C27B0), // Changed to purple
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -134,10 +136,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Color(0xFF9C27B0), // Changed to purple
                 padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 80),
               ),
-              child: const Text('Edit Profile'),
+              child: const Text('Edit Profile', style: TextStyle(color: Colors.white)),
             ),
             const SizedBox(height: 20),
 
@@ -152,6 +154,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      color: Color(0xFF9C27B0), // Changed to purple
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -161,7 +164,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         _buildAchievementBadge('Quiz Master'),
                         _buildAchievementBadge('Top Scorer'),
-                        _buildAchievementBadge('Fast Learner'),
+                        _buildAchievementBadge('Fast Lear ner'),
                         _buildAchievementBadge ('Consistent'),
                         _buildAchievementBadge('All-Rounder'),
                       ],

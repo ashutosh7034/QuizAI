@@ -51,6 +51,9 @@ flutter:
     - assets/java.png
     - assets/dart.png
     - assets/javascript.png
+    - assets/google.png
+    - assets/facebook.png
+    - assets/quiz.png
 
   # Fonts can be added here if needed
   # fonts:

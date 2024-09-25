@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_ai/screens/login_screen.dart'; // Import LoginScreen to manage the logout
+import 'package:quiz_ai/screens/ChangePasswordScreen.dart';
+
+import 'ChangePasswordScreen.dart';
 
 class Sidebar extends StatelessWidget {
   @override
@@ -11,7 +14,7 @@ class Sidebar extends StatelessWidget {
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.blue, Colors.blueAccent],
+                colors: [Color(0xFF9C27B0), Color(0xFFE040FB)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -37,8 +40,8 @@ class Sidebar extends StatelessWidget {
             title: Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent,
-                  minimumSize: const Size.fromHeight(40), // Height of the button
+                  backgroundColor: Color(0xFF9C27B0),
+                  minimumSize: const Size.fromHeight(40),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -66,7 +69,10 @@ class Sidebar extends StatelessWidget {
             icon: Icons.lock,
             text: 'Change Password',
             onTap: () {
-              Navigator.pushNamed(context, '/change_password');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChangePasswordScreen()),
+              );
             },
           ),
           _createDrawerItem(
@@ -110,7 +116,6 @@ class Sidebar extends StatelessWidget {
                 ),
                 onPressed: () {
                   // Action for logout
-                  isAuthenticated = false;
                   Navigator.pushReplacementNamed(context, '/login');
                 },
                 child: const Text(
@@ -129,10 +134,10 @@ class Sidebar extends StatelessWidget {
   Widget _createDrawerItem({
     required IconData icon,
     required String text,
-    GestureTapCallback? onTap,
+    required GestureTapCallback onTap,
   }) {
     return ListTile(
-      leading: Icon(icon, color: Colors.blueAccent),
+      leading: Icon(icon, color: Color(0xFF9C27B0)),
       title: Text(
         text,
         style: TextStyle(color: Colors.black87),

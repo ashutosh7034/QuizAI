@@ -21,16 +21,14 @@ class StudentPortalScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blueAccent,
+                      color: Color(0xFF9C27B0), // Changed to purple
                     ),
                   ),
                   Row(
                     children: const [
-                      Icon(Icons.wifi, color: Colors.blueAccent),
+                      Icon(Icons.battery_full, color: Color(0xFF9C27B0)), // Changed to purple
                       SizedBox(width: 10),
-                      Icon(Icons.battery_full, color: Colors.blueAccent),
-                      SizedBox(width: 10),
-                      Icon(Icons.notifications, color: Colors.blueAccent),
+                      Icon(Icons.settings, color: Color(0xFF9C27B0)), // New icon
                     ],
                   ),
                 ],
@@ -84,7 +82,7 @@ class StudentPortalScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/login');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent,
+                  backgroundColor: Color(0xFF9C27B0), // Changed to purple
                   padding: const EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: 30.0),
                   shape: RoundedRectangleBorder(
@@ -95,6 +93,7 @@ class StudentPortalScreen extends StatelessWidget {
                   'Get Started',
                   style: TextStyle(
                     fontSize: 18,
+                    color: Colors.white, // Changed to white
                   ),
                 ),
               ),
@@ -108,7 +107,7 @@ class StudentPortalScreen extends StatelessWidget {
                   'Learn More',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.blueAccent,
+                    color: Color(0xFF9C27B0), // Changed to purple
                   ),
                 ),
               ),

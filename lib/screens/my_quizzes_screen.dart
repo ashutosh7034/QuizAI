@@ -30,13 +30,13 @@ class MyQuizzesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('My Quizzes'),
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF9C27B0), // purple
         centerTitle: true,
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blue.shade200, Colors.blue.shade800],
+            colors: [Color(0xFF9C27B0), Color(0xFF03A9F4)], // purple to blue-green
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -55,10 +55,10 @@ class MyQuizzesScreen extends StatelessWidget {
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(16.0),
                     leading: CircleAvatar(
-                      backgroundColor: Colors.blue.shade100,
+                      backgroundColor: Color(0xFF9C27B0).withOpacity(0.5),
                       child: Icon(
                         Icons.school,
-                        color: Colors.blue.shade800,
+                        color: Colors.white,
                       ),
                     ),
                     title: Text(
@@ -76,7 +76,7 @@ class MyQuizzesScreen extends StatelessWidget {
                         fontSize: 14,
                       ),
                     ),
-                    trailing: const Icon(Icons.play_arrow, color: Colors.blue),
+                    trailing: const Icon(Icons.play_arrow, color: Color(0xFF9C27B0)),
                     onTap: () {
                       // Navigate to the specific quiz screen
                       Navigator.push(
@@ -110,7 +110,7 @@ class QuizDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(quizTitle),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF9C27B0), // purple
       ),
       body: Center(
         child: Text(
@@ -127,7 +127,7 @@ void main() {
     home: MyQuizzesScreen(),
     theme: ThemeData(
       fontFamily: 'Roboto',
-      primarySwatch: Colors.blue,
+      primarySwatch: Colors.deepPurple,
     ),
   ));
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:quiz_ai/screens/HomePage.dart';  // Import HomePage
+import 'package:quiz_ai/screens/HomePage.dart'; // Import HomePage
 
 bool isAuthenticated = false;
 
@@ -17,6 +17,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // Google sign-in instance
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  // Password visibility state
+  bool _isPasswordVisible = false;
 
   // Method to handle Google Sign-In
   Future<void> _handleGoogleSignIn() async {
@@ -84,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+                    color: Color(0xFF9C27B0), // Changed to purple
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -127,9 +130,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     prefixIcon: const Icon(Icons.lock_outline),
                     filled: true,
                     fillColor: Colors.grey.shade100,
-                    suffixIcon: const Icon(Icons.visibility_off),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        });
+                      },
+                    ),
                   ),
-                  obscureText: true,
+                  obscureText: !_isPasswordVisible,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your password';
@@ -148,8 +162,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: const Text(
                       'Forgot Password?',
-                      style: TextStyle(
-                        color: Colors.blue,
+                      style : TextStyle(
+                        color: Color(0xFF9C27B0), // Changed to purple
                         fontSize: 14,
                       ),
                     ),
@@ -177,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color(0xFF9C27B0), // Changed to purple
                     elevation: 5,
                   ),
                   child: const Text(
@@ -222,45 +236,64 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildSocialButton(
-                      icon: Icons.g_mobiledata_outlined,
-                      color: Colors.red,
-                      label: 'Google',
-                      onTap: _handleGoogleSignIn,  // Call Google Sign-In
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          onPressed: _handleGoogleSignIn,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              side: const BorderSide(color: Colors.grey),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/google.png', height: 20),
+                              const SizedBox(width: 10),
+                              const Text(
+                                'Google',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(width: 20),
-                    _buildSocialButton(
-                      icon: Icons.facebook_outlined,
-                      color: Colors.blue,
-                      label: 'Facebook',
-                      onTap: _handleFacebookSignIn,  // Call Facebook Sign-In
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          onPressed: _handleFacebookSignIn,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              side: const BorderSide(color: Colors.grey),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/facebook.png', height: 20),
+                              const SizedBox(width: 10),
+                              const Text(
+                                'Facebook',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  // Helper method to create social login buttons
-  Widget _buildSocialButton({
-    required IconData icon,
-    required Color color,
-    required String label,
-    required VoidCallback onTap,
-  }) {
-    return ElevatedButton.icon(
-      onPressed: onTap,
-      icon: Icon(icon, color: Colors.white),
-      label: Text(label, style: const TextStyle(color: Colors.white)),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
         ),
       ),
     );

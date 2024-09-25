@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'CreateQuizOptionScreen.dart'; // Import the CreateQuizOptionScreen
-import 'AttemptQuizScreen.dart'; // Import the AttemptQuizScreen
 
-class SelectQuizScreen extends StatelessWidget {
+class AttemptQuizScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
-          "Select Quiz",
-          style: TextStyle(color: Colors.white),
+          "Attempt Quiz",
+          style: TextStyle(color: Colors.black),
         ),
         elevation: 0,
         centerTitle: true,
-        backgroundColor: Color(0xFF9C27B0), // purple
-        automaticallyImplyLeading: false, // Removes the back arrow
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: true, // This will add the back arrow
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -26,7 +25,7 @@ class SelectQuizScreen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12.0),
                 child: Image.asset(
-                  'assets/home.png',
+                  'assets/quiz.png', // Make sure to add a relevant image in your assets
                   height: 200,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -36,16 +35,16 @@ class SelectQuizScreen extends StatelessWidget {
 
               // Title and description
               const Text(
-                'Quiz Time',
+                'Ready to Quiz?',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF9C27B0), // purple
+                  color: Colors.deepPurple,
                 ),
               ),
               const SizedBox(height: 10),
               const Text(
-                'Start Your Quiz',
+                'Test your knowledge with our quiz!',
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.grey,
@@ -53,21 +52,18 @@ class SelectQuizScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                'Welcome to QuizApp, your ultimate destination for testing your knowledge and improving your skills. Whether you\'re a student looking to ace your exams or a faculty member aiming to create engaging quizzes, we have the tools for you.',
+                'Answer the following questions to the best of your ability. Good luck!',
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
               const SizedBox(height: 20),
 
-              // Attempt Quiz Button
+              // Start Quiz Button
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AttemptQuizScreen()),
-                  );
+                  // Handle Start Quiz action
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF9C27B0), // purple
+                  backgroundColor: Colors.deepPurple,
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.0),
@@ -78,38 +74,13 @@ class SelectQuizScreen extends StatelessWidget {
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.play_circle_fill, size: 24, color: Colors.white),
+                    Icon(Icons.play_arrow, size: 24),
                     SizedBox(width: 10),
                     Text(
-                      'Attempt Quiz',
+                      'Start Quiz',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ],
-                ),
-              ),
-              const SizedBox(height: 15),
-
-              // Create Quiz Button
-              ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CreateQuizOptionScreen()),
-                  );
-                },
-                icon: const Icon(Icons.edit, size: 24, color: Colors.white),
-                label: const Text(
-                  'Create Quiz',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF03A9F4), // blue-green
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  elevation: 5,
-                  minimumSize: const Size.fromHeight(50),
                 ),
               ),
               const SizedBox(height: 20),
