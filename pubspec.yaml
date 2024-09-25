@@ -49,6 +49,8 @@ flutter:
     - assets/python.png
     - assets/c++.png
     - assets/java.png
+    - assets/dart.png
+    - assets/javascript.png
 
   # Fonts can be added here if needed
   # fonts:

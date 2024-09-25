@@ -10,7 +10,8 @@ List<Category> categories = [
   ),
   Category(
     name: 'JavaScript',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
+    imageUrl: 'assets/javascript.png',
+    isAsset: true
   ),
   Category(
     name: 'Java',
@@ -24,6 +25,7 @@ List<Category> categories = [
   ),
   Category(
     name: 'Dart',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Dart-logo.png',
+    imageUrl: 'assets/dart.png',
+    isAsset: true
   ),
 ];
