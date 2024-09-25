@@ -20,6 +20,7 @@ dependencies:
   flutter_facebook_auth: ^7.1.1
   image_picker: ^0.8.4+4
   file_picker: ^5.2.2
+  font_awesome_flutter: ^10.1.0
 
 # Development dependencies
 dev_dependencies:
