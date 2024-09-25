@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -71,12 +72,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
         title: const Text("Create Your Account"),
         elevation: 0,
         centerTitle: true,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black, // For text color
+        backgroundColor: Colors.purple[20], // Primary color (Purple)
+        //foregroundColor: Colors.white, // For text color
       ),
       body: SafeArea(
         child: Container(
-          color: Colors.white, // Set background color to white
+          //color: Colors.white, // Set background color to white
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Form(
@@ -94,7 +95,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: const InputDecoration(
                         hintText: 'Enter your full name',
                         border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.person, color: Colors.black),
+                        prefixIcon: Icon(Icons.person, color: Color(0xFF9C27B0)), // Primary color (Purple)
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -113,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: const InputDecoration(
                         hintText: 'Enter your email address',
                         border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.email, color: Colors.black),
+                        prefixIcon: Icon(Icons.email, color: Color(0xFF9C27B0)), // Primary color (Purple)
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -133,14 +134,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         hintText: 'Enter your password',
                         border: const OutlineInputBorder(),
-                        prefixIcon: const Icon(Icons.lock, color: Colors.black),
+                        prefixIcon: const Icon(Icons.lock, color: Color(0xFF9C27B0)), // Primary color (Purple)
                         suffixIcon: IconButton(
                           icon: Icon(
                             _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                             color: Colors.black,
                           ),
                           onPressed: () {
-                            setState (() {
+                            setState(() {
                               _isPasswordVisible = !_isPasswordVisible;
                             });
                           },
@@ -165,7 +166,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         hintText: 'Re-enter your password',
                         border: const OutlineInputBorder(),
-                        prefixIcon: const Icon(Icons.lock, color: Colors.black),
+                        prefixIcon: const Icon(Icons.lock, color: Color(0xFF9C27B0)), // Primary color (Purple)
                         suffixIcon: IconButton(
                           icon: Icon(
                             _isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
@@ -197,7 +198,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         minimumSize: const Size.fromHeight(50),
-                        backgroundColor: Color(0xFF6200EE), // Primary color
+                        backgroundColor: Color(0xFF9C27B0), // Primary color (Purple)
                       ),
                       child: const Text(
                         'Register',
@@ -223,7 +224,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       icon: Image.asset('assets/google.png', height: 24, width: 24), // Use the official Google logo
                       label: const Text('Register with Google'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
+                        backgroundColor: Colors.white, // Secondary color (Blue-Green/Cyan)
                         padding: const EdgeInsets.symmetric(vertical: 14.0),
                         minimumSize: const Size.fromHeight(50),
                       ),

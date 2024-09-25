@@ -26,8 +26,6 @@ class StudentPortalScreen extends StatelessWidget {
                   ),
                   Row(
                     children: const [
-                      Icon(Icons.battery_full, color: Color(0xFF9C27B0)), // Changed to purple
-                      SizedBox(width: 10),
                       Icon(Icons.settings, color: Color(0xFF9C27B0)), // New icon
                     ],
                   ),
