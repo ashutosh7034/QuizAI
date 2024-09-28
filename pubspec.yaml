@@ -21,6 +21,8 @@ dependencies:
   image_picker: ^0.8.4+4
   file_picker: ^5.2.2
   font_awesome_flutter: ^10.1.0
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
 
 # Development dependencies
 dev_dependencies:

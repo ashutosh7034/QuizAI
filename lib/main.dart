@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_ai/screens/student_portal_screen_large.dart';
 import 'package:quiz_ai/screens/student_portal_screen_medium.dart';
@@ -9,7 +10,9 @@ import 'screens/Create_Quiz.dart';
 import 'screens/HomePage.dart';  // Import HomePage for Bottom Navigation
 import 'screens/my_quizzes_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

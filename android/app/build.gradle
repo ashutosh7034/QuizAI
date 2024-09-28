@@ -3,6 +3,7 @@ plugins {
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -24,7 +25,7 @@ android {
         // Specify a unique Application ID
         applicationId = "com.example.quiz_ai"
         // Set the minimum SDK version
-        minSdkVersion 21  // Set to at least 21 to support modern Flutter plugins
+        minSdkVersion 23  // Set to at least 21 to support modern Flutter plugins
         // Set the target SDK version to the latest available version
         targetSdkVersion 34
         versionCode 1  // Increment for each new release
@@ -50,4 +51,18 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
+    implementation("com.google.firebase:firebase-analytics")
+        // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
+
+        // Add the dependency for the Firebase Authentication library
+        // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-auth")
+
+        // Also add the dependency for the Google Play services library and specify its version
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+
 }
+apply plugin: 'com.google.gms.google-services'
+
