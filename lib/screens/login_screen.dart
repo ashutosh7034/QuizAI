@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:quiz_ai/screens/HomePage.dart'; // Import HomePage
-
-bool isAuthenticated = false;
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quiz_ai/screens/bottom_navigation.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -14,51 +13,74 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-
-  // Google sign-in instance
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-
-  // Password visibility state
   bool _isPasswordVisible = false;
 
-  // Method to handle Google Sign-In
   Future<void> _handleGoogleSignIn() async {
     try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      await _googleSignIn.signOut();
+      final googleUser = await _googleSignIn.signIn();
       if (googleUser != null) {
-        // Successful login
-        setState(() {
-          isAuthenticated = true;
-        });
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
         );
       }
     } catch (error) {
-      print("Google Sign-In failed: $error");
-      // Handle error appropriately in real apps
+      _showErrorDialog('Google Sign-In failed: $error');
     }
   }
 
-  // Method to handle Facebook Sign-In
   Future<void> _handleFacebookSignIn() async {
     try {
-      final LoginResult result = await FacebookAuth.instance.login(); // Facebook login
+      await FacebookAuth.instance.logOut();
+      final result = await FacebookAuth.instance.login();
       if (result.status == LoginStatus.success) {
-        // Successful login
-        setState(() {
-          isAuthenticated = true;
-        });
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
         );
       }
     } catch (error) {
-      print("Facebook Sign-In failed: $error");
-      // Handle error appropriately in real apps
+      _showErrorDialog('Facebook Sign-In failed: $error');
     }
+  }
+
+  Future<void> _handleEmailSignIn() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      } catch (error) {
+        _showErrorDialog('Invalid email or password. Please try again.');
+      }
+    }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -66,10 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.purple[20],
       appBar: AppBar(
-        title: const Text(
-          "Login",
-          style: TextStyle(color: Colors.black),
-        ),
+        title: const Text("Login", style: TextStyle(color: Colors.black)),
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -84,218 +103,135 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 const Text(
                   'Welcome Back!',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF9C27B0), // Changed to purple
-                  ),
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF9C27B0)),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Please log in to continue.',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                  ),
-                ),
+                const Text('Please log in to continue.', style: TextStyle(color: Colors.grey, fontSize: 16)),
                 const SizedBox(height: 40),
-
-                // Email text field
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    prefixIcon: const Icon(Icons.email),
-                    filled: true,
-                    fillColor: Colors.grey.shade100,
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    return null;
-                  },
-                ),
+                _buildEmailField(),
                 const SizedBox(height: 20),
-
-                // Password text field
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    prefixIcon: const Icon(Icons.lock_outline),
-                    filled: true,
-                    fillColor: Colors.grey.shade100,
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _isPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _isPasswordVisible = !_isPasswordVisible;
-                        });
-                      },
-                    ),
-                  ),
-                  obscureText: !_isPasswordVisible,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    return null;
-                  },
-                ),
+                _buildPasswordField(),
                 const SizedBox(height: 10),
-
-                // Forgot Password button
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {
-                      // Handle "Forgot Password"
-                    },
-                    child: const Text(
-                      'Forgot Password?',
-                      style : TextStyle(
-                        color: Color(0xFF9C27B0), // Changed to purple
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                ),
+                _buildForgotPasswordButton(),
                 const SizedBox(height: 30),
-
-                // Login button
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      // Navigate to HomePage after successful login
-                      setState(() {
-                        isAuthenticated = true;
-                      });
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    minimumSize: const Size.fromHeight(50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    backgroundColor: Color(0xFF9C27B0), // Changed to purple
-                    elevation: 5,
-                  ),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  ),
-                ),
+                _buildLoginButton(),
                 const SizedBox(height: 15),
-
-                // Register button
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/register');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    minimumSize: const Size.fromHeight(50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    backgroundColor: Colors.grey.shade300,
-                    elevation: 0,
-                  ),
-                  child: const Text(
-                    'Register',
-                    style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
-                ),
-
+                _buildRegisterButton(),
                 const SizedBox(height: 30),
-
-                // Or continue with social login text
-                Center(
-                  child: Text(
-                    'Or continue with',
-                    style: TextStyle(color: Colors.grey.shade500),
-                  ),
-                ),
+                Center(child: Text('Or continue with', style: TextStyle(color: Colors.grey.shade500))),
                 const SizedBox(height: 20),
-
-                // Social login buttons (Google, Facebook)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        ElevatedButton(
-                          onPressed: _handleGoogleSignIn,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              side: const BorderSide(color: Colors.grey),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset('assets/google.png', height: 20),
-                              const SizedBox(width: 10),
-                              const Text(
-                                'Google',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(width: 20),
-                    Column(
-                      children: [
-                        ElevatedButton(
-                          onPressed: _handleFacebookSignIn,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              side: const BorderSide(color: Colors.grey),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset('assets/facebook.png', height: 20),
-                              const SizedBox(width: 10),
-                              const Text(
-                                'Facebook',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                _buildSocialLoginButtons(),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildEmailField() {
+    return TextFormField(
+      controller: _emailController,
+      decoration: InputDecoration(
+        labelText: 'Email',
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+        prefixIcon: const Icon(Icons.email),
+        filled: true,
+        fillColor: Colors.grey.shade100,
+      ),
+      validator: (value) => (value == null || value.isEmpty) ? 'Please enter your email' : null,
+    );
+  }
+
+  Widget _buildPasswordField() {
+    return TextFormField(
+      controller: _passwordController,
+      decoration: InputDecoration(
+        labelText: 'Password',
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+        prefixIcon: const Icon(Icons.lock_outline),
+        filled: true,
+        fillColor: Colors.grey.shade100,
+        suffixIcon: IconButton(
+          icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+          onPressed: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
+        ),
+      ),
+      obscureText: !_isPasswordVisible,
+      validator: (value) => (value == null || value.isEmpty) ? 'Please enter your password' : null,
+    );
+  }
+
+  Widget _buildForgotPasswordButton() {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        onPressed: () {
+          // Handle "Forgot Password"
+        },
+        child: const Text('Forgot Password?', style: TextStyle(color: Color(0xFF9C27B0), fontSize: 14)),
+      ),
+    );
+  }
+
+  Widget _buildLoginButton() {
+    return ElevatedButton(
+      onPressed: _handleEmailSignIn,
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        minimumSize: const Size.fromHeight(50),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        backgroundColor: Color(0xFF9C27B0),
+        elevation: 5,
+      ),
+      child: const Text('Login', style: TextStyle(fontSize: 18, color: Colors.white)),
+    );
+  }
+
+  Widget _buildRegisterButton() {
+    return ElevatedButton(
+      onPressed: () => Navigator.pushNamed(context, '/register'),
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        minimumSize: const Size.fromHeight(50),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        backgroundColor: Colors.grey.shade300,
+        elevation: 0,
+      ),
+      child: const Text('Register', style: TextStyle(fontSize: 18, color: Colors.black)),
+    );
+  }
+
+  Widget _buildSocialLoginButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _buildSocialLoginButton(
+          onPressed: _handleGoogleSignIn,
+          imageAsset: 'assets/google.png',
+          label: 'Google',
+        ),
+        const SizedBox(width: 20),
+        _buildSocialLoginButton(
+          onPressed: _handleFacebookSignIn,
+          imageAsset: 'assets/facebook.png',
+          label: 'Facebook',
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSocialLoginButton({required VoidCallback onPressed, required String imageAsset, required String label}) {
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        backgroundColor: Colors.grey.shade200,
+        elevation: 3,
+      ),
+      icon: Image.asset(imageAsset, height: 24.0),
+      label: Text(label, style: const TextStyle(color: Colors.black)),
     );
   }
 }

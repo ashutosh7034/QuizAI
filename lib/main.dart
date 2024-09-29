@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:quiz_ai/screens/student_portal_screen_large.dart';
 import 'package:quiz_ai/screens/student_portal_screen_medium.dart';
 import 'package:quiz_ai/screens/student_portal_screen_small.dart';
-import 'screens/login_screen.dart';  // Ensure the correct file paths
+import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/Profile_Screen.dart';
-import 'screens/Create_Quiz.dart';
-import 'screens/HomePage.dart';  // Import HomePage for Bottom Navigation
+import 'screens/Create_Quiz_manually.dart';
+import 'screens/bottom_navigation.dart';
 import 'screens/my_quizzes_screen.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -29,15 +29,11 @@ class MyApp extends StatelessWidget {
       ),
       home: LayoutBuilder(
         builder: (context, constraints) {
-          final screenWidth = constraints.maxWidth;
-          if (screenWidth < 400) {
-            // Small screen size (e.g. phone)
+          if (constraints.maxWidth < 400) {
             return StudentPortalScreenSmall();
-          } else if (screenWidth < 800) {
-            // Medium screen size (e.g. tablet)
+          } else if (constraints.maxWidth < 800) {
             return StudentPortalScreenMedium();
           } else {
-            // Large screen size (e.g. desktop)
             return StudentPortalScreenLarge();
           }
         },
@@ -45,10 +41,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
-        '/home': (context) => HomePage(),  // Route to HomePage (Bottom Navigation and Sidebar)
+        '/home': (context) => HomePage(),
         '/profile': (context) => const ProfileScreen(),
         '/create_quiz': (context) => const CreateQuizScreen(),
-        '/my_quizzes': (context) => MyQuizzesScreen(),  // Fixed route name
+        '/my_quizzes': (context) => MyQuizzesScreen(),
       },
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'Create_Quiz.dart';
+import 'Create_Quiz_manually.dart';
 import 'CreateQuizFromFileScreen.dart';
+import 'CreateQuizFromExcelScreen.dart'; // Import the new screen for Excel
 
 class CreateQuizOptionScreen extends StatelessWidget {
   const CreateQuizOptionScreen({Key? key}) : super(key: key);
@@ -50,6 +51,19 @@ class CreateQuizOptionScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const CreateQuizFromFileScreen()),
+                );
+              },
+            ),
+            const SizedBox(height: 20),
+            _buildOptionCard(
+              context: context,
+              title: "Create Quiz from Excel",
+              description: "Upload an Excel file to create a quiz.",
+              icon: Icons.table_chart, // Use an icon that represents a table
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const CreateQuizFromExcelScreen()),
                 );
               },
             ),
