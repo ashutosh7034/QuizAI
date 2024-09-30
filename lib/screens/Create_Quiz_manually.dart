@@ -1,4 +1,6 @@
+import 'dart:convert'; // Import for JSON encoding
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; // Import HTTP package
 
 class CreateQuizScreen extends StatefulWidget {
   const CreateQuizScreen({Key? key}) : super(key: key);
@@ -10,14 +12,19 @@ class CreateQuizScreen extends StatefulWidget {
 class _CreateQuizScreenState extends State<CreateQuizScreen> {
   // Form fields
   final TextEditingController _formTitleController = TextEditingController();
+  final TextEditingController _formDescriptionController = TextEditingController();
   bool collectEmail = false;
   bool limitResponses = false;
+  bool isLoading = false; // For loading indicator
+
+  // List to hold questions
+  List<Map<String, String>> questions = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("[App Name]"),
+        title: const Text("Create a Quiz"),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.blueAccent,
@@ -28,7 +35,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Create a New Form",
+              "Create a New Quiz",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -36,9 +43,8 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
               ),
             ),
             const SizedBox(height: 16),
-
             const Text(
-              "Step 1: Form Title & Description",
+              "Step 1: Quiz Title & Description",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -47,23 +53,23 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
             ),
             const SizedBox(height: 16),
 
-            // Form Title Input
+            // Quiz Title Input
             TextField(
               controller: _formTitleController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12.0),
                 ),
-                hintText: "Enter your form title",
+                hintText: "Enter your quiz title",
                 filled: true,
                 fillColor: Colors.grey.shade200,
               ),
             ),
             const SizedBox(height: 20),
 
-            // Form Description Section (Optional)
+            // Quiz Description Input
             const Text(
-              "Form Description (Optional)",
+              "Quiz Description (Optional)",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -72,9 +78,30 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
             ),
             const SizedBox(height: 10),
 
-            // Options for Short Answer, Paragraph, Multiple Choice
-            _buildFormDescriptionOptions(),
+            TextField(
+              controller: _formDescriptionController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                hintText: "Enter a brief description of the quiz",
+                filled: true,
+                fillColor: Colors.grey.shade200,
+              ),
+            ),
+            const SizedBox(height: 20),
 
+            // Question Options
+            const Text(
+              "Add Questions",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
+            const SizedBox(height: 10),
+            _buildQuestionOptions(),
             const SizedBox(height: 20),
 
             // Form Settings
@@ -89,21 +116,9 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
             const SizedBox(height: 10),
 
             _buildFormSettings(),
-
             const SizedBox(height: 20),
 
-            // Customize Design
-            const Text(
-              "Customize Design (Optional)",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 10),
-
-            // Buttons for Preview and Share
+            // Bottom Buttons for Preview and Share
             _buildBottomButtons(),
           ],
         ),
@@ -111,35 +126,89 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     );
   }
 
-  // Form Description Options Widget
-  Widget _buildFormDescriptionOptions() {
+  // Build Question Options Widget
+  Widget _buildQuestionOptions() {
     return Column(
       children: [
-        ListTile(
-          leading: const Icon(Icons.short_text, color: Colors.blueAccent),
-          title: const Text("Short Answer"),
-          trailing: const Icon(Icons.add, color: Colors.blueAccent),
-          onTap: () {
-            // Logic to add Short Answer question
+        for (var question in questions)
+          ListTile(
+            title: Text(question['type'] ?? "Unknown Type"),
+            subtitle: Text(question['text'] ?? "No Question"),
+            trailing: IconButton(
+              icon: const Icon(Icons.delete, color: Colors.red),
+              onPressed: () {
+                setState(() {
+                  questions.remove(question);
+                });
+              },
+            ),
+          ),
+        ElevatedButton(
+          onPressed: () {
+            // Logic to add a new question
+            _showAddQuestionDialog();
           },
-        ),
-        ListTile(
-          leading: const Icon(Icons.article, color: Colors.blueAccent),
-          title: const Text("Paragraph"),
-          trailing: const Icon(Icons.add, color: Colors.blueAccent),
-          onTap: () {
-            // Logic to add Paragraph question
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.radio_button_checked, color: Colors.blueAccent),
-          title: const Text("Multiple Choice"),
-          trailing: const Icon(Icons.add, color: Colors.blueAccent),
-          onTap: () {
-            // Logic to add Multiple Choice question
-          },
+          child: const Text("Add Question"),
         ),
       ],
+    );
+  }
+
+  // Function to show dialog for adding a new question
+  void _showAddQuestionDialog() {
+    final TextEditingController questionController = TextEditingController();
+    String questionType = 'Short Answer';
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Add a Question"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: questionController,
+                decoration: const InputDecoration(hintText: "Enter your question"),
+              ),
+              DropdownButton<String>(
+                value: questionType,
+                items: <String>['Short Answer', 'Paragraph', 'Multiple Choice']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    questionType = newValue!;
+                  });
+                },
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  if (questionController.text.isNotEmpty) {
+                    questions.add({'text': questionController.text, 'type': questionType});
+                  }
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text("Add"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Cancel"),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -177,9 +246,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ElevatedButton(
-          onPressed: () {
-            // Preview the form
-          },
+          onPressed: _previewQuiz,
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.grey.shade300,
             shape: RoundedRectangleBorder(
@@ -192,21 +259,87 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
           ),
         ),
         ElevatedButton(
-          onPressed: () {
-            // Share the form
-          },
+          onPressed: isLoading ? null : _shareQuiz,
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blueAccent,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12.0),
             ),
           ),
-          child: const Text(
+          child: isLoading
+              ? const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
+              : const Text(
             "Share",
             style: TextStyle(color: Colors.white),
           ),
         ),
       ],
     );
+  }
+
+  // Sample Preview Quiz Function
+  void _previewQuiz() {
+    // Logic to preview the quiz
+    print("Previewing Quiz: ${_formTitleController.text}");
+  }
+
+  // Share Quiz Function (Send data to backend)
+  Future<void> _shareQuiz() async {
+    if (_formTitleController.text.isEmpty || questions.isEmpty) {
+      // Show an error message if title or questions are empty
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please fill in the quiz title and add at least one question.")),
+      );
+      return;
+    }
+
+    setState(() {
+      isLoading = true; // Start loading
+    });
+
+    final quizData = {
+      'title': _formTitleController.text,
+      'description': _formDescriptionController.text,
+      'questions': questions,
+      'collectEmail': collectEmail,
+      'limitResponses': limitResponses,
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse('http://localhost:8080/quizzes'), // Update to your backend URL if different
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: json.encode(quizData),
+      );
+
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Quiz shared successfully!")),
+        );
+        // Optionally clear the form
+        _clearForm();
+      } else {
+        throw Exception('Failed to share quiz');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error: $e")),
+      );
+    } finally {
+      setState(() {
+        isLoading = false; // Stop loading
+      });
+    }
+  }
+
+  // Clear the form after submission
+  void _clearForm() {
+    _formTitleController.clear();
+    _formDescriptionController.clear();
+    questions.clear();
+    collectEmail = false;
+    limitResponses = false;
   }
 }

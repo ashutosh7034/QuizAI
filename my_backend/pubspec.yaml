@@ -1,0 +1,19 @@
+name: my_backend
+description: A backend server for the QuizAI application.
+version: 1.0.0
+repository: https://github.com/my_org/my_repo  # Uncomment and specify your repository URL if needed.
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'  # Set the Dart SDK version range.
+
+dependencies:
+  http: ^1.2.2                # HTTP package for making network requests.
+  shelf: ^1.3.3               # Web server framework for handling HTTP requests.
+  http_multi_server: ^3.2.1
+  shelf_router: ^1.1.4 # Package for serving HTTP responses using the Shelf framework.
+
+dev_dependencies:
+  lints: ^4.0.0               # Linter package for maintaining code quality.
+  test: ^1.24.0               # Testing framework for writing unit tests.
+
+# Additional configuration can go here.

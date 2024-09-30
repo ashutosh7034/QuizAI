@@ -1,14 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_ai/screens/categoriesScreen.dart';
 import 'package:quiz_ai/screens/student_portal_screen_large.dart';
 import 'package:quiz_ai/screens/student_portal_screen_medium.dart';
 import 'package:quiz_ai/screens/student_portal_screen_small.dart';
-import 'screens/login_screen.dart';
-import 'screens/register_screen.dart';
-import 'screens/Profile_Screen.dart';
-import 'screens/Create_Quiz_manually.dart';
-import 'screens/bottom_navigation.dart';
-import 'screens/my_quizzes_screen.dart';
+import 'package:quiz_ai/screens/login_screen.dart';
+import 'package:quiz_ai/screens/register_screen.dart';
+import 'package:quiz_ai/screens/Profile_Screen.dart';
+import 'package:quiz_ai/screens/Create_Quiz_manually.dart';
+import 'package:quiz_ai/screens/bottom_navigation.dart';
+import 'package:quiz_ai/screens/my_quizzes_screen.dart';
+import 'package:quiz_ai/screens/quiz_screen.dart'; // Import QuizScreen
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,6 +47,8 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => const ProfileScreen(),
         '/create_quiz': (context) => const CreateQuizScreen(),
         '/my_quizzes': (context) => MyQuizzesScreen(),
+        '/categories': (context) => CategoriesScreen(), // Add CategoriesScreen route
+        '/quiz': (context) => const QuizScreen(category: ''), // Add QuizScreen route
       },
     );
   }

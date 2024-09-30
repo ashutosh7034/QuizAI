@@ -9,9 +9,9 @@ List<Category> categories = [
     isAsset: true,
   ),
   Category(
-    name: 'JavaScript',
-    imageUrl: 'assets/javascript.png',
-    isAsset: true
+      name: 'JavaScript',
+      imageUrl: 'assets/javascript.png',
+      isAsset: true
   ),
   Category(
     name: 'Java',
@@ -24,8 +24,8 @@ List<Category> categories = [
     isAsset: true,
   ),
   Category(
-    name: 'Dart',
-    imageUrl: 'assets/dart.png',
-    isAsset: true
+      name: 'Dart',
+      imageUrl: 'assets/dart.png',
+      isAsset: true
   ),
 ];
