@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'edit_profile_screen.dart'; // Make sure to create this file
 
 class ProfileScreen extends StatefulWidget {
@@ -9,9 +11,34 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String name = 'Oliver Smith';
-  String username = '@oliversmith';
-  String bio = 'Avid quiz taker and trivia enthusiast. Always up for a challenge!';
+  String name = 'Loading...';
+  String email = 'Loading...';
+  String description = 'Loading...';
+  String profileImage = 'https://via.placeholder.com/100';
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserData();
+  }
+
+  Future<void> _fetchUserData() async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Fetch user data from Firestore
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+      if (snapshot.exists) {
+        var userData = snapshot.data() as Map<String, dynamic>;
+        setState(() {
+          name = userData['name'] ?? 'User Name';
+          email = userData['email'] ?? 'user@example.com'; // Assuming email is stored
+          description = userData['description'] ?? 'A short description here'; // Assuming description is stored
+          profileImage = userData['profileImage'] ?? 'https://via.placeholder.com/100'; // Assuming profileImage is stored
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +70,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             // Profile Section
             Column(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 50,
-                  backgroundImage: NetworkImage(
-                      'https://via.placeholder.com/100'), // Replace with user's profile image URL
+                  backgroundImage: NetworkImage(profileImage), // Use fetched profile image URL
                 ),
                 const SizedBox(height: 10),
                 Text(
@@ -58,7 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 Text(
-                  username,
+                  email,
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
@@ -67,7 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Text(
-                    bio,
+                    description,
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 14, color: Colors.grey),
                   ),
@@ -121,8 +147,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   MaterialPageRoute(
                     builder: (context) => EditProfileScreen(
                       currentName: name,
-                      currentUsername: username,
-                      currentBio: bio,
+                      currentEmail: email,
+                      currentDescription: description,
                     ),
                   ),
                 );
@@ -130,8 +156,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 if (result != null) {
                   setState(() {
                     name = result['name'];
-                    username = result['username'];
-                    bio = result['bio'];
+                    email = result['email'];
+                    description = result['description'];
                   });
                 }
               },
@@ -164,8 +190,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         _buildAchievementBadge('Quiz Master'),
                         _buildAchievementBadge('Top Scorer'),
-                        _buildAchievementBadge('Fast Lear ner'),
-                        _buildAchievementBadge ('Consistent'),
+                        _buildAchievementBadge('Fast Learner'),
+                        _buildAchievementBadge('Consistent'),
                         _buildAchievementBadge('All-Rounder'),
                       ],
                     ),

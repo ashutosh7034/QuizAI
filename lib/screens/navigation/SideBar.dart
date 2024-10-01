@@ -2,18 +2,65 @@ import 'package:flutter/material.dart';
 import 'package:quiz_ai/screens/auth/login_screen.dart'; // Import LoginScreen to manage the logout
 import 'package:quiz_ai/screens/auth/ChangePasswordScreen.dart';
 import 'package:quiz_ai/screens/about/AboutUsScreen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../profile/HelpSupportScreen.dart';
 import '../auth/PrivacyPolicyScreen.dart'; // Import AboutUsScreen
 
-class Sidebar extends StatelessWidget {
+class Sidebar extends StatefulWidget {
+  @override
+  _SidebarState createState() => _SidebarState();
+}
+
+class _SidebarState extends State<Sidebar> {
+  final String userId = FirebaseAuth.instance.currentUser!.uid;
+  String userName = 'User Name';
+  String userEmail = 'user@example.com';
+  String profileImage = 'https://via.placeholder.com/150';
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserData();
+  }
+
+  Future<void> _fetchUserData() async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Fetch additional Google account data
+      GoogleSignInAccount? googleUser = await GoogleSignIn().signInSilently();
+      if (googleUser != null) {
+        setState(() {
+          userName = googleUser.displayName ?? userName;
+          userEmail = googleUser.email ?? userEmail;
+          profileImage = googleUser.photoUrl ?? profileImage;
+        });
+      }
+    }
+
+    // Fetch data from Firestore
+    DocumentSnapshot snapshot =
+    await FirebaseFirestore.instance.collection('users').doc(userId).get();
+    if (snapshot.exists) {
+      var userData = snapshot.data() as Map<String, dynamic>;
+      setState(() {
+        userName = userData['name'] ?? userName;
+        userEmail = userData['email'] ?? userEmail; // Assuming email is stored
+        profileImage = userData['profileImage'] ?? profileImage; // Default image
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          _createHeader(),
+          _createHeader(userName, userEmail, profileImage),
           _createProfileButton(context),
           const Padding(
             padding: EdgeInsets.only(left: 20.0, top: 10),
@@ -38,8 +85,8 @@ class Sidebar extends StatelessWidget {
             text: 'About Us',
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AboutUsScreen()),
+                context,
+                MaterialPageRoute(builder: (context) => AboutUsScreen()),
               );
             },
           ),
@@ -81,7 +128,7 @@ class Sidebar extends StatelessWidget {
   }
 
   // Helper method to create the header
-  Widget _createHeader() {
+  Widget _createHeader(String name, String email, String imageUrl) {
     return UserAccountsDrawerHeader(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -90,21 +137,20 @@ class Sidebar extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      accountName: const Text(
-        "Oliver Smith",
+      accountName: Text(
+        name,
         style: TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.white,
           fontSize: 18,
         ),
       ),
-      accountEmail: const Text(
-        "@oliversmith",
+      accountEmail: Text(
+        email,
         style: TextStyle(color: Colors.white70),
       ),
-      currentAccountPicture: const CircleAvatar(
-        backgroundImage: NetworkImage(
-            "https://via.placeholder.com/150"), // Replace with your actual image URL
+      currentAccountPicture: CircleAvatar(
+        backgroundImage: NetworkImage(imageUrl), // User's profile image
       ),
     );
   }
@@ -162,8 +208,9 @@ class Sidebar extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
           ),
-          onPressed: () {
+          onPressed: () async {
             // Action for logout
+            await FirebaseAuth.instance.signOut(); // Ensure user is signed out
             Navigator.pushReplacementNamed(context, '/login');
           },
           child: const Text(

@@ -4,14 +4,14 @@ import 'dart:io';
 
 class EditProfileScreen extends StatefulWidget {
   final String currentName;
-  final String currentUsername;
-  final String currentBio;
+  final String currentEmail; // Changed from currentUsername
+  final String currentDescription; // Changed from currentBio
 
   const EditProfileScreen({
     Key? key,
     required this.currentName,
-    required this.currentUsername,
-    required this.currentBio,
+    required this.currentEmail, // Updated constructor parameter
+    required this.currentDescription, // Updated constructor parameter
   }) : super(key: key);
 
   @override
@@ -21,16 +21,16 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final _formKey = GlobalKey<FormState>();
   String _name = '';
-  String _username = '';
-  String _bio = '';
+  String _email = ''; // New field for email
+  String _description = ''; // Changed from _bio to _description
   File? _image;
 
   @override
   void initState() {
     super.initState();
     _name = widget.currentName;
-    _username = widget.currentUsername;
-    _bio = widget.currentBio;
+    _email = widget.currentEmail; // Updated to set current email
+    _description = widget.currentDescription; // Updated to set current description
   }
 
   Future<void> _pickImage() async {
@@ -87,16 +87,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 const SizedBox(height: 20),
                 _buildTextField(
-                  label: 'Username',
-                  initialValue: _username,
-                  onSaved: (value) => _username = value!,
+                  label: 'Email', // Changed from Username to Email
+                  initialValue: _email, // Using email variable
+                  onSaved: (value) => _email = value!,
                 ),
                 const SizedBox(height: 20),
                 _buildTextField(
-                  label: 'Bio',
-                  initialValue: _bio,
+                  label: 'Description', // Changed from Bio to Description
+                  initialValue: _description, // Using description variable
                   maxLines: 3,
-                  onSaved: (value) => _bio = value!,
+                  onSaved: (value) => _description = value!,
                 ),
                 const SizedBox(height: 30),
                 ElevatedButton(
@@ -105,8 +105,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       _formKey.currentState!.save();
                       Navigator.pop(context, {
                         'name': _name,
-                        'username': _username,
-                        'bio': _bio,
+                        'email': _email, // Added email to the result
+                        'description': _description, // Changed from bio to description
                         'image': _image,
                       });
                     }
