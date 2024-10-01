@@ -42,13 +42,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
       });
 
       try {
-        await _auth.createUserWithEmailAndPassword(
+        UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
 
+        // Send email verification
+        await userCredential.user?.sendEmailVerification();
+
         // Show success message
-        await _showSuccessDialog('Registration successful !!!');
+        await _showSuccessDialog('Registration successful! Please verify your email.');
 
         // Navigate to LoginScreen after the dialog is dismissed
         Navigator.pushReplacement(
@@ -56,7 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _buildPageRoute(LoginScreen()), // Replace with your LoginScreen
         );
       } catch (e) {
-        _showErrorSnackBar('Registration failed: $e');
+        _showErrorSnackBar('Registration failed: ${e.toString()}');
       } finally {
         setState(() {
           _isLoading = false; // Hide loading indicator
@@ -277,13 +280,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const TextSpan(text: 'I agree to the ', style: TextStyle(color: Colors.black)),
                 TextSpan(
                   text: 'Privacy Policy',
-                  style: const TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
+                  style: const TextStyle(color: Colors.blue),
                   recognizer: TapGestureRecognizer()..onTap = _openPrivacyPolicy,
                 ),
                 const TextSpan(text: ' and ', style: TextStyle(color: Colors.black)),
                 TextSpan(
                   text: 'Terms of Use',
-                  style: const TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
+                  style: const TextStyle(color: Colors.blue),
                   recognizer: TapGestureRecognizer()..onTap = _openTermsOfUse,
                 ),
               ],
