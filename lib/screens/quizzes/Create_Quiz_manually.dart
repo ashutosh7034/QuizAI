@@ -12,7 +12,8 @@ class CreateQuizScreen extends StatefulWidget {
 class _CreateQuizScreenState extends State<CreateQuizScreen> {
   // Form fields
   final TextEditingController _formTitleController = TextEditingController();
-  final TextEditingController _formDescriptionController = TextEditingController();
+  final TextEditingController _formDescriptionController =
+      TextEditingController();
   bool collectEmail = false;
   bool limitResponses = false;
   bool isLoading = false; // For loading indicator
@@ -169,7 +170,8 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
             children: [
               TextField(
                 controller: questionController,
-                decoration: const InputDecoration(hintText: "Enter your question"),
+                decoration:
+                    const InputDecoration(hintText: "Enter your question"),
               ),
               DropdownButton<String>(
                 value: questionType,
@@ -193,7 +195,10 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
               onPressed: () {
                 setState(() {
                   if (questionController.text.isNotEmpty) {
-                    questions.add({'text': questionController.text, 'type': questionType});
+                    questions.add({
+                      'text': questionController.text,
+                      'type': questionType
+                    });
                   }
                 });
                 Navigator.of(context).pop();
@@ -267,11 +272,12 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
             ),
           ),
           child: isLoading
-              ? const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
+              ? const CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
               : const Text(
-            "Share",
-            style: TextStyle(color: Colors.white),
-          ),
+                  "Share",
+                  style: TextStyle(color: Colors.white),
+                ),
         ),
       ],
     );
@@ -288,7 +294,9 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     if (_formTitleController.text.isEmpty || questions.isEmpty) {
       // Show an error message if title or questions are empty
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please fill in the quiz title and add at least one question.")),
+        const SnackBar(
+            content: Text(
+                "Please fill in the quiz title and add at least one question.")),
       );
       return;
     }
@@ -307,7 +315,8 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:8080/quizzes'), // Update to your backend URL if different
+        Uri.parse(
+            'http://localhost:8080/quizzes'), // Update to your backend URL if different
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
         },
