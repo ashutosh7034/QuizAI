@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_ai/screens/login_screen.dart'; // Import LoginScreen to manage the logout
-import 'package:quiz_ai/screens/ChangePasswordScreen.dart';
-import 'package:quiz_ai/screens/AboutUsScreen.dart';
+import 'package:quiz_ai/screens/auth/login_screen.dart'; // Import LoginScreen to manage the logout
+import 'package:quiz_ai/screens/auth/ChangePasswordScreen.dart';
+import 'package:quiz_ai/screens/about/AboutUsScreen.dart';
 
-import 'HelpSupportScreen.dart';
-import 'PrivacyPolicyScreen.dart'; // Import AboutUsScreen
+import '../profile/HelpSupportScreen.dart';
+import '../auth/PrivacyPolicyScreen.dart'; // Import AboutUsScreen
 
 class Sidebar extends StatelessWidget {
   @override

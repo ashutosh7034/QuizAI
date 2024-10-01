@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'bottom_navigation.dart'; // Import HomePage
+import '../navigation/bottom_navigation.dart'; // Import HomePage
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -24,6 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
       await _googleSignIn.signOut(); // Ensures a clean login
       final googleUser = await _googleSignIn.signIn();
       if (googleUser != null) {
+        // Assuming successful Google sign-in
+        _showLoginSuccessMessage();
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
@@ -40,6 +42,8 @@ class _LoginScreenState extends State<LoginScreen> {
       await FacebookAuth.instance.logOut(); // Ensures a clean login
       final result = await FacebookAuth.instance.login();
       if (result.status == LoginStatus.success) {
+        // Assuming successful Facebook sign-in
+        _showLoginSuccessMessage();
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
@@ -58,6 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
+        // Show success message
+        _showLoginSuccessMessage();
+        // Navigate to HomePage
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
@@ -84,6 +91,17 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         );
       },
+    );
+  }
+
+  // Show success message after login
+  void _showLoginSuccessMessage() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Login successful!'),
+        duration: const Duration(seconds: 2), // Display duration
+        backgroundColor: Colors.green, // Customize color
+      ),
     );
   }
 

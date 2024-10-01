@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'CreateQuizOptionScreen.dart'; // Import the CreateQuizOptionScreen
-import 'AttemptQuizScreen.dart'; // Import the AttemptQuizScreen
+import 'quizzes/CreateQuizOptionScreen.dart'; // Import the CreateQuizOptionScreen
+import 'quizzes/AttemptQuizScreen.dart'; // Import the AttemptQuizScreen
 
 class SelectQuizScreen extends StatelessWidget {
   @override

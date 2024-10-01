@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dashboard.dart'; // Import the original dashboard file
+import 'dashboard/dashboard.dart'; // Import the original dashboard file
 
 class StudentPortalScreenLarge extends StatelessWidget {
   @override

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_ai/screens/SideBar.dart';
+import 'package:quiz_ai/screens/navigation/SideBar.dart';
 import 'package:quiz_ai/screens/Home_Page.dart';
 import 'package:quiz_ai/screens/achiever_screen.dart';
-import 'package:quiz_ai/screens/my_quizzes_screen.dart'; // Import my_quizzes_screen.dart
-import 'package:quiz_ai/screens/categoriesScreen.dart'; // Ensure CategoriesScreen is imported
+import 'package:quiz_ai/screens/quizzes/my_quizzes_screen.dart'; // Import my_quizzes_screen.dart
+import 'package:quiz_ai/screens/categories/categoriesScreen.dart'; // Ensure CategoriesScreen is imported
 import 'package:quiz_ai/screens/leaderboard_screen.dart'; // Import LeaderboardScreen
 
 class HomePage extends StatefulWidget {

@@ -1,16 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz_ai/screens/categoriesScreen.dart';
+import 'package:quiz_ai/screens/categories/categoriesScreen.dart';
 import 'package:quiz_ai/screens/student_portal_screen_large.dart';
 import 'package:quiz_ai/screens/student_portal_screen_medium.dart';
 import 'package:quiz_ai/screens/student_portal_screen_small.dart';
-import 'package:quiz_ai/screens/login_screen.dart';
-import 'package:quiz_ai/screens/register_screen.dart';
-import 'package:quiz_ai/screens/Profile_Screen.dart';
-import 'package:quiz_ai/screens/Create_Quiz_manually.dart';
-import 'package:quiz_ai/screens/bottom_navigation.dart';
-import 'package:quiz_ai/screens/my_quizzes_screen.dart';
-import 'package:quiz_ai/screens/quiz_screen.dart'; // Import QuizScreen
+import 'package:quiz_ai/screens/auth/login_screen.dart';
+import 'package:quiz_ai/screens/auth/register_screen.dart';
+import 'package:quiz_ai/screens/profile/Profile_Screen.dart';
+import 'package:quiz_ai/screens/quizzes/Create_Quiz_manually.dart';
+import 'package:quiz_ai/screens/navigation/bottom_navigation.dart';
+import 'package:quiz_ai/screens/quizzes/my_quizzes_screen.dart';
+import 'package:quiz_ai/screens/quizzes/quiz_screen.dart'; // Import QuizScreen
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
