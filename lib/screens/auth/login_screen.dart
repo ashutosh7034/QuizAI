@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../navigation/bottom_navigation.dart'; // Import HomePage
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:quiz_ai/screens/auth/register_screen.dart';
+import '../navigation/bottom_navigation.dart';
+import 'forgot_password.dart'; // Import HomePage
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -24,7 +27,16 @@ class _LoginScreenState extends State<LoginScreen> {
       await _googleSignIn.signOut(); // Ensures a clean login
       final googleUser = await _googleSignIn.signIn();
       if (googleUser != null) {
-        // Assuming successful Google sign-in
+        final googleAuth = await googleUser.authentication;
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+
+        final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+        // Save user info to Firestore
+        await _saveUserInfo(userCredential.user!.uid, userCredential.user!.email!);
+
         _showLoginSuccessMessage();
         Navigator.pushReplacement(
           context,
@@ -42,7 +54,11 @@ class _LoginScreenState extends State<LoginScreen> {
       await FacebookAuth.instance.logOut(); // Ensures a clean login
       final result = await FacebookAuth.instance.login();
       if (result.status == LoginStatus.success) {
-        // Assuming successful Facebook sign-in
+        final credential = FacebookAuthProvider.credential(result.accessToken! as String);
+        final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+        // Save user info to Firestore
+        await _saveUserInfo(userCredential.user!.uid, userCredential.user!.email!);
+
         _showLoginSuccessMessage();
         Navigator.pushReplacement(
           context,
@@ -58,13 +74,14 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _handleEmailSignIn() async {
     if (_formKey.currentState!.validate()) {
       try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+        final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
-        // Show success message
+        // Save user info to Firestore
+        await _saveUserInfo(userCredential.user!.uid, userCredential.user!.email!);
+
         _showLoginSuccessMessage();
-        // Navigate to HomePage
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
@@ -72,6 +89,18 @@ class _LoginScreenState extends State<LoginScreen> {
       } catch (error) {
         _showErrorDialog('Invalid email or password. Please try again.');
       }
+    }
+  }
+
+  // Method to save user information to Firestore
+  Future<void> _saveUserInfo(String uid, String email) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(uid).set({
+        'email': email,
+        'last_login': FieldValue.serverTimestamp(),
+      });
+    } catch (e) {
+      _showErrorDialog('Failed to save user info: $e');
     }
   }
 
@@ -97,10 +126,10 @@ class _LoginScreenState extends State<LoginScreen> {
   // Show success message after login
   void _showLoginSuccessMessage() {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('Login successful!'),
-        duration: const Duration(seconds: 2), // Display duration
-        backgroundColor: Colors.green, // Customize color
+      const SnackBar(
+        content: Text('Login successful!'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.green,
       ),
     );
   }
@@ -108,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[20],
+      backgroundColor: Colors.purple[50],
       appBar: AppBar(
         title: const Text(
           "Login",
@@ -151,8 +180,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: 'Email',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.purple.shade300),
                     ),
-                    prefixIcon: const Icon(Icons.email),
+                    prefixIcon: const Icon(Icons.email, color: Colors.purple),
                     filled: true,
                     fillColor: Colors.grey.shade100,
                   ),
@@ -172,15 +202,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: 'Password',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.purple.shade300),
                     ),
-                    prefixIcon: const Icon(Icons.lock_outline),
+                    prefixIcon: const Icon(Icons.lock_outline, color: Colors.purple),
                     filled: true,
                     fillColor: Colors.grey.shade100,
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _isPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
+                        _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                        color: Colors.purple,
                       ),
                       onPressed: () {
                         setState(() {
@@ -200,11 +230,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 10),
 
                 // Forgot Password button
+                // Inside your LoginScreen widget's build method, add this below your password text field
+
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      // Handle "Forgot Password"
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()),
+                      );
                     },
                     child: const Text(
                       'Forgot Password?',
@@ -215,6 +250,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
+
                 const SizedBox(height: 30),
 
                 // Login button
@@ -260,62 +296,96 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // Or continue with social login text
                 Center(
-                  child: Text(
+                  child: const Text(
                     'Or continue with',
-                    style: TextStyle(color: Colors.grey.shade500),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 15),
 
-                // Social login buttons (Google, Facebook)
+                // Social Media Buttons
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ElevatedButton(
-                      onPressed: _handleGoogleSignIn,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        shape: RoundedRectangleBorder(
+                    GestureDetector(
+                      onTap: _handleGoogleSignIn,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.shade300, width: 1.5), // Subtle border
                           borderRadius: BorderRadius.circular(12),
-                          side: const BorderSide(color: Colors.grey),
+                          color: Colors.white, // Clean white background
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        padding: const EdgeInsets.all(12), // Slightly increased padding
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Image(
+                              image: AssetImage('assets/google.png'),
+                              height: 24, // Slightly larger for better visibility
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              '  Google  ',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600, // Slightly bolder for emphasis
+                                color: Colors.black, // Dark text for professionalism
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset('assets/google.png', height: 20),
-                          const SizedBox(width: 10),
-                          const Text(
-                            'Google',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
                     ),
-                    const SizedBox(width: 20),
-                    ElevatedButton(
-                      onPressed: _handleFacebookSignIn,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        shape: RoundedRectangleBorder(
+                    const SizedBox(width: 10), // Space between buttons
+                    GestureDetector(
+                      onTap: _handleFacebookSignIn,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.shade300, width: 1.5), // Subtle border
                           borderRadius: BorderRadius.circular(12),
-                          side: const BorderSide(color: Colors.grey),
+                          color: Colors.white, // Clean white background
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        padding: const EdgeInsets.all(12), // Slightly increased padding
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Image(
+                              image: AssetImage('assets/facebook.png'),
+                              height: 24, // Slightly larger for better visibility
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'Facebook',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600, // Slightly bolder for emphasis
+                                color: Colors.black, // Dark text for professionalism
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset('assets/facebook.png', height: 20),
-                          const SizedBox(width: 10),
-                          const Text(
-                            'Facebook',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
                     ),
+
                   ],
                 ),
               ],
