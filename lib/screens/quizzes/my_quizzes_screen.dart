@@ -26,18 +26,20 @@ class MyQuizzesScreen extends StatelessWidget {
               .orderBy('created_at', descending: true) // Sort by timestamp
               .snapshots(),
           builder: (context, snapshot) {
-            if (!snapshot.hasData) {
+            if (!snapshot.hasData || snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());
             }
 
+            // Extract quiz data from Firestore documents
             final quizzes = snapshot.data!.docs.map((doc) {
               return {
-                'title': doc['title'] ?? "Untitled Quiz",
-                'description': doc['description'] ?? "No Description",
-                'questions': doc['questions'] ?? [],
+                'title': doc.get('title') ?? "Untitled Quiz",
+                'description': doc.get('description') ?? "No Description",
+                'questions': doc.get('questions') ?? [],
               };
             }).toList();
 
+            // Display quizzes in a ListView
             return ListView.builder(
               padding: const EdgeInsets.all(16.0),
               itemCount: quizzes.length,
@@ -75,6 +77,7 @@ class MyQuizzesScreen extends StatelessWidget {
                     ),
                     trailing: const Icon(Icons.play_arrow, color: Color(0xFF9C27B0)),
                     onTap: () {
+                      // Navigate to the QuizScreen when a quiz is tapped
                       Navigator.push(
                         context,
                         MaterialPageRoute(

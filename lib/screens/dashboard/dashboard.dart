@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../profile/settings_screen.dart'; // Import your settings screen
+
 class StudentPortalScreen extends StatelessWidget {
   const StudentPortalScreen({Key? key}) : super(key: key);
 
@@ -33,17 +35,29 @@ class StudentPortalScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF9C27B0), // Changed to purple
+                  color: Color(0xFF9C27B0),
                 ),
               ),
-              Row(
-                children: const [
-                  Icon(Icons.settings, color: Color(0xFF9C27B0)), // New icon
-                ],
+              IconButton(
+                icon: const Icon(Icons.settings, color: Color(0xFF9C27B0)),
+                onPressed: () {
+                  // Navigate to Settings Screen with onThemeChanged function
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SettingsScreen(
+                        onThemeChanged: (isDarkMode) {
+                          // Implement your theme change logic here
+                        },
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
           const SizedBox(height: 20),
+
 
           // Image section
           Image.asset(
@@ -92,7 +106,7 @@ class StudentPortalScreen extends StatelessWidget {
               Navigator.pushNamed(context, '/login');
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF9C27B0), // Changed to purple
+              backgroundColor: Color(0xFF9C27B0),
               padding: const EdgeInsets.symmetric(
                   vertical: 15.0, horizontal: 30.0),
               shape: RoundedRectangleBorder(
@@ -103,7 +117,7 @@ class StudentPortalScreen extends StatelessWidget {
               'Get Started',
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.white, // Changed to white
+                color: Colors.white,
               ),
             ),
           ),
@@ -111,13 +125,12 @@ class StudentPortalScreen extends StatelessWidget {
           TextButton(
             onPressed: () {
               // Placeholder for Learn More action
-              // Implement navigation or information here
             },
             child: const Text(
               'Learn More',
               style: TextStyle(
                 fontSize: 16,
-                color: Color(0xFF9C27B0), // Changed to purple
+                color: Color(0xFF9C27B0),
               ),
             ),
           ),
@@ -131,7 +144,7 @@ class StudentPortalScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 20), // Add some space at the top
+          const SizedBox(height: 20),
 
           // Image section
           Image.asset(
@@ -185,7 +198,7 @@ class StudentPortalScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/login');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF9C27B0), // Changed to purple
+                  backgroundColor: Color(0xFF9C27B0),
                   padding: const EdgeInsets.symmetric(
                       vertical: 15.0, horizontal: 30.0),
                   shape: RoundedRectangleBorder(
@@ -196,7 +209,7 @@ class StudentPortalScreen extends StatelessWidget {
                   'Get Started',
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.white, // Changed to white
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -204,13 +217,12 @@ class StudentPortalScreen extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   // Placeholder for Learn More action
-                  // Implement navigation or information here
                 },
                 child: const Text(
                   'Learn More',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF9C27B0), // Changed to purple
+                    color: Color(0xFF9C27B0),
                   ),
                 ),
               ),

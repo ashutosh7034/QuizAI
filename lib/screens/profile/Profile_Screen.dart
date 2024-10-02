@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import '../../main.dart';
 import 'edit_profile_screen.dart'; // Ensure this file exists
+import 'settings_screen.dart'; // Import the SettingsScreen
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -29,7 +28,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      // Fetch user data from Firestore
       DocumentSnapshot snapshot = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
       if (snapshot.exists) {
         var userData = snapshot.data() as Map<String, dynamic>;
@@ -53,7 +51,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         'description': updatedDescription,
       });
 
-      // Update the local state
       setState(() {
         name = updatedName;
         email = updatedEmail;
@@ -82,7 +79,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
           IconButton(
             icon: const Icon(Icons.settings, color: Colors.black),
             onPressed: () {
-              // Handle settings action
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingsScreen(
+                  onThemeChanged: (mode) {
+                    final myApp = context.findAncestorStateOfType<MyAppState>();
+                    if (myApp != null) {
+                      myApp.toggleThemeMode(mode);
+                    }
+                  },
+                )),
+              );
             },
           ),
         ],
@@ -91,7 +98,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            // Profile Section
             Column(
               children: [
                 CircleAvatar(
@@ -125,11 +131,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
             const SizedBox(height: 20),
-
-            // Statistics Section
             _buildStatisticsSection(),
-
-            // Edit Profile Button
             ElevatedButton(
               onPressed: () async {
                 final result = await Navigator.push(
@@ -144,7 +146,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 );
 
                 if (result != null) {
-                  // Update user data with the new values from the EditProfileScreen
                   await _updateUserData(result['name'], result['email'], result['description']);
                 }
               },
@@ -155,8 +156,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: const Text('Edit Profile', style: TextStyle(color: Colors.white)),
             ),
             const SizedBox(height: 20),
-
-            // Achievements Section
             _buildAchievementsSection(),
           ],
         ),
@@ -255,8 +254,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundImage: NetworkImage(
-                'https://via.placeholder.com/60'), // Replace with achievement badge URL
+            backgroundImage: NetworkImage('https://via.placeholder.com/60'), // Replace with achievement badge URL
           ),
           const SizedBox(height: 5),
           Text(label, style: const TextStyle(fontSize: 12)),
