@@ -1,4 +1,5 @@
 import 'dart:convert'; // Import for JSON encoding
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http; // Import HTTP package
 
@@ -13,13 +14,13 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
   // Form fields
   final TextEditingController _formTitleController = TextEditingController();
   final TextEditingController _formDescriptionController =
-      TextEditingController();
+  TextEditingController();
   bool collectEmail = false;
   bool limitResponses = false;
   bool isLoading = false; // For loading indicator
 
   // List to hold questions
-  List<Map<String, String>> questions = [];
+  List<Map<String, dynamic>> questions = [];
 
   @override
   Widget build(BuildContext context) {
@@ -159,60 +160,106 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
   void _showAddQuestionDialog() {
     final TextEditingController questionController = TextEditingController();
     String questionType = 'Short Answer';
+    List<String> multipleChoices = [];
+    final TextEditingController optionController = TextEditingController();
 
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: const Text("Add a Question"),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: questionController,
-                decoration:
-                    const InputDecoration(hintText: "Enter your question"),
-              ),
-              DropdownButton<String>(
-                value: questionType,
-                items: <String>['Short Answer', 'Paragraph', 'Multiple Choice']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
+        return StatefulBuilder(builder: (context, setDialogState) {
+          return AlertDialog(
+            title: const Text("Add a Question"),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: questionController,
+                  decoration:
+                  const InputDecoration(hintText: "Enter your question"),
+                ),
+                DropdownButton<String>(
+                  value: questionType,
+                  items: <String>[
+                    'Short Answer',
+                    'Paragraph',
+                    'Multiple Choice'
+                  ]
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setDialogState(() {
+                      questionType = newValue!;
+                    });
+                  },
+                ),
+                if (questionType == 'Multiple Choice')
+                  Column(
+                    children: [
+                      TextField(
+                        controller: optionController,
+                        decoration: const InputDecoration(
+                          hintText: "Enter an option",
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          setDialogState(() {
+                            if (optionController.text.isNotEmpty) {
+                              multipleChoices.add(optionController.text);
+                              optionController.clear();
+                            }
+                          });
+                        },
+                        child: const Text("Add Option"),
+                      ),
+                      for (var option in multipleChoices)
+                        ListTile(
+                          title: Text(option),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete, color: Colors.red),
+                            onPressed: () {
+                              setDialogState(() {
+                                multipleChoices.remove(option);
+                              });
+                            },
+                          ),
+                        ),
+                    ],
+                  ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
                   setState(() {
-                    questionType = newValue!;
+                    if (questionController.text.isNotEmpty) {
+                      final question = {
+                        'text': questionController.text,
+                        'type': questionType,
+                        'options': questionType == 'Multiple Choice'
+                            ? multipleChoices
+                            : [],
+                      };
+                      questions.add(question);
+                    }
                   });
+                  Navigator.of(context).pop();
                 },
+                child: const Text("Add"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("Cancel"),
               ),
             ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  if (questionController.text.isNotEmpty) {
-                    questions.add({
-                      'text': questionController.text,
-                      'type': questionType
-                    });
-                  }
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text("Add"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text("Cancel"),
-            ),
-          ],
-        );
+          );
+        });
       },
     );
   }
@@ -273,11 +320,11 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
           ),
           child: isLoading
               ? const CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
               : const Text(
-                  "Share",
-                  style: TextStyle(color: Colors.white),
-                ),
+            "Share",
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ],
     );
@@ -292,17 +339,14 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
   // Share Quiz Function (Send data to backend)
   Future<void> _shareQuiz() async {
     if (_formTitleController.text.isEmpty || questions.isEmpty) {
-      // Show an error message if title or questions are empty
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text(
-                "Please fill in the quiz title and add at least one question.")),
+        const SnackBar(content: Text('Quiz title and questions are required')),
       );
       return;
     }
 
     setState(() {
-      isLoading = true; // Start loading
+      isLoading = true;
     });
 
     final quizData = {
@@ -311,44 +355,25 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
       'questions': questions,
       'collectEmail': collectEmail,
       'limitResponses': limitResponses,
+      'created_at': FieldValue.serverTimestamp(), // Ensure timestamp is saved
     };
 
     try {
-      final response = await http.post(
-        Uri.parse(
-            'http://localhost:8080/quizzes'), // Update to your backend URL if different
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: json.encode(quizData),
-      );
+      await FirebaseFirestore.instance.collection('quizzes').add(quizData);
 
-      if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Quiz shared successfully!")),
-        );
-        // Optionally clear the form
-        _clearForm();
-      } else {
-        throw Exception('Failed to share quiz');
-      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Quiz successfully shared!')),
+      );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error: $e")),
+        SnackBar(content: Text('Error: $e')),
       );
-    } finally {
-      setState(() {
-        isLoading = false; // Stop loading
-      });
     }
+
+    setState(() {
+      isLoading = false;
+    });
   }
 
-  // Clear the form after submission
-  void _clearForm() {
-    _formTitleController.clear();
-    _formDescriptionController.clear();
-    questions.clear();
-    collectEmail = false;
-    limitResponses = false;
-  }
+
 }

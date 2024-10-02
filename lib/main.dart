@@ -45,11 +45,25 @@ class MyApp extends StatelessWidget {
         '/register': (context) => const RegisterScreen(),
         '/home': (context) => HomePage(),
         '/profile': (context) => const ProfileScreen(),
-        '/create_quiz': (context) => const CreateQuizScreen(),
+        '/create_quiz': (context) => CreateQuizScreen(),
         '/my_quizzes': (context) => MyQuizzesScreen(),
-        '/categories': (context) => CategoriesScreen(), // Add CategoriesScreen route
-        '/quiz': (context) => const QuizScreen(category: ''), // Add QuizScreen route
+        '/categories': (context) => CategoriesScreen(),
+        // Remove default arguments for QuizScreen route
       },
+    );
+  }
+
+  // Method to navigate to QuizScreen with parameters
+  static void navigateToQuizScreen(BuildContext context, String title, String description, List<dynamic> questions) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => QuizScreen(
+          title: title,
+          description: description,
+          questions: questions,
+        ),
+      ),
     );
   }
 }

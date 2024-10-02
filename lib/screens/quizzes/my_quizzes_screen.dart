@@ -1,51 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'quiz_screen.dart';
 
 class MyQuizzesScreen extends StatelessWidget {
-  final List<Map<String, String>> quizzes = [
-    {
-      'title': 'Operating Systems',
-      'description': 'Test your knowledge on concepts of Process Management, Memory, Scheduling, and more.',
-    },
-    {
-      'title': 'Database Management Systems (DBMS)',
-      'description': 'Assess yourself on database fundamentals, SQL, ER Diagrams, Normalization, and more.',
-    },
-    {
-      'title': 'Computer Networks',
-      'description': 'Evaluate your understanding of OSI model, TCP/IP, Networking Protocols, and more.',
-    },
-    {
-      'title': 'Software Engineering',
-      'description': 'Challenge your skills on SDLC, Agile methodologies, UML Diagrams, and more.',
-    },
-    {
-      'title': 'Theory of Computation',
-      'description': 'Test your knowledge on Automata, Grammars, Languages, and Turing Machines.',
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Quizzes'),
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF9C27B0), // purple
+        backgroundColor: Color(0xFF9C27B0),
         centerTitle: true,
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF9C27B0), Color(0xFF03A9F4)], // purple to blue-green
+            colors: [Color(0xFF9C27B0), Color(0xFF03A9F4)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: quizzes.map((quiz) {
+        child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('quizzes')
+              .orderBy('created_at', descending: true) // Sort by timestamp
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            final quizzes = snapshot.data!.docs.map((doc) {
+              return {
+                'title': doc['title'] ?? "Untitled Quiz",
+                'description': doc['description'] ?? "No Description",
+                'questions': doc['questions'] ?? [],
+              };
+            }).toList();
+
+            return ListView.builder(
+              padding: const EdgeInsets.all(16.0),
+              itemCount: quizzes.length,
+              itemBuilder: (context, index) {
+                final quiz = quizzes[index];
                 return Card(
                   margin: const EdgeInsets.only(bottom: 16.0),
                   elevation: 6,
@@ -56,13 +53,13 @@ class MyQuizzesScreen extends StatelessWidget {
                     contentPadding: const EdgeInsets.all(16.0),
                     leading: CircleAvatar(
                       backgroundColor: Color(0xFF9C27B0).withOpacity(0.5),
-                      child: Icon(
+                      child: const Icon(
                         Icons.school,
                         color: Colors.white,
                       ),
                     ),
                     title: Text(
-                      quiz['title']!,
+                      quiz['title'],
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -70,7 +67,7 @@ class MyQuizzesScreen extends StatelessWidget {
                       ),
                     ),
                     subtitle: Text(
-                      quiz['description']!,
+                      quiz['description'],
                       style: const TextStyle(
                         color: Colors.black54,
                         fontSize: 14,
@@ -78,56 +75,24 @@ class MyQuizzesScreen extends StatelessWidget {
                     ),
                     trailing: const Icon(Icons.play_arrow, color: Color(0xFF9C27B0)),
                     onTap: () {
-                      // Navigate to the specific quiz screen
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => QuizDetailScreen(
-                            quizTitle: quiz['title']!,
+                          builder: (context) => QuizScreen(
+                            title: quiz['title'], // Pass the title
+                            description: quiz['description'], // Pass the description
+                            questions: quiz['questions'], // Pass the questions
                           ),
                         ),
                       );
                     },
                   ),
                 );
-              }).toList(),
-            ),
-          ),
+              },
+            );
+          },
         ),
       ),
     );
   }
-}
-
-// A placeholder for the detailed quiz screen for each subject.
-class QuizDetailScreen extends StatelessWidget {
-  final String quizTitle;
-
-  const QuizDetailScreen({Key? key, required this.quizTitle}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(quizTitle),
-        backgroundColor: Color(0xFF9C27B0), // purple
-      ),
-      body: Center(
-        child: Text(
-          'This is the quiz for $quizTitle',
-          style: const TextStyle(fontSize: 20),
-        ),
-      ),
-    );
-  }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: MyQuizzesScreen(),
-    theme: ThemeData(
-      fontFamily: 'Roboto',
-      primarySwatch: Colors.deepPurple,
-    ),
-  ));
 }

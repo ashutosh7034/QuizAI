@@ -37,7 +37,7 @@ class CreateQuizOptionScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const CreateQuizScreen()),
+                  MaterialPageRoute(builder: (context) => CreateQuizScreen()),
                 );
               },
             ),
