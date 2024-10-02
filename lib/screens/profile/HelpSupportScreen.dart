@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart'; // Import url_launcher
 
 class HelpSupportScreen extends StatelessWidget {
   const HelpSupportScreen({Key? key}) : super(key: key);
@@ -129,21 +130,15 @@ class HelpSupportScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           icon: const FaIcon(FontAwesomeIcons.facebook, color: Color(0xFF3b5998)),
-                          onPressed: () {
-                            // Open Facebook page
-                          },
+                          onPressed: () => _launchURL('https://www.facebook.com'), // Redirect to Facebook home page
                         ),
                         IconButton(
                           icon: const FaIcon(FontAwesomeIcons.twitter, color: Color(0xFF00acee)),
-                          onPressed: () {
-                            // Open Twitter page
-                          },
+                          onPressed: () => _launchURL('https://twitter.com'), // Redirect to Twitter home page
                         ),
                         IconButton(
                           icon: const FaIcon(FontAwesomeIcons.instagram, color: Color(0xFFC13584)),
-                          onPressed: () {
-                            // Open Instagram page
-                          },
+                          onPressed: () => _launchURL('https://www.instagram.com'), // Redirect to Instagram home page
                         ),
                       ],
                     ),
@@ -155,5 +150,16 @@ class HelpSupportScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  // Function to launch the URL
+  Future<void> _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: false, forceWebView: false); // Open in external browser
+    } else {
+      // Print error message in the console for better debugging
+      print('Could not launch $url');
+      throw 'Could not launch $url';
+    }
   }
 }

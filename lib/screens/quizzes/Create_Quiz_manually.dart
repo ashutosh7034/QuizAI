@@ -13,8 +13,7 @@ class CreateQuizScreen extends StatefulWidget {
 class _CreateQuizScreenState extends State<CreateQuizScreen> {
   // Form fields
   final TextEditingController _formTitleController = TextEditingController();
-  final TextEditingController _formDescriptionController =
-  TextEditingController();
+  final TextEditingController _formDescriptionController = TextEditingController();
   bool collectEmail = false;
   bool limitResponses = false;
   bool isLoading = false; // For loading indicator
@@ -54,8 +53,6 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
               ),
             ),
             const SizedBox(height: 16),
-
-            // Quiz Title Input
             TextField(
               controller: _formTitleController,
               decoration: InputDecoration(
@@ -68,8 +65,6 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
               ),
             ),
             const SizedBox(height: 20),
-
-            // Quiz Description Input
             const Text(
               "Quiz Description (Optional)",
               style: TextStyle(
@@ -79,7 +74,6 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
               ),
             ),
             const SizedBox(height: 10),
-
             TextField(
               controller: _formDescriptionController,
               decoration: InputDecoration(
@@ -92,8 +86,6 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
               ),
             ),
             const SizedBox(height: 20),
-
-            // Question Options
             const Text(
               "Add Questions",
               style: TextStyle(
@@ -105,8 +97,6 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
             const SizedBox(height: 10),
             _buildQuestionOptions(),
             const SizedBox(height: 20),
-
-            // Form Settings
             const Text(
               "Form Settings",
               style: TextStyle(
@@ -116,11 +106,8 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
               ),
             ),
             const SizedBox(height: 10),
-
             _buildFormSettings(),
             const SizedBox(height: 20),
-
-            // Bottom Buttons for Preview and Share
             _buildBottomButtons(),
           ],
         ),
@@ -128,7 +115,6 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     );
   }
 
-  // Build Question Options Widget
   Widget _buildQuestionOptions() {
     return Column(
       children: [
@@ -147,7 +133,6 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
           ),
         ElevatedButton(
           onPressed: () {
-            // Logic to add a new question
             _showAddQuestionDialog();
           },
           child: const Text("Add Question"),
@@ -156,7 +141,6 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     );
   }
 
-  // Function to show dialog for adding a new question
   void _showAddQuestionDialog() {
     final TextEditingController questionController = TextEditingController();
     String questionType = 'Short Answer';
@@ -166,105 +150,105 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     showDialog(
       context: context,
       builder: (context) {
-        return StatefulBuilder(builder: (context, setDialogState) {
-          return AlertDialog(
-            title: const Text("Add a Question"),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  controller: questionController,
-                  decoration:
-                  const InputDecoration(hintText: "Enter your question"),
-                ),
-                DropdownButton<String>(
-                  value: questionType,
-                  items: <String>[
-                    'Short Answer',
-                    'Paragraph',
-                    'Multiple Choice'
-                  ]
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setDialogState(() {
-                      questionType = newValue!;
-                    });
-                  },
-                ),
-                if (questionType == 'Multiple Choice')
-                  Column(
-                    children: [
-                      TextField(
-                        controller: optionController,
-                        decoration: const InputDecoration(
-                          hintText: "Enter an option",
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          setDialogState(() {
-                            if (optionController.text.isNotEmpty) {
-                              multipleChoices.add(optionController.text);
-                              optionController.clear();
-                            }
-                          });
-                        },
-                        child: const Text("Add Option"),
-                      ),
-                      for (var option in multipleChoices)
-                        ListTile(
-                          title: Text(option),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            return AlertDialog(
+              title: const Text("Add a Question"),
+              content: SingleChildScrollView( // Allow scrolling for long content
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: questionController,
+                      decoration: const InputDecoration(hintText: "Enter your question"),
+                    ),
+                    DropdownButton<String>(
+                      value: questionType,
+                      items: <String>['Short Answer', 'Paragraph', 'Multiple Choice']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setDialogState(() {
+                          questionType = newValue!;
+                          if (questionType != 'Multiple Choice') {
+                            // Reset options if the type is not Multiple Choice
+                            multipleChoices.clear();
+                          }
+                        });
+                      },
+                    ),
+                    if (questionType == 'Multiple Choice')
+                      Column(
+                        children: [
+                          TextField(
+                            controller: optionController,
+                            decoration: const InputDecoration(
+                              hintText: "Enter an option",
+                            ),
+                          ),
+                          ElevatedButton(
                             onPressed: () {
                               setDialogState(() {
-                                multipleChoices.remove(option);
+                                if (optionController.text.isNotEmpty) {
+                                  multipleChoices.add(optionController.text);
+                                  optionController.clear();
+                                }
                               });
                             },
+                            child: const Text("Add Option"),
                           ),
-                        ),
-                    ],
-                  ),
+                          for (var option in multipleChoices)
+                            ListTile(
+                              title: Text(option),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.delete, color: Colors.red),
+                                onPressed: () {
+                                  setDialogState(() {
+                                    multipleChoices.remove(option);
+                                  });
+                                },
+                              ),
+                            ),
+                        ],
+                      ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      if (questionController.text.isNotEmpty) {
+                        final question = {
+                          'text': questionController.text,
+                          'type': questionType,
+                          'options': questionType == 'Multiple Choice' ? multipleChoices : [],
+                        };
+                        questions.add(question);
+                      }
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("Add"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("Cancel"),
+                ),
               ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    if (questionController.text.isNotEmpty) {
-                      final question = {
-                        'text': questionController.text,
-                        'type': questionType,
-                        'options': questionType == 'Multiple Choice'
-                            ? multipleChoices
-                            : [],
-                      };
-                      questions.add(question);
-                    }
-                  });
-                  Navigator.of(context).pop();
-                },
-                child: const Text("Add"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text("Cancel"),
-              ),
-            ],
-          );
-        });
+            );
+          },
+        );
       },
     );
   }
 
-  // Form Settings Widget
   Widget _buildFormSettings() {
     return Column(
       children: [
@@ -292,7 +276,6 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     );
   }
 
-  // Bottom Buttons for Preview and Share
   Widget _buildBottomButtons() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -330,13 +313,10 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     );
   }
 
-  // Sample Preview Quiz Function
   void _previewQuiz() {
-    // Logic to preview the quiz
     print("Previewing Quiz: ${_formTitleController.text}");
   }
 
-  // Share Quiz Function (Send data to backend)
   Future<void> _shareQuiz() async {
     if (_formTitleController.text.isEmpty || questions.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -360,20 +340,18 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
 
     try {
       await FirebaseFirestore.instance.collection('quizzes').add(quizData);
-
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Quiz successfully shared!')),
+        const SnackBar(content: Text('Quiz shared successfully!')),
       );
     } catch (e) {
+      print("Error sharing quiz: $e");
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
+        const SnackBar(content: Text('Error sharing quiz, please try again')),
       );
+    } finally {
+      setState(() {
+        isLoading = false; // Reset loading state
+      });
     }
-
-    setState(() {
-      isLoading = false;
-    });
   }
-
-
 }

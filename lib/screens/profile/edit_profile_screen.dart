@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class EditProfileScreen extends StatefulWidget {
   final String currentName;
-  final String currentEmail; // Changed from currentUsername
-  final String currentDescription; // Changed from currentBio
+  final String currentEmail;
+  final String currentDescription;
 
   const EditProfileScreen({
     Key? key,
     required this.currentName,
-    required this.currentEmail, // Updated constructor parameter
-    required this.currentDescription, // Updated constructor parameter
+    required this.currentEmail,
+    required this.currentDescription,
   }) : super(key: key);
 
   @override
@@ -21,16 +24,16 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final _formKey = GlobalKey<FormState>();
   String _name = '';
-  String _email = ''; // New field for email
-  String _description = ''; // Changed from _bio to _description
+  String _email = '';
+  String _description = '';
   File? _image;
 
   @override
   void initState() {
     super.initState();
     _name = widget.currentName;
-    _email = widget.currentEmail; // Updated to set current email
-    _description = widget.currentDescription; // Updated to set current description
+    _email = widget.currentEmail;
+    _description = widget.currentDescription;
   }
 
   Future<void> _pickImage() async {
@@ -41,6 +44,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       setState(() {
         _image = File(pickedFile.path);
       });
+    }
+  }
+
+  Future<void> _updateUserData(String updatedName, String updatedEmail, String updatedDescription) async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+        'name': updatedName,
+        'email': updatedEmail,
+        'description': updatedDescription,
+        // Optionally update the profile image URL here if needed
+      });
+
+      // Update the local state
+      setState(() {
+        _name = updatedName;
+        _email = updatedEmail;
+        _description = updatedDescription;
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Profile updated successfully!')));
     }
   }
 
@@ -72,8 +97,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     radius: 50,
                     backgroundImage: _image != null
                         ? FileImage(_image!)
-                        : const NetworkImage('https://via.placeholder.com/100')
-                    as ImageProvider,
+                        : const NetworkImage('https://via.placeholder.com/100') as ImageProvider,
                     child: _image == null
                         ? const Icon(Icons.camera_alt, size: 50, color: Colors.grey)
                         : null,
@@ -87,26 +111,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 const SizedBox(height: 20),
                 _buildTextField(
-                  label: 'Email', // Changed from Username to Email
-                  initialValue: _email, // Using email variable
+                  label: 'Email',
+                  initialValue: _email,
                   onSaved: (value) => _email = value!,
                 ),
                 const SizedBox(height: 20),
                 _buildTextField(
-                  label: 'Description', // Changed from Bio to Description
-                  initialValue: _description, // Using description variable
+                  label: 'Description',
+                  initialValue: _description,
                   maxLines: 3,
                   onSaved: (value) => _description = value!,
                 ),
                 const SizedBox(height: 30),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
+                      await _updateUserData(_name, _email, _description); // Update data in Firestore
                       Navigator.pop(context, {
                         'name': _name,
-                        'email': _email, // Added email to the result
-                        'description': _description, // Changed from bio to description
+                        'email': _email,
+                        'description': _description,
                         'image': _image,
                       });
                     }
@@ -150,7 +175,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return ' Please enter your $label';
+          return 'Please enter your $label';
         }
         return null;
       },

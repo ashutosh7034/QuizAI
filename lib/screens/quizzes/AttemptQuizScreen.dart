@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'my_quizzes_screen.dart'; // Import the MyQuizzesScreen
 
 class AttemptQuizScreen extends StatelessWidget {
   @override
@@ -60,7 +61,11 @@ class AttemptQuizScreen extends StatelessWidget {
               // Start Quiz Button
               ElevatedButton(
                 onPressed: () {
-                  // Handle Start Quiz action
+                  // Navigate to MyQuizzesScreen when the button is pressed
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyQuizzesScreen()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepPurple,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'edit_profile_screen.dart'; // Make sure to create this file
+import 'package:google_sign_in/google_sign_in.dart';
+import 'edit_profile_screen.dart'; // Ensure this file exists
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -31,12 +34,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
       if (snapshot.exists) {
         var userData = snapshot.data() as Map<String, dynamic>;
         setState(() {
-          name = userData['name'] ?? 'User Name';
-          email = userData['email'] ?? 'user@example.com'; // Assuming email is stored
-          description = userData['description'] ?? 'A short description here'; // Assuming description is stored
-          profileImage = userData['profileImage'] ?? 'https://via.placeholder.com/100'; // Assuming profileImage is stored
+          name = userData['name'] ?? user.displayName ?? 'User Name';
+          email = userData['email'] ?? user.email ?? 'user@example.com';
+          description = userData['description'] ?? 'A short description here';
+          profileImage = userData['profileImage'] ?? user.photoURL ?? 'https://via.placeholder.com/100';
         });
       }
+    }
+  }
+
+  Future<void> _updateUserData(String updatedName, String updatedEmail, String updatedDescription) async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+        'name': updatedName,
+        'email': updatedEmail,
+        'description': updatedDescription,
+      });
+
+      // Update the local state
+      setState(() {
+        name = updatedName;
+        email = updatedEmail;
+        description = updatedDescription;
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Profile updated successfully!')));
     }
   }
 
@@ -51,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context); // Navigate back to the previous screen
+            Navigator.pop(context);
           },
         ),
         actions: [
@@ -72,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: NetworkImage(profileImage), // Use fetched profile image URL
+                  backgroundImage: NetworkImage(profileImage),
                 ),
                 const SizedBox(height: 10),
                 Text(
@@ -80,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF9C27B0), // Changed to purple
+                    color: Color(0xFF9C27B0),
                   ),
                 ),
                 Text(
@@ -103,41 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 20),
 
             // Statistics Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Statistics',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF9C27B0), // Changed to purple
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildStatItem('150', 'Quizzes'),
-                      _buildStatItem('85%', 'Average'),
-                      _buildStatItem('90%', 'Completion'),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildStatItem('1.2K', 'Points'),
-                      _buildStatItem('Top 10', 'Rank'),
-                      _buildStatItem('5', 'Badges'),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
+            _buildStatisticsSection(),
 
             // Edit Profile Button
             ElevatedButton(
@@ -154,15 +144,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 );
 
                 if (result != null) {
-                  setState(() {
-                    name = result['name'];
-                    email = result['email'];
-                    description = result['description'];
-                  });
+                  // Update user data with the new values from the EditProfileScreen
+                  await _updateUserData(result['name'], result['email'], result['description']);
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF9C27B0), // Changed to purple
+                backgroundColor: Color(0xFF9C27B0),
                 padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 80),
               ),
               child: const Text('Edit Profile', style: TextStyle(color: Colors.white)),
@@ -170,37 +157,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 20),
 
             // Achievements Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Achievements',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF9C27B0), // Changed to purple
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        _buildAchievementBadge('Quiz Master'),
-                        _buildAchievementBadge('Top Scorer'),
-                        _buildAchievementBadge('Fast Learner'),
-                        _buildAchievementBadge('Consistent'),
-                        _buildAchievementBadge('All-Rounder'),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            _buildAchievementsSection(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildStatisticsSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Statistics',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF9C27B0),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildStatItem('150', 'Quizzes'),
+              _buildStatItem('85%', 'Average'),
+              _buildStatItem('90%', 'Completion'),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildStatItem('1.2K', 'Points'),
+              _buildStatItem('Top 10', 'Rank'),
+              _buildStatItem('5', 'Badges'),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -217,6 +213,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
           style: const TextStyle(fontSize: 14, color: Colors.grey),
         ),
       ],
+    );
+  }
+
+  Widget _buildAchievementsSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Achievements',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF9C27B0),
+            ),
+          ),
+          const SizedBox(height: 10),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _buildAchievementBadge('Quiz Master'),
+                _buildAchievementBadge('Top Scorer'),
+                _buildAchievementBadge('Fast Learner'),
+                _buildAchievementBadge('Consistent'),
+                _buildAchievementBadge('All-Rounder'),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 

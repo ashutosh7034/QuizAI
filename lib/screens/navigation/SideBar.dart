@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_ai/screens/auth/login_screen.dart'; // Import LoginScreen to manage the logout
-import 'package:quiz_ai/screens/auth/ChangePasswordScreen.dart';
-import 'package:quiz_ai/screens/about/AboutUsScreen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
+import '../about/AboutUsScreen.dart';
+import '../auth/ChangePasswordScreen.dart';
+import '../auth/PrivacyPolicyScreen.dart';
 import '../profile/HelpSupportScreen.dart';
-import '../auth/PrivacyPolicyScreen.dart'; // Import AboutUsScreen
+
 
 class Sidebar extends StatefulWidget {
   @override
@@ -15,7 +14,6 @@ class Sidebar extends StatefulWidget {
 }
 
 class _SidebarState extends State<Sidebar> {
-  final String userId = FirebaseAuth.instance.currentUser!.uid;
   String userName = 'User Name';
   String userEmail = 'user@example.com';
   String profileImage = 'https://via.placeholder.com/150';
@@ -39,18 +37,18 @@ class _SidebarState extends State<Sidebar> {
           profileImage = googleUser.photoUrl ?? profileImage;
         });
       }
-    }
 
-    // Fetch data from Firestore
-    DocumentSnapshot snapshot =
-    await FirebaseFirestore.instance.collection('users').doc(userId).get();
-    if (snapshot.exists) {
-      var userData = snapshot.data() as Map<String, dynamic>;
-      setState(() {
-        userName = userData['name'] ?? userName;
-        userEmail = userData['email'] ?? userEmail; // Assuming email is stored
-        profileImage = userData['profileImage'] ?? profileImage; // Default image
-      });
+      // Fetch data from Firestore
+      DocumentSnapshot snapshot =
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+      if (snapshot.exists) {
+        var userData = snapshot.data() as Map<String, dynamic>;
+        setState(() {
+          userName = userData['name'] ?? userName;
+          userEmail = userData['email'] ?? userEmail;
+          profileImage = userData['profileImage'] ?? profileImage;
+        });
+      }
     }
   }
 
@@ -127,7 +125,6 @@ class _SidebarState extends State<Sidebar> {
     );
   }
 
-  // Helper method to create the header
   Widget _createHeader(String name, String email, String imageUrl) {
     return UserAccountsDrawerHeader(
       decoration: BoxDecoration(
@@ -139,7 +136,7 @@ class _SidebarState extends State<Sidebar> {
       ),
       accountName: Text(
         name,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.white,
           fontSize: 18,
@@ -147,15 +144,14 @@ class _SidebarState extends State<Sidebar> {
       ),
       accountEmail: Text(
         email,
-        style: TextStyle(color: Colors.white70),
+        style: const TextStyle(color: Colors.white70),
       ),
       currentAccountPicture: CircleAvatar(
-        backgroundImage: NetworkImage(imageUrl), // User's profile image
+        backgroundImage: NetworkImage(imageUrl),
       ),
     );
   }
 
-  // Helper method to create the profile button
   Widget _createProfileButton(BuildContext context) {
     return ListTile(
       title: Center(
@@ -168,7 +164,6 @@ class _SidebarState extends State<Sidebar> {
             ),
           ),
           onPressed: () {
-            // Action when 'View Profile' is clicked
             Navigator.pushNamed(context, '/profile');
           },
           child: const Text(
@@ -180,7 +175,6 @@ class _SidebarState extends State<Sidebar> {
     );
   }
 
-  // Helper method to create drawer items
   Widget _createDrawerItem({
     required IconData icon,
     required String text,
@@ -196,7 +190,6 @@ class _SidebarState extends State<Sidebar> {
     );
   }
 
-  // Helper method to create the logout button
   Widget _createLogoutButton(BuildContext context) {
     return ListTile(
       title: Center(
@@ -209,8 +202,8 @@ class _SidebarState extends State<Sidebar> {
             ),
           ),
           onPressed: () async {
-            // Action for logout
-            await FirebaseAuth.instance.signOut(); // Ensure user is signed out
+            await FirebaseAuth.instance.signOut();
+            await GoogleSignIn().signOut(); // Ensure Google Sign-Out
             Navigator.pushReplacementNamed(context, '/login');
           },
           child: const Text(
