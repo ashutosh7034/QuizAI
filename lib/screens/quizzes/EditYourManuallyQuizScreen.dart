@@ -161,12 +161,28 @@ class _EditYourManuallyQuizScreenState extends State<EditYourManuallyQuizScreen>
                   fetchQuizzes(); // Refresh quizzes after creating a new one
                 });
               },
-              child: const Text("Create New Quiz"),
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16), backgroundColor: Colors.blueAccent,
-                textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40), // Increased padding for a larger button
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30), // Rounded corners for a modern look
+                ),
+                backgroundColor: Colors.blueAccent, // Primary color of the button
+                elevation: 10, // Elevation for a shadow effect
+                shadowColor: Colors.blue.withOpacity(0.5), // Slight shadow to add depth
+                textStyle: const TextStyle(
+                  fontSize: 18, // Larger font size for readability
+                  fontWeight: FontWeight.bold, // Bold text for prominence
+                  letterSpacing: 1.2, // Increased letter spacing for a sleek design
+                ),
+              ),
+              child: const Text(
+                "Create New Quiz",
+                style: TextStyle(
+                  color: Colors.white, // Ensure text is white for contrast
+                ),
               ),
             ),
+
           ],
         ),
       ),
