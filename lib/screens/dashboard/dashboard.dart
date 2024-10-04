@@ -1,9 +1,51 @@
 import 'package:flutter/material.dart';
-
 import '../profile/settings_screen.dart'; // Import your settings screen
+import 'explore_features_screen.dart'; // Import the Explore Features screen
 
-class StudentPortalScreen extends StatelessWidget {
+class StudentPortalScreen extends StatefulWidget {
   const StudentPortalScreen({Key? key}) : super(key: key);
+
+  @override
+  _StudentPortalScreenState createState() => _StudentPortalScreenState();
+}
+
+class _StudentPortalScreenState extends State<StudentPortalScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeAnimation;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Animation controller for managing animations
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat(reverse: true); // Loop the animation
+
+    // Define fade and scale animations
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.bounceOut,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose(); // Dispose of the controller
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +73,7 @@ class StudentPortalScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Student Portal',
+                'Quiz AI Portal',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -41,7 +83,7 @@ class StudentPortalScreen extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.settings, color: Color(0xFF9C27B0)),
                 onPressed: () {
-                  // Navigate to Settings Screen with onThemeChanged function
+                  // Navigate to Settings Screen
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -58,63 +100,77 @@ class StudentPortalScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-
-          // Image section
-          Image.asset(
-            'assets/dashboard.png',
-            height: 200,
+          // Animated Image section
+          FadeTransition(
+            opacity: _fadeAnimation,
+            child: ScaleTransition(
+              scale: _scaleAnimation,
+              child: Image.asset(
+                'assets/dashboard.png',
+                height: 200,
+              ),
+            ),
           ),
           const SizedBox(height: 20),
 
           // Title and subtitle
-          const Text(
-            'Welcome to Your Dashboard',
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
+          ScaleTransition(
+            scale: _scaleAnimation,
+            child: const Text(
+              'Welcome to Your Quiz Dashboard',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+              textAlign: TextAlign.center, // Centering the text
             ),
           ),
           const SizedBox(height: 10),
-          const Text(
-            'Access your courses, assignments, and more from here.',
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.grey,
+          ScaleTransition(
+            scale: _scaleAnimation,
+            child: const Text(
+              'Get ready to boost your knowledge with personalized quizzes!',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey,
+              ),
+              textAlign: TextAlign.center, // Centering the text
             ),
-            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
 
           // Descriptive text
-          const Text(
-            'The Student Portal is designed to provide you with all the tools and resources '
-                'you need to succeed in your studies. From accessing course materials to '
-                'submitting assignments and checking your grades, everything is at your fingertips.',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
+          ScaleTransition(
+            scale: _scaleAnimation,
+            child: const Text(
+              'Our Quiz AI Portal offers tailored quizzes and resources that enhance your learning experience. '
+                  'Challenge yourself, track your progress, and discover new insights as you navigate through engaging quizzes.',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey,
+              ),
+              textAlign: TextAlign.center, // Centering the text
             ),
-            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 40),
 
-          // Buttons: Get Started & Learn More
+          // Buttons: Let's Start & Explore Features
           ElevatedButton(
             onPressed: () {
               // Navigate to the login screen
               Navigator.pushNamed(context, '/login');
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF9C27B0),
-              padding: const EdgeInsets.symmetric(
-                  vertical: 15.0, horizontal: 30.0),
+              backgroundColor: const Color(0xFF9C27B0),
+              padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(30.0),
               ),
+              elevation: 5,
             ),
             child: const Text(
-              'Get Started',
+              "Let's Start",
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.white,
@@ -122,12 +178,16 @@ class StudentPortalScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
+          // Implementing the Explore Features button
           TextButton(
             onPressed: () {
-              // Placeholder for Learn More action
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ExploreFeaturesScreen()),
+              );
             },
             child: const Text(
-              'Learn More',
+              'Explore Features',
               style: TextStyle(
                 fontSize: 16,
                 color: Color(0xFF9C27B0),
@@ -146,49 +206,64 @@ class StudentPortalScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
 
-          // Image section
-          Image.asset(
-            'assets/dashboard.png',
-            height: 200,
-            width: double.infinity,
-            fit: BoxFit.cover,
+          // Animated Image section
+          FadeTransition(
+            opacity: _fadeAnimation,
+            child: ScaleTransition(
+              scale: _scaleAnimation,
+              child: Image.asset(
+                'assets/dashboard.png',
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           const SizedBox(height: 20),
 
           // Title and subtitle
-          const Text(
-            'Welcome to Your Dashboard',
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
+          ScaleTransition(
+            scale: _scaleAnimation,
+            child: const Text(
+              'Welcome to Your Quiz Dashboard',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+              textAlign: TextAlign.center, // Centering the text
             ),
           ),
           const SizedBox(height: 10),
-          const Text(
-            'Access your courses, assignments, and more from here.',
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.grey,
+          ScaleTransition(
+            scale: _scaleAnimation,
+            child: const Text(
+              'Get ready to boost your knowledge with personalized quizzes!',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey,
+              ),
+              textAlign: TextAlign.center, // Centering the text
             ),
-            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
 
           // Descriptive text
-          const Text(
-            'The Student Portal is designed to provide you with all the tools and resources '
-                'you need to succeed in your studies. From accessing course materials to '
-                'submitting assignments and checking your grades, everything is at your fingertips.',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
+          ScaleTransition(
+            scale: _scaleAnimation,
+            child: const Text(
+              'Our Quiz AI Portal offers tailored quizzes and resources that enhance your learning experience. '
+                  'Challenge yourself, track your progress, and discover new insights as you navigate through engaging quizzes.',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey,
+              ),
+              textAlign: TextAlign.center, // Centering the text
             ),
-            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 40),
 
-          // Buttons: Get Started & Learn More
+          // Buttons: Let's Start & Explore Features
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -198,15 +273,15 @@ class StudentPortalScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/login');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF9C27B0),
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 15.0, horizontal: 30.0),
+                  backgroundColor: const Color(0xFF9C27B0),
+                  padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
+                  elevation: 5,
                 ),
                 child: const Text(
-                  'Get Started',
+                  "Let's Start",
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -216,10 +291,13 @@ class StudentPortalScreen extends StatelessWidget {
               const SizedBox(width: 20),
               TextButton(
                 onPressed: () {
-                  // Placeholder for Learn More action
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ExploreFeaturesScreen()),
+                  );
                 },
                 child: const Text(
-                  'Learn More',
+                  'Explore Features',
                   style: TextStyle(
                     fontSize: 16,
                     color: Color(0xFF9C27B0),
