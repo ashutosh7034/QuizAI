@@ -4,10 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_ai/screens/quizzes/quiz_screen.dart';
 
+import '../../widgets/back_navigation_wrapper.dart';
+
 class MyQuizzesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BackNavigationWrapper(
+        child:Scaffold(
       appBar: AppBar(
         title: const Text('My Quizzes'),
         automaticallyImplyLeading: false,
@@ -95,6 +98,7 @@ class MyQuizzesScreen extends StatelessWidget {
           },
         ),
       ),
+        )
     );
   }
 }

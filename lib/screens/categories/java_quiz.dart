@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'quiz_analysis.dart'; // Import the analysis screen
+import '../quizzes/quiz_analysis.dart'; // Import the analysis screen
 
 class JavaQuizScreen extends StatefulWidget {
   @override

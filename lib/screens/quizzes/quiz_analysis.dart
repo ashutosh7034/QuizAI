@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // Firestore package
+import 'package:firebase_auth/firebase_auth.dart'; // Firebase Auth for user details
 import 'package:quiz_ai/screens/navigation/bottom_navigation.dart';
-import '../categories/categoriesScreen.dart';
 
 class QuizAnalysisScreen extends StatelessWidget {
   final int score;
@@ -15,6 +16,40 @@ class QuizAnalysisScreen extends StatelessWidget {
     required this.selectedQuestions,
     required this.selectedAnswers,
   }) : super(key: key);
+
+  Future<void> _saveScoreToFirestore() async {
+    // Get the current user
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      String email = user.email ?? 'Unknown email';
+      String displayName = user.displayName ?? 'Unknown name';
+      String? profilePicture = user.photoURL ?? ''; // Fetch profile picture
+
+      // Reference to the leaderboard collection
+      CollectionReference leaderboard = FirebaseFirestore.instance.collection('leaderboard');
+
+      // Check if the user already exists in the leaderboard
+      DocumentSnapshot userDoc = await leaderboard.doc(email).get();
+
+      if (userDoc.exists) {
+        // User exists, so update the score by adding to the existing score
+        int currentScore = userDoc['score'];
+        await leaderboard.doc(email).update({
+          'score': currentScore + score,
+        });
+      } else {
+        // New user, so create a new document with the user's details
+        await leaderboard.doc(email).set({
+          'name': displayName,
+          'email': email,
+          'score': score,
+          'profilePicture': profilePicture, // Store the profile picture
+          'timestamp': FieldValue.serverTimestamp(), // Store the current timestamp
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +98,13 @@ class QuizAnalysisScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // Navigate to CategoriesScreen instead of popping the current screen
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
+                // Save the score to Firestore
+                _saveScoreToFirestore().then((_) {
+                  // Navigate to HomePage
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                });
               },
               child: const Text('Back to Quiz', style: TextStyle(fontSize: 18)),
             ),

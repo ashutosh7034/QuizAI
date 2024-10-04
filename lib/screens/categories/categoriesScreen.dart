@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 import '../../data/category_data.dart';
 import '../../models/category.dart';
-import '../quizzes/python_quiz.dart'; // Import the relevant quiz screens
-import '../quizzes/javascript_quiz.dart';
-import '../quizzes/java_quiz.dart';
-import '../quizzes/c_plus_plus_quiz.dart';
-import '../quizzes/dart_quiz.dart';
+import 'python_quiz.dart'; // Import the relevant quiz screens
+import 'javascript_quiz.dart';
+import 'java_quiz.dart';
+import 'c_plus_plus_quiz.dart';
+import 'dart_quiz.dart';
 
 class CategoriesScreen extends StatelessWidget {
   @override

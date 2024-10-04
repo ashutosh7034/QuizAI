@@ -1,13 +1,13 @@
-// File: lib/models/leaderboard_entry.dart
-
 class LeaderboardEntry {
   final String name;
   final int score;
-  final int rank;
+  final String email;
+  final String profilePicture; // Add profile picture field
 
   LeaderboardEntry({
     required this.name,
     required this.score,
-    required this.rank,
+    required this.email,
+    required this.profilePicture, // Initialize profile picture
   });
 }
