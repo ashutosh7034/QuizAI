@@ -629,7 +629,8 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
       'questions': questions,
       'collectEmail': collectEmail,
       'limitResponses': limitResponses,
-      'created_at': FieldValue.serverTimestamp(), // Ensure timestamp is saved
+      'created_at': FieldValue.serverTimestamp(),
+      'createdBy': 'manual',
     };
 
     try {

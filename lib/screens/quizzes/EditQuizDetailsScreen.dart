@@ -93,7 +93,8 @@ class _EditQuizDetailsScreenState extends State<EditQuizDetailsScreen> {
   // Function to update an option text
   void _updateOption(int questionIndex, int optionIndex) {
     setState(() {
-      questions[questionIndex]['options'][optionIndex] = _optionControllers[questionIndex][optionIndex].text;
+      questions[questionIndex]['options'][optionIndex] =
+          _optionControllers[questionIndex][optionIndex].text;
     });
   }
 
@@ -102,7 +103,7 @@ class _EditQuizDetailsScreenState extends State<EditQuizDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Edit Quiz"),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.blueAccent, // Use your preferred color
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -110,18 +111,36 @@ class _EditQuizDetailsScreenState extends State<EditQuizDetailsScreen> {
           children: [
             TextField(
               controller: _titleController,
-              decoration: const InputDecoration(labelText: 'Quiz Title'),
+              decoration: InputDecoration(
+                labelText: 'Quiz Title',
+                labelStyle: TextStyle(color: Colors.grey[700]),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueAccent), // Your color
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey[400]!),
+                ),
+              ),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: _descriptionController,
-              decoration: const InputDecoration(labelText: 'Quiz Description'),
+              decoration: InputDecoration(
+                labelText: 'Quiz Description',
+                labelStyle: TextStyle(color: Colors.grey[700]),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueAccent),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey[400]!),
+                ),
+              ),
               maxLines: 3,
             ),
             const SizedBox(height: 20),
             const Text(
               "Questions:",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueAccent),
             ),
             const SizedBox(height: 10),
             Expanded(
@@ -129,13 +148,19 @@ class _EditQuizDetailsScreenState extends State<EditQuizDetailsScreen> {
                 itemCount: questions.length,
                 itemBuilder: (context, index) {
                   return Card(
+                    color: Colors.grey[100],
+                    elevation: 3,
+                    margin: const EdgeInsets.symmetric(vertical: 8),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextField(
-                            decoration: InputDecoration(labelText: 'Question ${index + 1}'),
+                            decoration: InputDecoration(
+                              labelText: 'Question ${index + 1}',
+                              labelStyle: TextStyle(color: Colors.grey[700]),
+                            ),
                             controller: _questionControllers[index],
                             onChanged: (text) => _updateQuestion(index),
                           ),
@@ -144,22 +169,30 @@ class _EditQuizDetailsScreenState extends State<EditQuizDetailsScreen> {
                           ListView.builder(
                             itemCount: questions[index]['options'].length,
                             shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(), // Prevent scrolling inside the list
+                            physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, optionIndex) {
                               return TextField(
-                                decoration: InputDecoration(labelText: 'Option ${optionIndex + 1}'),
+                                decoration: InputDecoration(
+                                  labelText: 'Option ${optionIndex + 1}',
+                                  labelStyle: TextStyle(color: Colors.grey[700]),
+                                ),
                                 controller: _optionControllers[index][optionIndex],
                                 onChanged: (text) => _updateOption(index, optionIndex),
                               );
                             },
                           ),
-                          ElevatedButton(
+                          ElevatedButton.icon(
                             onPressed: () => _addOption(index),
-                            child: const Text("Add Option"),
+                            icon: const Icon(Icons.add, color: Colors.white),
+                            label: const Text("Add Option"),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blueAccent, // Your button color
+                            ),
                           ),
-                          ElevatedButton(
+                          TextButton.icon(
                             onPressed: () => _removeQuestion(index),
-                            child: const Text("Remove Question"),
+                            icon: const Icon(Icons.remove_circle, color: Colors.red),
+                            label: const Text("Remove Question", style: TextStyle(color: Colors.red)),
                           ),
                         ],
                       ),
@@ -171,11 +204,17 @@ class _EditQuizDetailsScreenState extends State<EditQuizDetailsScreen> {
             ElevatedButton(
               onPressed: _addQuestion,
               child: const Text("Add Question"),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: Colors.blueAccent,
+              ),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _updateQuiz,
               child: const Text("Update Quiz"),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: Colors.green,
+              ),
             ),
           ],
         ),
