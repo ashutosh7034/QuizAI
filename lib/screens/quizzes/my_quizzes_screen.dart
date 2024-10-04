@@ -37,6 +37,7 @@ class MyQuizzesScreen extends StatelessWidget {
                 'title': doc['title'] ?? "Untitled Quiz",
                 'description': doc['description'] ?? "No Description",
                 'questions': List<Map<String, dynamic>>.from(doc['questions'] ?? []), // Cast here
+                'timePerQuestion': doc['timePerQuestion'] ?? 30,
               };
             }).toList();
 
@@ -79,13 +80,12 @@ class MyQuizzesScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => QuizScreen(
-                            title: quiz['title'],
-                            description: quiz['description'],
-                            questions: quiz['questions'], // This is now properly typed
-                          ),
-                        ),
+                        MaterialPageRoute(builder: (context) => QuizScreen(
+                          title: quiz['title'],
+                          description: quiz['description'],
+                          questions: quiz['questions'],
+                          timePerQuestion: quiz['timePerQuestion'],
+                        )),
                       );
                     },
                   ),

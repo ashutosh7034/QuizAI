@@ -2,6 +2,7 @@ import 'dart:convert'; // Import for JSON encoding
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http; // Import HTTP package
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CreateQuizScreen extends StatefulWidget {
   const CreateQuizScreen({Key? key}) : super(key: key);
@@ -14,13 +15,16 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
   // Form fields
   final TextEditingController _formTitleController = TextEditingController();
   final TextEditingController _formDescriptionController =
-      TextEditingController();
+  TextEditingController();
   bool collectEmail = false;
   bool limitResponses = false;
   bool isLoading = false; // For loading indicator
+  int timePerQuestion = 5; // Default time per question in seconds
 
   // List to hold questions
   List<Map<String, dynamic>> questions = [];
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   Future<void> _createQuiz() async {
     try {
       await FirebaseFirestore.instance.collection('quizzes').add({
@@ -61,7 +65,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
             ),
             const SizedBox(height: 16),
             const Text(
-              "Step 1: Quiz Title & Description",
+              "Quiz Title ",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -163,7 +167,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
           onPressed: () {
             _showAddQuestionDialog();
           },
-          child: const Text("Add Question"),
+          child: const Text ("Add Question"),
         ),
       ],
     );
@@ -231,7 +235,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                       TextField(
                         controller: optionController,
                         decoration:
-                            const InputDecoration(hintText: "Enter an option"),
+                        const InputDecoration(hintText: "Enter an option"),
                       ),
                       ElevatedButton(
                         onPressed: () {
@@ -301,9 +305,9 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                               ? multipleChoices
                               : [],
                           'correctAnswer':
-                              correctAnswer, // Add the correct answer to the question
+                          correctAnswer, // Add the correct answer to the question
                           'showAnswer':
-                              showAnswer, // Add the show answer preference
+                          showAnswer, // Add the show answer preference
                         };
                         questions.add(question);
                       } else {
@@ -333,12 +337,12 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
 
   void _showEditQuestionDialog(int index) {
     final TextEditingController questionController =
-        TextEditingController(text: questions[index]['text']);
+    TextEditingController(text: questions[index]['text']);
     String questionType = questions[index]['type'];
     List<String> multipleChoices =
-        List<String>.from(questions[index]['options']);
+    List<String>.from(questions[index]['options']);
     final TextEditingController optionController = TextEditingController();
-    String? correctAnswer = questions[index]['correctAnswer'];
+    String? correctAnswer = questions[index]['correct Answer'];
     bool showAnswer = questions[index]['showAnswer'];
 
     showDialog(
@@ -404,7 +408,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                               title: Text(option),
                               trailing: IconButton(
                                 icon:
-                                    const Icon(Icons.delete, color: Colors.red),
+                                const Icon(Icons.delete, color: Colors.red),
                                 onPressed: () {
                                   setDialogState(() {
                                     multipleChoices.remove(option);
@@ -489,6 +493,9 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
           onChanged: (bool? value) {
             setState(() {
               collectEmail = value!;
+              if (value) {
+                _storeEmailInFirestore();
+              }
             });
           },
         ),
@@ -500,6 +507,28 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
               limitResponses = value!;
             });
           },
+        ),
+        Row(
+          children: [
+            const Text("Time per question (seconds):"),
+            const SizedBox(width: 10),
+            DropdownButton<int>(
+              value: timePerQuestion,
+              items: const [
+                DropdownMenuItem<int>(child: Text("5"), value: 5),
+                DropdownMenuItem<int>(child: Text("10"), value: 10),
+                DropdownMenuItem<int>(child: Text("15"), value: 15),
+                DropdownMenuItem<int>(child: Text("20"), value: 20),
+                DropdownMenuItem<int>(child: Text("30"), value: 30),
+                DropdownMenuItem<int>(child: Text("60"), value: 60),
+              ],
+              onChanged: (int? newValue) {
+                setState(() {
+                  timePerQuestion = newValue!;
+                });
+              },
+            ),
+          ],
         ),
       ],
     );
@@ -522,12 +551,12 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: isLoading
-                ? const CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
+                ? const CircularProgressIndicator (
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
                 : const Text(
-                    "Share",
-                    style: TextStyle(color: Colors.white),
-                  ),
+              "Share",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ),
       ],
@@ -629,6 +658,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
       'questions': questions,
       'collectEmail': collectEmail,
       'limitResponses': limitResponses,
+      'timePerQuestion': timePerQuestion,
       'created_at': FieldValue.serverTimestamp(),
       'createdBy': 'manual',
     };
@@ -638,6 +668,11 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Quiz shared successfully!')),
       );
+    } on FirebaseException catch (e) {
+      print("Error sharing quiz: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error sharing quiz: ${e.message}')),
+      );
     } catch (e) {
       print("Error sharing quiz: $e");
       ScaffoldMessenger.of(context).showSnackBar(
@@ -646,6 +681,15 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     } finally {
       setState(() {
         isLoading = false; // Reset loading state
+      });
+    }
+  }
+
+  void _storeEmailInFirestore() async {
+    final User? user = _auth.currentUser;
+    if (user != null) {
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+        'email': user.email,
       });
     }
   }

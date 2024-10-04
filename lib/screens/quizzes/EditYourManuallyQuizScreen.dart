@@ -26,18 +26,23 @@ class _EditYourManuallyQuizScreenState extends State<EditYourManuallyQuizScreen>
       // Only fetch quizzes created manually
       QuerySnapshot snapshot = await FirebaseFirestore.instance
           .collection('quizzes')
-          .where('createdBy', isEqualTo: 'manual') // Filter for manual quizzes
+          .where('createdBy', isEqualTo: 'manual') // Adjust this field as per your Firestore structure
           .get();
       setState(() {
         quizzes = snapshot.docs.map((doc) {
           var data = doc.data() as Map<String, dynamic>;
           data['id'] = doc.id; // Add the document ID for editing
+          data['questions'] = List<Map<String, dynamic>>.from(data['questions'] ?? []);
           return data;
         }).toList();
       });
     } catch (e) {
       // Handle error
       print("Error fetching quizzes: $e");
+      // Optionally, show a snackbar or dialog to inform the user
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Failed to fetch quizzes: $e")),
+      );
     }
   }
 
@@ -50,9 +55,15 @@ class _EditYourManuallyQuizScreenState extends State<EditYourManuallyQuizScreen>
         quizzes.removeWhere((quiz) => quiz['id'] == quizId);
       });
       print("Quiz deleted successfully");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Quiz deleted successfully")),
+      );
     } catch (e) {
       print("Error deleting quiz: $e");
       // Handle error (show a message to the user)
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Failed to delete quiz: $e")),
+      );
     }
   }
 
@@ -60,7 +71,7 @@ class _EditYourManuallyQuizScreenState extends State<EditYourManuallyQuizScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Manage Your Quiz"),
+        title: const Text("Manage Your Quizzes"),
         backgroundColor: Colors.blueAccent,
       ),
       body: Padding(
@@ -69,26 +80,43 @@ class _EditYourManuallyQuizScreenState extends State<EditYourManuallyQuizScreen>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "your Quizzes",
+              "Your Quizzes",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             Expanded(
-              child: ListView.builder(
+              child: quizzes.isEmpty
+                  ? Center(child: Text("No quizzes found. Create a new quiz!"))
+                  : ListView.builder(
                 itemCount: quizzes.length,
                 itemBuilder: (context, index) {
+                  final quiz = quizzes[index];
                   return Card(
+                    elevation: 3,
+                    margin: const EdgeInsets.symmetric(vertical: 8),
                     child: ListTile(
-                      title: Text(quizzes[index]['title']),
-                      subtitle: Text(quizzes[index]['description']),
+                      title: Text(quiz['title'] ?? 'No Title'),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(quiz['description'] ?? 'No Description'),
+                          const SizedBox(height: 5),
+                          Text("Questions: ${quiz['questions'].length}"),
+                          if (quiz['questions'].isNotEmpty)
+                            Text("First Question: ${quiz['questions'][0]['text'] ?? 'No Question Text'}"),
+                        ],
+                      ),
                       onTap: () {
                         // Navigate to EditQuizDetailsScreen with the selected quiz data
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => EditQuizDetailsScreen(quiz: quizzes[index]),
+                            builder: (context) => EditQuizDetailsScreen(quiz: quiz),
                           ),
-                        );
+                        ).then((_) {
+                          // Refresh the list after returning from the edit screen
+                          fetchQuizzes();
+                        });
                       },
                       trailing: IconButton(
                         icon: const Icon(Icons.delete, color: Colors.red),
@@ -108,7 +136,7 @@ class _EditYourManuallyQuizScreenState extends State<EditYourManuallyQuizScreen>
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    _deleteQuiz(quizzes[index]['id']); // Delete quiz
+                                    _deleteQuiz(quiz['id']); // Delete quiz
                                     Navigator.of(context).pop(); // Close dialog
                                   },
                                   child: const Text("Delete"),
@@ -129,9 +157,15 @@ class _EditYourManuallyQuizScreenState extends State<EditYourManuallyQuizScreen>
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const CreateQuizScreen()),
-                );
+                ).then((_) {
+                  fetchQuizzes(); // Refresh quizzes after creating a new one
+                });
               },
               child: const Text("Create New Quiz"),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16), backgroundColor: Colors.blueAccent,
+                textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),
