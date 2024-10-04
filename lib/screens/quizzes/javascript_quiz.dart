@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'quiz_analysis.dart'; // Import the analysis screen
@@ -56,7 +57,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the difference between null and undefined in JavaScript?',
+      'What is the difference between null and undefined in JavaScript?',
       'options': [
         'Null is a primitive value, undefined is a type',
         'Null is a type, undefined is a primitive value',
@@ -187,7 +188,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the lastIndexOf method in JavaScript?',
+      'What is the purpose of the lastIndexOf method in JavaScript?',
       'options': [
         'To find the last index of an element in an array',
         'To sort an array',
@@ -235,7 +236,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         'None'
       ],
       'answer':
-          'To create a new array with the results of applying a function to each element in an array',
+      'To create a new array with the results of applying a function to each element in an array',
     },
     {
       'question': 'What is the purpose of the filter method in JavaScript?',
@@ -256,11 +257,11 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         'None'
       ],
       'answer':
-          'To apply a function to each element in an array and reduce it to a single value',
+      'To apply a function to each element in an array and reduce it to a single value',
     },
     {
       'question':
-          'What is the purpose of the reduceRight method in JavaScript?',
+      'What is the purpose of the reduceRight method in JavaScript?',
       'options': [
         'To apply a function to each element in an array and reduce it to a single value, from right to left',
         'To sort an array',
@@ -268,7 +269,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         'None'
       ],
       'answer':
-          'To apply a function to each element in an array and reduce it to a single value, from right to left',
+      'To apply a function to each element in an array and reduce it to a single value, from right to left',
     },
     {
       'question': 'What is the purpose of the sort method in JavaScript?',
@@ -302,7 +303,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toLocaleString method in JavaScript?',
+      'What is the purpose of the toLocaleString method in JavaScript?',
       'options': [
         'To convert an array to a string, using the locale-specific formatting',
         'To sort an array',
@@ -310,7 +311,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         'None'
       ],
       'answer':
-          'To convert an array to a string, using the locale-specific formatting',
+      'To convert an array to a string, using the locale-specific formatting',
     },
     {
       'question': 'What is the purpose of the valueOf method in JavaScript?',
@@ -324,7 +325,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the hasOwnProperty method in JavaScript?',
+      'What is the purpose of the hasOwnProperty method in JavaScript?',
       'options': [
         'To check if an object has a property',
         'To sort an array',
@@ -335,7 +336,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the isPrototypeOf method in JavaScript?',
+      'What is the purpose of the isPrototypeOf method in JavaScript?',
       'options': [
         'To check if an object is a prototype of another object',
         'To sort an array',
@@ -346,7 +347,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the propertyIsEnumerable method in JavaScript?',
+      'What is the purpose of the propertyIsEnumerable method in JavaScript?',
       'options': [
         'To check if a property is enumerable',
         'To sort an array',
@@ -457,7 +458,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the decodeURIComponent method in JavaScript?',
+      'What is the purpose of the decodeURIComponent method in JavaScript?',
       'options': [
         'To decode a URI component',
         'To sort an array',
@@ -478,7 +479,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the encodeURIComponent method in JavaScript?',
+      'What is the purpose of the encodeURIComponent method in JavaScript?',
       'options': [
         'To encode a URI component',
         'To sort an array',
@@ -509,7 +510,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getFullYear method in JavaScript?',
+      'What is the purpose of the getFullYear method in JavaScript?',
       'options': [
         'To get the full year of a date',
         'To sort an array',
@@ -520,7 +521,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCFullYear method in JavaScript?',
+      'What is the purpose of the getUTCFullYear method in JavaScript?',
       'options': [
         'To get the full year of a date in UTC',
         'To sort an array',
@@ -541,7 +542,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCMonth method in JavaScript?',
+      'What is the purpose of the getUTCMonth method in JavaScript?',
       'options': [
         'To get the month of a date in UTC',
         'To sort an array',
@@ -602,7 +603,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCHours method in JavaScript?',
+      'What is the purpose of the getUTCHours method in JavaScript?',
       'options': [
         'To get the hour of a date in UTC',
         'To sort an array',
@@ -623,7 +624,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCMinutes method in JavaScript?',
+      'What is the purpose of the getUTCMinutes method in JavaScript?',
       'options': [
         'To get the minute of a date in UTC',
         'To sort an array',
@@ -644,7 +645,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCSeconds method in JavaScript?',
+      'What is the purpose of the getUTCSeconds method in JavaScript?',
       'options': [
         'To get the second of a date in UTC',
         'To sort an array',
@@ -655,7 +656,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getMilliseconds method in JavaScript?',
+      'What is the purpose of the getMilliseconds method in JavaScript?',
       'options': [
         'To get the millisecond of a date',
         'To sort an array',
@@ -666,7 +667,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCMilliseconds method in JavaScript?',
+      'What is the purpose of the getUTCMilliseconds method in JavaScript?',
       'options': [
         'To get the millisecond of a date in UTC',
         'To sort an array',
@@ -687,7 +688,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getTimezoneOffset method in JavaScript?',
+      'What is the purpose of the getTimezoneOffset method in JavaScript?',
       'options': [
         'To get the time zone offset of a date',
         'To sort an array',
@@ -708,7 +709,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the setMilliseconds method in JavaScript?',
+      'What is the purpose of the setMilliseconds method in JavaScript?',
       'options': [
         'To set the millisecond of a date',
         'To sort an array',
@@ -719,7 +720,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the setUTCMilliseconds method in JavaScript?',
+      'What is the purpose of the setUTCMilliseconds method in JavaScript?',
       'options': [
         'To set the millisecond of a date in UTC',
         'To sort an array',
@@ -740,7 +741,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the setUTCSeconds method in JavaScript?',
+      'What is the purpose of the setUTCSeconds method in JavaScript?',
       'options': [
         'To set the second of a date in UTC',
         'To sort an array',
@@ -761,7 +762,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the setUTCMinutes method in JavaScript?',
+      'What is the purpose of the setUTCMinutes method in JavaScript?',
       'options': [
         'To set the minute of a date in UTC',
         'To sort an array',
@@ -782,7 +783,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the setUTCHours method in JavaScript?',
+      'What is the purpose of the setUTCHours method in JavaScript?',
       'options': [
         'To set the hour of a date in UTC',
         'To sort an array',
@@ -823,7 +824,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the setUTCMonth method in JavaScript?',
+      'What is the purpose of the setUTCMonth method in JavaScript?',
       'options': [
         'To set the month of a date in UTC',
         'To sort an array',
@@ -834,7 +835,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the setFullYear method in JavaScript?',
+      'What is the purpose of the setFullYear method in JavaScript?',
       'options': [
         'To set the full year of a date',
         'To sort an array',
@@ -845,7 +846,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the setUTCFullYear method in JavaScript?',
+      'What is the purpose of the setUTCFullYear method in JavaScript?',
       'options': [
         'To set the full year of a date in UTC',
         'To sort an array',
@@ -856,7 +857,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toDateString method in JavaScript?',
+      'What is the purpose of the toDateString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format "day month date year"',
         'To sort an array',
@@ -864,11 +865,11 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         'None'
       ],
       'answer':
-          'To convert a date to a string in the format "day month date year"',
+      'To convert a date to a string in the format "day month date year"',
     },
     {
       'question':
-          'What is the purpose of the toTimeString method in JavaScript?',
+      'What is the purpose of the toTimeString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format "hour:minute:second GMT offset"',
         'To sort an array',
@@ -876,11 +877,11 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         'None'
       ],
       'answer':
-          'To convert a date to a string in the format "hour:minute:second GMT offset"',
+      'To convert a date to a string in the format "hour:minute:second GMT offset"',
     },
     {
       'question':
-          'What is the purpose of the toLocaleDateString method in JavaScript?',
+      'What is the purpose of the toLocaleDateString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format of the locale',
         'To sort an array',
@@ -891,7 +892,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toLocaleTimeString method in JavaScript?',
+      'What is the purpose of the toLocaleTimeString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format of the locale',
         'To sort an array',
@@ -902,7 +903,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toISOString method in JavaScript?',
+      'What is the purpose of the toISOString method in JavaScript?',
       'options': [
         'To convert a date to a string in the ISO format',
         'To sort an array',
@@ -943,7 +944,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toGMTString method in JavaScript?',
+      'What is the purpose of the toGMTString method in JavaScript?',
       'options': [
         'To convert a date to a string in the GMT format',
         'To sort an array',
@@ -954,7 +955,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toUTCString method in JavaScript?',
+      'What is the purpose of the toUTCString method in JavaScript?',
       'options': [
         'To convert a date to a string in the UTC format',
         'To sort an array',
@@ -965,7 +966,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toLocaleFormat method in JavaScript?',
+      'What is the purpose of the toLocaleFormat method in JavaScript?',
       'options': [
         'To convert a date to a string in the format of the locale',
         'To sort an array',
@@ -986,7 +987,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getTimezoneOffset method in JavaScript?',
+      'What is the purpose of the getTimezoneOffset method in JavaScript?',
       'options': [
         'To get the time zone offset of a date',
         'To sort an array',
@@ -997,7 +998,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getFullYear method in JavaScript?',
+      'What is the purpose of the getFullYear method in JavaScript?',
       'options': [
         'To get the full year of a date',
         'To sort an array',
@@ -1008,7 +1009,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCFullYear method in JavaScript?',
+      'What is the purpose of the getUTCFullYear method in JavaScript?',
       'options': [
         'To get the full year of a date in UTC',
         'To sort an array',
@@ -1029,7 +1030,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCMonth method in JavaScript?',
+      'What is the purpose of the getUTCMonth method in JavaScript?',
       'options': [
         'To get the month of a date in UTC',
         'To sort an array',
@@ -1090,7 +1091,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCHours method in JavaScript?',
+      'What is the purpose of the getUTCHours method in JavaScript?',
       'options': [
         'To get the hour of a date in UTC',
         'To sort an array',
@@ -1111,7 +1112,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCMinutes method in JavaScript?',
+      'What is the purpose of the getUTCMinutes method in JavaScript?',
       'options': [
         'To get the minute of a date in UTC',
         'To sort an array',
@@ -1132,7 +1133,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCSeconds method in JavaScript?',
+      'What is the purpose of the getUTCSeconds method in JavaScript?',
       'options': [
         'To get the second of a date in UTC',
         'To sort an array',
@@ -1143,7 +1144,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question ':
-          'What is the purpose of the getMilliseconds method in JavaScript?',
+      'What is the purpose of the getMilliseconds method in JavaScript?',
       'options': [
         'To get the millisecond of a date',
         'To sort an array',
@@ -1154,7 +1155,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCMilliseconds method in JavaScript?',
+      'What is the purpose of the getUTCMilliseconds method in JavaScript?',
       'options': [
         'To get the millisecond of a date in UTC',
         'To sort an array',
@@ -1185,7 +1186,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toDateString method in JavaScript?',
+      'What is the purpose of the toDateString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format "day month date year"',
         'To sort an array',
@@ -1193,11 +1194,11 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         'None'
       ],
       'answer':
-          'To convert a date to a string in the format "day month date year"',
+      'To convert a date to a string in the format "day month date year"',
     },
     {
       'question':
-          'What is the purpose of the toTimeString method in JavaScript?',
+      'What is the purpose of the toTimeString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format "hour:minute:second GMT offset"',
         'To sort an array',
@@ -1205,11 +1206,11 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         'None'
       ],
       'answer':
-          'To convert a date to a string in the format "hour:minute:second GMT offset"',
+      'To convert a date to a string in the format "hour:minute:second GMT offset"',
     },
     {
       'question':
-          'What is the purpose of the toLocaleDateString method in JavaScript?',
+      'What is the purpose of the toLocaleDateString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format of the locale',
         'To sort an array',
@@ -1220,7 +1221,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toLocaleTimeString method in JavaScript?',
+      'What is the purpose of the toLocaleTimeString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format of the locale',
         'To sort an array',
@@ -1231,7 +1232,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toISOString method in JavaScript?',
+      'What is the purpose of the toISOString method in JavaScript?',
       'options': [
         'To convert a date to a string in the ISO format',
         'To sort an array',
@@ -1272,7 +1273,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toGMTString method in JavaScript?',
+      'What is the purpose of the toGMTString method in JavaScript?',
       'options': [
         'To convert a date to a string in the GMT format',
         'To sort an array',
@@ -1283,7 +1284,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toUTCString method in JavaScript?',
+      'What is the purpose of the toUTCString method in JavaScript?',
       'options': [
         'To convert a date to a string in the UTC format',
         'To sort an array',
@@ -1294,7 +1295,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toLocaleFormat method in JavaScript?',
+      'What is the purpose of the toLocaleFormat method in JavaScript?',
       'options': [
         'To convert a date to a string in the format of the locale',
         'To sort an array',
@@ -1315,7 +1316,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getTimezoneOffset method in JavaScript?',
+      'What is the purpose of the getTimezoneOffset method in JavaScript?',
       'options': [
         'To get the time zone offset of a date',
         'To sort an array',
@@ -1326,7 +1327,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getFullYear method in JavaScript?',
+      'What is the purpose of the getFullYear method in JavaScript?',
       'options': [
         'To get the full year of a date',
         'To sort an array',
@@ -1337,7 +1338,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCFullYear method in JavaScript?',
+      'What is the purpose of the getUTCFullYear method in JavaScript?',
       'options': [
         'To get the full year of a date in UTC',
         'To sort an array',
@@ -1358,7 +1359,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCMonth method in JavaScript?',
+      'What is the purpose of the getUTCMonth method in JavaScript?',
       'options': [
         'To get the month of a date in UTC',
         'To sort an array',
@@ -1419,7 +1420,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCHours method in JavaScript?',
+      'What is the purpose of the getUTCHours method in JavaScript?',
       'options': [
         'To get the hour of a date in UTC',
         'To sort an array',
@@ -1440,7 +1441,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCMinutes method in JavaScript?',
+      'What is the purpose of the getUTCMinutes method in JavaScript?',
       'options': [
         'To get the minute of a date in UTC',
         'To sort an array',
@@ -1481,13 +1482,13 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'Which method is used to convert a JSON string into a JavaScript object?',
+      'Which method is used to convert a JSON string into a JavaScript object?',
       'options': ['JSON.parse()', 'JSON.stringify()', 'JSON.convert()', 'None'],
       'answer': 'JSON.parse()',
     },
     {
       'question':
-          'What is the correct way to declare a variable in JavaScript?',
+      'What is the correct way to declare a variable in JavaScript?',
       'options': ['var x', 'x = var', 'var x =;', 'None'],
       'answer': 'var x',
     },
@@ -1513,7 +1514,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'Which of the following methods is used to add an element to the end of an array?',
+      'Which of the following methods is used to add an element to the end of an array?',
       'options': ['push()', 'append()', 'add()', 'None'],
       'answer': 'push()',
     },
@@ -1529,7 +1530,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCSeconds method in JavaScript?',
+      'What is the purpose of the getUTCSeconds method in JavaScript?',
       'options': [
         'To get the second of a date in UTC',
         'To sort an array',
@@ -1540,7 +1541,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getMilliseconds method in JavaScript?',
+      'What is the purpose of the getMilliseconds method in JavaScript?',
       'options': [
         'To get the millisecond of a date',
         'To sort an array',
@@ -1551,7 +1552,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCMilliseconds method in JavaScript?',
+      'What is the purpose of the getUTCMilliseconds method in JavaScript?',
       'options': [
         'To get the millisecond of a date in UTC',
         'To sort an array',
@@ -1582,7 +1583,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toDateString method in JavaScript?',
+      'What is the purpose of the toDateString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format "day month date year"',
         'To sort an array',
@@ -1590,11 +1591,11 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         'None'
       ],
       'answer':
-          'To convert a date to a string in the format "day month date year"',
+      'To convert a date to a string in the format "day month date year"',
     },
     {
       'question':
-          'What is the purpose of the toTimeString method in JavaScript?',
+      'What is the purpose of the toTimeString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format "hour:minute:second GMT offset"',
         'To sort an array',
@@ -1602,11 +1603,11 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         'None'
       ],
       'answer':
-          'To convert a date to a string in the format "hour:minute:second GMT offset"',
+      'To convert a date to a string in the format "hour:minute:second GMT offset"',
     },
     {
       'question':
-          'What is the purpose of the toLocaleDateString method in JavaScript?',
+      'What is the purpose of the toLocaleDateString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format of the locale',
         'To sort an array',
@@ -1617,7 +1618,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toLocaleTimeString method in JavaScript?',
+      'What is the purpose of the toLocaleTimeString method in JavaScript?',
       'options': [
         'To convert a date to a string in the format of the locale',
         'To sort an array',
@@ -1628,7 +1629,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toISOString method in JavaScript?',
+      'What is the purpose of the toISOString method in JavaScript?',
       'options': [
         'To convert a date to a string in the ISO format',
         'To sort an array',
@@ -1669,7 +1670,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toGMTString method in JavaScript?',
+      'What is the purpose of the toGMTString method in JavaScript?',
       'options': [
         'To convert a date to a string in the GMT format',
         'To sort an array',
@@ -1680,7 +1681,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toUTCString method in JavaScript?',
+      'What is the purpose of the toUTCString method in JavaScript?',
       'options': [
         'To convert a date to a string in the UTC format',
         'To sort an array',
@@ -1691,7 +1692,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the toLocaleFormat method in JavaScript?',
+      'What is the purpose of the toLocaleFormat method in JavaScript?',
       'options': [
         'To convert a date to a string in the format of the locale',
         'To sort an array',
@@ -1712,7 +1713,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getTimezoneOffset method in JavaScript?',
+      'What is the purpose of the getTimezoneOffset method in JavaScript?',
       'options': [
         'To get the time zone offset of a date',
         'To sort an array',
@@ -1723,7 +1724,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getFullYear method in JavaScript?',
+      'What is the purpose of the getFullYear method in JavaScript?',
       'options': [
         'To get the full year of a date',
         'To sort an array',
@@ -1734,7 +1735,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCFullYear method in JavaScript?',
+      'What is the purpose of the getUTCFullYear method in JavaScript?',
       'options': [
         'To get the full year of a date in UTC',
         'To sort an array',
@@ -1755,7 +1756,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCMonth method in JavaScript?',
+      'What is the purpose of the getUTCMonth method in JavaScript?',
       'options': [
         'To get the month of a date in UTC',
         'To sort an array',
@@ -1816,7 +1817,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     },
     {
       'question':
-          'What is the purpose of the getUTCHours method in JavaScript?',
+      'What is the purpose of the getUTCHours method in JavaScript?',
       'options': [
         'To get the hour of a date in UTC',
         'To sort an array',
@@ -1841,13 +1842,21 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
   int currentQuestionIndex = 0;
   List<String> selectedAnswers = [];
   int totalQuestions = 0;
+  Timer? _timer;
+  int _timeLeft = 5; // Time limit for each question
+  bool _answered = false; // Track if the current question is answered
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('JavaScript Quiz',
-            style: TextStyle(color: Colors.white)),
+        title: const Text('JavaScript Quiz', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.deepPurple,
       ),
       body: Container(
@@ -1867,8 +1876,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
   }
 
   Widget _buildQuestionInput() {
-    final TextEditingController questionCountController =
-        TextEditingController();
+    final TextEditingController questionCountController = TextEditingController();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -1896,12 +1904,12 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
             int? count = int.tryParse(questionCountController.text);
             if (count != null && count > 0) {
               setState(() {
-                totalQuestions = count > questions.length
-                    ? questions.length
-                    : count; // Limit to available questions
+                totalQuestions = count > questions.length ? questions.length : count;
                 selectedQuestions = _getRandomQuestions(totalQuestions);
                 selectedAnswers = List.filled(totalQuestions, '');
                 currentQuestionIndex = 0;
+                _answered = false;
+                _startTimer();
               });
             }
           },
@@ -1914,73 +1922,116 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
   Widget _buildQuiz() {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 300),
-      child: Column(
-        key: ValueKey<int>(currentQuestionIndex),
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.3),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(
-              'Question ${currentQuestionIndex + 1} of $totalQuestions',
-              style: const TextStyle(fontSize: 18, color: Colors.white),
-            ),
+      child: Container(
+        height: MediaQuery.of(context).size.height, // Ensures full height
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.deepPurple.withOpacity(0.7), Colors.purpleAccent.withOpacity(0.7)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-          const SizedBox(height: 20),
-          Text(
-            selectedQuestions[currentQuestionIndex]['question'],
-            style: const TextStyle(fontSize: 20, color: Colors.white),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 20),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: selectedQuestions[currentQuestionIndex]['options']
-                  .map<Widget>((option) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(
-                      vertical: 10), // Add margin for spacing
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.purpleAccent,
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0)),
+        ),
+        child: SingleChildScrollView( // Scrollable content
+          child: Column(
+            key: ValueKey<int>(currentQuestionIndex),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  'Question ${currentQuestionIndex + 1} of $totalQuestions',
+                  style: const TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                selectedQuestions[currentQuestionIndex]['question'],
+                style: const TextStyle(fontSize: 20, color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'Time Left: $_timeLeft seconds',
+                style: TextStyle(fontSize: 18, color: Colors.redAccent),
+              ),
+              const SizedBox(height: 20),
+              Column( // Options in a Column for better scrolling
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: selectedQuestions[currentQuestionIndex]['options']
+                    .map<Widget>((option) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.purpleAccent,
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+                      ),
+                      onPressed: _answered ? null : () => selectAnswer(option),
+                      child: Text(option, style: const TextStyle(fontSize: 18)),
                     ),
-                    onPressed: () => selectAnswer(option),
-                    child: Text(option, style: const TextStyle(fontSize: 18)),
-                  ),
-                );
-              }).toList(),
-            ),
+                  );
+                }).toList(),
+              ),
+              if (_answered)
+                ElevatedButton(
+                  onPressed: moveToNextQuestion,
+                  child: const Text('Next', style: TextStyle(fontSize: 18)),
+                ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 
+
+  void _startTimer() {
+    _timeLeft = 5;
+    _answered = false;
+    _timer?.cancel();
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_timeLeft > 0) {
+          _timeLeft--;
+        } else {
+          _timer?.cancel();
+          moveToNextQuestion();
+        }
+      });
+    });
+  }
+
+  void moveToNextQuestion() {
+    if (currentQuestionIndex < selectedQuestions.length - 1) {
+      setState(() {
+        currentQuestionIndex++;
+        _answered = false;
+      });
+      _startTimer();
+    } else {
+      _showResultDialog();
+    }
+  }
+
   List<Map<String, dynamic>> _getRandomQuestions(int count) {
-    // Shuffle the list of questions and select the number specified by the user
     final random = Random();
-    List<Map<String, dynamic>> shuffledQuestions = List.from(questions)
-      ..shuffle(random);
+    List<Map<String, dynamic>> shuffledQuestions = List.from(questions)..shuffle(random);
     return shuffledQuestions.take(count).toList();
   }
 
   void selectAnswer(String answer) {
     setState(() {
       selectedAnswers[currentQuestionIndex] = answer;
-      if (currentQuestionIndex < selectedQuestions.length - 1) {
-        currentQuestionIndex++;
-      } else {
-        _showResultDialog();
-      }
+      _answered = true;
+      _timer?.cancel();
     });
   }
 
@@ -1991,32 +2042,14 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         score++;
       }
     }
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Quiz Completed!',
-            style: TextStyle(color: Colors.deepPurple)),
-        content: Text('Your score is $score out of $totalQuestions',
-            style: const TextStyle(color: Colors.black)),
-        actions: [
-          TextButton(
-            child: const Text('OK', style: TextStyle(color: Colors.deepPurple)),
-            onPressed: () {
-              Navigator.of(context).pop(); // Close dialog
-              // Navigate to analysis screen
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => QuizAnalysisScreen(
-                    score: score,
-                    totalQuestions: totalQuestions,
-                    selectedQuestions: selectedQuestions,
-                    selectedAnswers: selectedAnswers,
-                  ),
-                ),
-              );
-            },
-          ),
-        ],
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => QuizAnalysisScreen(
+          score: score,
+          totalQuestions: totalQuestions,
+          selectedQuestions: selectedQuestions,
+          selectedAnswers: selectedAnswers,
+        ),
       ),
     );
   }

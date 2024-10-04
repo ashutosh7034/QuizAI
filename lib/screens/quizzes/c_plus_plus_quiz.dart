@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'quiz_analysis.dart'; // Import the analysis screen
@@ -101,7 +102,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "Which of the following is the correct syntax to declare a variable in C++?",
+      "Which of the following is the correct syntax to declare a variable in C++?",
       "options": ["int x;", "int x = 10;", "Both a and b", "None"],
       "answer": "Both a and b"
     },
@@ -112,7 +113,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << 5 + 2 * 3 ?",
+      "What is the output of the following code: cout << 5 + 2 * 3 ?",
       "options": ["11", "16", "21", "None"],
       "answer": "11"
     },
@@ -153,7 +154,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "Which of the following is used to include standard libraries in C++?",
+      "Which of the following is used to include standard libraries in C++?",
       "options": [
         "#include <iostream>",
         "#include <library>",
@@ -174,13 +175,13 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (10 > 5) ? 'True' : 'False';?",
+      "What is the output of the following code: cout << (10 > 5) ? 'True' : 'False';?",
       "options": ["True", "False", "Error", "None"],
       "answer": "True"
     },
     {
       "question":
-          "What is the default access modifier for members of a class in C++?",
+      "What is the default access modifier for members of a class in C++?",
       "options": ["public", "private", "protected", "None"],
       "answer": "private"
     },
@@ -211,7 +212,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "Which of the following is an example of a unary operator in C++?",
+      "Which of the following is an example of a unary operator in C++?",
       "options": ["++", "+", "*", "None"],
       "answer": "++"
     },
@@ -302,7 +303,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "Which of the following is the correct way to define a constant in C++?",
+      "Which of the following is the correct way to define a constant in C++?",
       "options": [
         "const int x = 10;",
         "define x 10",
@@ -323,13 +324,13 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << 5 * 2 + 10 / 2;?",
+      "What is the output of the following code: cout << 5 * 2 + 10 / 2;?",
       "options": ["20", "15", "25", "None"],
       "answer": "20"
     },
     {
       "question":
-          "Which operator is used for accessing members of a structure in C++?",
+      "Which operator is used for accessing members of a structure in C++?",
       "options": ["->", ".", "*", "None"],
       "answer": "."
     },
@@ -355,7 +356,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (1 == 1) && (2 == 2);?",
+      "What is the output of the following code: cout << (1 == 1) && (2 == 2);?",
       "options": ["true", "false", "Error", "None"],
       "answer": "true"
     },
@@ -386,7 +387,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "Which of the following is a valid way to initialize a pointer?",
+      "Which of the following is a valid way to initialize a pointer?",
       "options": [
         "int *ptr = &x;",
         "int *ptr = x;",
@@ -467,7 +468,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << 2 + 3 * 4;?",
+      "What is the output of the following code: cout << 2 + 3 * 4;?",
       "options": ["14", "20", "12", "None"],
       "answer": "14"
     },
@@ -608,13 +609,13 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "Which operator is used for dynamic memory allocation in C++?",
+      "Which operator is used for dynamic memory allocation in C++?",
       "options": ["new", "malloc", "calloc", "All of the above"],
       "answer": "new"
     },
     {
       "question":
-          "What is the output of the following code: cout << true + 2;?",
+      "What is the output of the following code: cout << true + 2;?",
       "options": ["3", "2", "1", "None"],
       "answer": "3"
     },
@@ -625,7 +626,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << 'A' + 'B';?",
+      "What is the output of the following code: cout << 'A' + 'B';?",
       "options": ["131", "AB", "C", "None"],
       "answer": "131"
     },
@@ -651,7 +652,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "Which of the following can be used to create a dynamic array in C++?",
+      "Which of the following can be used to create a dynamic array in C++?",
       "options": ["new", "malloc", "Both a and b", "None"],
       "answer": "Both a and b"
     },
@@ -692,7 +693,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (5 > 2) ? 'Yes' : 'No';?",
+      "What is the output of the following code: cout << (5 > 2) ? 'Yes' : 'No';?",
       "options": ["Yes", "No", "Error", "None"],
       "answer": "Yes"
     },
@@ -753,7 +754,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (true && false);?",
+      "What is the output of the following code: cout << (true && false);?",
       "options": ["1", "0", "True", "None"],
       "answer": "0"
     },
@@ -769,7 +770,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "Which of the following is a C++ standard input/output library?",
+      "Which of the following is a C++ standard input/output library?",
       "options": ["<iostream>", "<cstdio>", "<cstdlib>", "All of the above"],
       "answer": "All of the above"
     },
@@ -785,7 +786,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (2 << 2);?",
+      "What is the output of the following code: cout << (2 << 2);?",
       "options": ["8", "4", "2", "None"],
       "answer": "8"
     },
@@ -806,7 +807,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (10 == 10);?",
+      "What is the output of the following code: cout << (10 == 10);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
@@ -822,7 +823,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "Which of the following is not a member function of a class in C++?",
+      "Which of the following is not a member function of a class in C++?",
       "options": [
         "Constructor",
         "Destructor",
@@ -853,7 +854,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (5 == 5) && (6 == 7);?",
+      "What is the output of the following code: cout << (5 == 5) && (6 == 7);?",
       "options": ["1", "0", "True", "None"],
       "answer": "0"
     },
@@ -879,13 +880,13 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (4 > 2 && 2 < 3);?",
+      "What is the output of the following code: cout << (4 > 2 && 2 < 3);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
     {
       "question":
-          "Which of the following is a valid way to define an array in C++?",
+      "Which of the following is a valid way to define an array in C++?",
       "options": [
         "int arr[5];",
         "int arr[] = {1, 2, 3};",
@@ -936,7 +937,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << sizeof(char);?",
+      "What is the output of the following code: cout << sizeof(char);?",
       "options": ["1", "2", "4", "None"],
       "answer": "1"
     },
@@ -972,7 +973,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (true || false);?",
+      "What is the output of the following code: cout << (true || false);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
@@ -988,7 +989,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (0.1 + 0.2 == 0.3);?",
+      "What is the output of the following code: cout << (0.1 + 0.2 == 0.3);?",
       "options": ["True", "False", "Error", "None"],
       "answer": "False"
     },
@@ -1034,7 +1035,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (1 << 3);?",
+      "What is the output of the following code: cout << (1 << 3);?",
       "options": ["8", "3", "1", "None"],
       "answer": "8"
     },
@@ -1060,7 +1061,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (6 / 2 * 3);?",
+      "What is the output of the following code: cout << (6 / 2 * 3);?",
       "options": ["9", "3", "12", "None"],
       "answer": "9"
     },
@@ -1136,7 +1137,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (5.0 / 2);?",
+      "What is the output of the following code: cout << (5.0 / 2);?",
       "options": ["2", "2.5", "3", "None"],
       "answer": "2.5"
     },
@@ -1172,7 +1173,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (2 + 3 * 4);?",
+      "What is the output of the following code: cout << (2 + 3 * 4);?",
       "options": ["14", "20", "26", "None"],
       "answer": "14"
     },
@@ -1198,7 +1199,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (10 % 3);?",
+      "What is the output of the following code: cout << (10 % 3);?",
       "options": ["1", "2", "3", "None"],
       "answer": "1"
     },
@@ -1224,7 +1225,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (10 / 2 + 3);?",
+      "What is the output of the following code: cout << (10 / 2 + 3);?",
       "options": ["8", "3", "7", "None"],
       "answer": "8"
     },
@@ -1275,7 +1276,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (10 - 5);?",
+      "What is the output of the following code: cout << (10 - 5);?",
       "options": ["5", "10", "None", "All of the above"],
       "answer": "5"
     },
@@ -1311,7 +1312,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (true && true);?",
+      "What is the output of the following code: cout << (true && true);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
@@ -1324,7 +1325,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
         "All of the above"
       ],
       "answer":
-          "Specifies that the value is constant and evaluated at compile time"
+      "Specifies that the value is constant and evaluated at compile time"
     },
     {
       "question": "What is the purpose of 'friend' keyword in C++?",
@@ -1338,7 +1339,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (4 != 4);?",
+      "What is the output of the following code: cout << (4 != 4);?",
       "options": ["1", "0", "True", "None"],
       "answer": "0"
     },
@@ -1364,7 +1365,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (7 == 7);?",
+      "What is the output of the following code: cout << (7 == 7);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
@@ -1385,7 +1386,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (true || false);?",
+      "What is the output of the following code: cout << (true || false);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
@@ -1398,11 +1399,11 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
         "All of the above"
       ],
       "answer":
-          "A smart pointer that shares ownership of a dynamically allocated object"
+      "A smart pointer that shares ownership of a dynamically allocated object"
     },
     {
       "question":
-          "What is the output of the following code: cout << (1 << 2);?",
+      "What is the output of the following code: cout << (1 << 2);?",
       "options": ["2", "3", "4", "None"],
       "answer": "4"
     },
@@ -1418,7 +1419,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-          "What is the output of the following code: cout << (0b1010);?",
+      "What is the output of the following code: cout << (0b1010);?",
       "options": ["10", "2", "None", "All of the above"],
       "answer": "10"
     },
@@ -1432,13 +1433,14 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
       ],
       "answer": "Deduce the type of an expression"
     },
+
     {
       "question": "What is the purpose of 'volatile' in C++?",
       "options": [
         "Indicates a variable may change unexpectedly",
         "Prevents optimization",
         "None",
-        "All of the above"
+        "Both a and b"
       ],
       "answer": "Both a and b"
     }
@@ -1448,6 +1450,15 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
   int currentQuestionIndex = 0;
   List<String> selectedAnswers = [];
   int totalQuestions = 0;
+  Timer? _timer;
+  int _timeLeft = 10; // Time limit for each question
+  bool _answered = false; // Track if the current question is answered
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1473,8 +1484,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
   }
 
   Widget _buildQuestionInput() {
-    final TextEditingController questionCountController =
-        TextEditingController();
+    final TextEditingController questionCountController = TextEditingController();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -1502,12 +1512,11 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
             int? count = int.tryParse(questionCountController.text);
             if (count != null && count > 0) {
               setState(() {
-                totalQuestions = count > questions.length
-                    ? questions.length
-                    : count; // Limit to available questions
+                totalQuestions = count > questions.length ? questions.length : count;
                 selectedQuestions = _getRandomQuestions(totalQuestions);
                 selectedAnswers = List.filled(totalQuestions, '');
                 currentQuestionIndex = 0;
+                _startTimer();
               });
             }
           },
@@ -1520,73 +1529,119 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
   Widget _buildQuiz() {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 300),
-      child: Column(
-        key: ValueKey<int>(currentQuestionIndex),
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.3),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(
-              'Question ${currentQuestionIndex + 1} of $totalQuestions',
-              style: const TextStyle(fontSize: 18, color: Colors.white),
-            ),
+      child: Container( // New Container with a gradient background
+        width: double.infinity,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.deepPurple, Colors.purpleAccent],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-          const SizedBox(height: 20),
-          Text(
-            selectedQuestions[currentQuestionIndex]['question'],
-            style: const TextStyle(fontSize: 20, color: Colors.white),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 20),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: selectedQuestions[currentQuestionIndex]['options']
-                  .map<Widget>((option) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(
-                      vertical: 10), // Add margin for spacing
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.purpleAccent,
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0)),
+        ),
+        child: SingleChildScrollView( // Wrap the Column in SingleChildScrollView
+          child: Column(
+            key: ValueKey<int>(currentQuestionIndex),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  'Question ${currentQuestionIndex + 1} of $totalQuestions',
+                  style: const TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                selectedQuestions[currentQuestionIndex]['question'],
+                style: const TextStyle(fontSize: 20, color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'Time Left: $_timeLeft seconds',
+                style: TextStyle(fontSize: 18, color: Colors.redAccent),
+              ),
+              const SizedBox(height: 20),
+              Column( // Nested Column for options
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: selectedQuestions[currentQuestionIndex]['options']
+                    .map<Widget>((option) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.purpleAccent,
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0)),
+                      ),
+                      onPressed: _answered ? null : () => selectAnswer(option),
+                      child: Text(option, style: const TextStyle(fontSize: 18)),
                     ),
-                    onPressed: () => selectAnswer(option),
-                    child: Text(option, style: const TextStyle(fontSize: 18)),
-                  ),
-                );
-              }).toList(),
-            ),
+                  );
+                }).toList(),
+              ),
+              if (_answered)
+                ElevatedButton(
+                  onPressed: moveToNextQuestion,
+                  child: const Text('Next', style: TextStyle(fontSize: 18)),
+                ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 
+
+
+  void _startTimer() {
+    _timeLeft = 5;
+    _answered = false;
+    _timer?.cancel();
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_timeLeft > 0) {
+          _timeLeft--;
+        } else {
+          _timer?.cancel();
+          moveToNextQuestion();
+        }
+      });
+    });
+  }
+
+  void moveToNextQuestion() {
+    if (currentQuestionIndex < selectedQuestions.length - 1) {
+      setState(() {
+        currentQuestionIndex++;
+        _answered = false;
+      });
+      _startTimer();
+    } else {
+      _showResultDialog();
+    }
+  }
+
   List<Map<String, dynamic>> _getRandomQuestions(int count) {
-    // Shuffle the list of questions and select the number specified by the user
     final random = Random();
-    List<Map<String, dynamic>> shuffledQuestions = List.from(questions)
-      ..shuffle(random);
+    List<Map<String, dynamic>> shuffledQuestions = List.from(questions)..shuffle(random);
     return shuffledQuestions.take(count).toList();
   }
 
   void selectAnswer(String answer) {
     setState(() {
       selectedAnswers[currentQuestionIndex] = answer;
-      if (currentQuestionIndex < selectedQuestions.length - 1) {
-        currentQuestionIndex++;
-      } else {
-        _showResultDialog();
-      }
+      _answered = true;
+      _timer?.cancel();
     });
   }
 
@@ -1600,8 +1655,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Quiz Completed!',
-            style: TextStyle(color: Colors.deepPurple)),
+        title: const Text('Quiz Completed!', style: TextStyle(color: Colors.deepPurple)),
         content: Text('Your score is $score out of $totalQuestions',
             style: const TextStyle(color: Colors.black)),
         actions: [
@@ -1609,7 +1663,6 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
             child: const Text('OK', style: TextStyle(color: Colors.deepPurple)),
             onPressed: () {
               Navigator.of(context).pop(); // Close dialog
-              // Navigate to analysis screen
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => QuizAnalysisScreen(
