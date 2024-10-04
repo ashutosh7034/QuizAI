@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'quiz_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:quiz_ai/screens/quizzes/quiz_screen.dart';
 
 class MyQuizzesScreen extends StatelessWidget {
   @override
@@ -23,23 +25,21 @@ class MyQuizzesScreen extends StatelessWidget {
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('quizzes')
-              .orderBy('created_at', descending: true) // Sort by timestamp
+              .orderBy('created_at', descending: true)
               .snapshots(),
           builder: (context, snapshot) {
-            if (!snapshot.hasData || snapshot.data == null) {
+            if (!snapshot.hasData) {
               return const Center(child: CircularProgressIndicator());
             }
 
-            // Extract quiz data from Firestore documents
             final quizzes = snapshot.data!.docs.map((doc) {
               return {
-                'title': doc.get('title') ?? "Untitled Quiz",
-                'description': doc.get('description') ?? "No Description",
-                'questions': doc.get('questions') ?? [],
+                'title': doc['title'] ?? "Untitled Quiz",
+                'description': doc['description'] ?? "No Description",
+                'questions': List<Map<String, dynamic>>.from(doc['questions'] ?? []), // Cast here
               };
             }).toList();
 
-            // Display quizzes in a ListView
             return ListView.builder(
               padding: const EdgeInsets.all(16.0),
               itemCount: quizzes.length,
@@ -77,14 +77,13 @@ class MyQuizzesScreen extends StatelessWidget {
                     ),
                     trailing: const Icon(Icons.play_arrow, color: Color(0xFF9C27B0)),
                     onTap: () {
-                      // Navigate to the QuizScreen when a quiz is tapped
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => QuizScreen(
-                            title: quiz['title'], // Pass the title
-                            description: quiz['description'], // Pass the description
-                            questions: quiz['questions'], // Pass the questions
+                            title: quiz['title'],
+                            description: quiz['description'],
+                            questions: quiz['questions'], // This is now properly typed
                           ),
                         ),
                       );

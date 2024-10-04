@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Create_Quiz_manually.dart';
+import 'EditYourManuallyQuizScreen.dart'; // Import your EditYourManuallyQuizScreen
 import 'CreateQuizFromFileScreen.dart';
 import 'CreateQuizFromExcelScreen.dart'; // Import the new screen for Excel
 
@@ -31,20 +31,20 @@ class CreateQuizOptionScreen extends StatelessWidget {
             const SizedBox(height: 20),
             _buildOptionCard(
               context: context,
-              title: "Create Quiz Manually",
-              description: "Build your quiz step by step.",
+              title: "Manual Quiz",
+              description: "Create your quiz step by step.",
               icon: Icons.create,
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CreateQuizScreen()),
+                  MaterialPageRoute(builder: (context) => const EditYourManuallyQuizScreen()), // Update to redirect here
                 );
               },
             ),
             const SizedBox(height: 20),
             _buildOptionCard(
               context: context,
-              title: "Create Quiz from File",
+              title: "Quiz from File",
               description: "Upload a file to create a quiz.",
               icon: Icons.upload_file,
               onTap: () {
@@ -57,7 +57,7 @@ class CreateQuizOptionScreen extends StatelessWidget {
             const SizedBox(height: 20),
             _buildOptionCard(
               context: context,
-              title: "Create Quiz from Excel",
+              title: "Quiz from Excel",
               description: "Upload an Excel file to create a quiz.",
               icon: Icons.table_chart, // Use an icon that represents a table
               onTap: () {

@@ -1,198 +1,170 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
-class QuizScreen extends StatelessWidget {
+class QuizScreen extends StatefulWidget {
   final String title;
   final String description;
-  final List<dynamic> questions; // Assuming questions are a list of maps
+  final List<Map<String, dynamic>> questions;
 
-  QuizScreen({
+  const QuizScreen({
+    Key? key,
     required this.title,
     required this.description,
     required this.questions,
-  });
+  }) : super(key: key);
+
+  @override
+  _QuizScreenState createState() => _QuizScreenState();
+}
+
+class _QuizScreenState extends State<QuizScreen> {
+  int currentQuestionIndex = 0;
+  List<String> userAnswers = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
-        backgroundColor: Color(0xFF9C27B0),
-        centerTitle: true,
+        title: Text(widget.title),
+        backgroundColor: const Color(0xFF9C27B0),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: QuizForm(questions: questions),
+        child: Column(
+          children: [
+            Text(
+              widget.description,
+              style: const TextStyle(fontSize: 18, color: Colors.black87),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              "Question ${currentQuestionIndex + 1}/${widget.questions.length}",
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              widget.questions[currentQuestionIndex]['text'],
+              style: const TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 20),
+            _buildAnswerInput(currentQuestionIndex), // New method to build answer input
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: currentQuestionIndex > 0
+                      ? () {
+                    setState(() {
+                      currentQuestionIndex--;
+                    });
+                  }
+                      : null,
+                  child: const Text("Previous"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (currentQuestionIndex < widget.questions.length - 1) {
+                      setState(() {
+                        currentQuestionIndex++;
+                      });
+                    } else {
+                      _submitQuiz();
+                    }
+                  },
+                  child: Text(
+                    currentQuestionIndex < widget.questions.length - 1
+                        ? "Next"
+                        : "Submit",
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
-}
 
-class QuizForm extends StatefulWidget {
-  final List<dynamic> questions;
+  Widget _buildAnswerInput(int index) {
+    String questionType = widget.questions[index]['type'];
 
-  QuizForm({required this.questions});
-
-  @override
-  _QuizFormState createState() => _QuizFormState();
-}
-
-class _QuizFormState extends State<QuizForm> {
-  late List<String?> answers; // To track user answers
-
-  @override
-  void initState() {
-    super.initState();
-    answers = List.filled(widget.questions.length, null); // Initialize with null
-  }
-
-  Future<void> handleSubmit() async {
-    Map<String, String?> submittedAnswers = {}; // Change key type to String
-    for (int i = 0; i < answers.length; i++) {
-      submittedAnswers[i.toString()] = answers[i]; // Collect answers as String keys
-    }
-
-    final quizData = {
-      'title': widget.questions[0]['title'],
-      'description': widget.questions[0]['description'],
-      'answers': submittedAnswers,
-      'submitted_at': FieldValue.serverTimestamp(),
-    };
-
-    try {
-      await FirebaseFirestore.instance.collection('submissions').add(quizData);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Answers submitted successfully!')),
-      );
-      setState(() {
-        answers = List.filled(widget.questions.length, null); // Reset answers
-      });
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error submitting answers. Please try again.')),
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          widget.questions.isNotEmpty ? widget.questions[0]['description'] ?? '' : '',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 20),
-        Expanded(
-          child: ListView.builder(
-            itemCount: widget.questions.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: QuestionWidget(
-                  question: widget.questions[index],
-                  answer: answers[index], // Pass the current answer
-                  onChanged: (value) {
-                    setState(() {
-                      answers[index] = value; // Update answer
-                    });
-                  },
-                ),
-              );
-            },
-          ),
-        ),
-        ElevatedButton(
-          onPressed: answers.contains(null) ? null : handleSubmit, // Disable if not all answered
-          child: Text('Submit Answers'),
-        ),
-      ],
+    // TextEditingController to hold the answer text
+    TextEditingController textController = TextEditingController(
+      text: userAnswers.length > index ? userAnswers[index] : '',
     );
-  }
-}
 
-class QuestionWidget extends StatefulWidget {
-  final dynamic question;
-  final String? answer;
-  final ValueChanged<String?> onChanged;
-
-  QuestionWidget({
-    required this.question,
-    required this.answer,
-    required this.onChanged,
-  });
-
-  @override
-  _QuestionWidgetState createState() => _QuestionWidgetState();
-}
-
-
-class _QuestionWidgetState extends State<QuestionWidget> {
-  late TextEditingController _controller;
-  String? selectedOption; // For MCQ questions
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController(text: widget.answer);
-    if (widget.question['type'] == 'Multiple Choice') {
-      selectedOption = widget.answer; // Initialize selected option for MCQ
+    if (questionType == 'Multiple Choice') {
+      return Column(
+        children: widget.questions[index]['options']
+            .map<Widget>((option) {
+          return RadioListTile<String>(
+            title: Text(option),
+            value: option,
+            groupValue: userAnswers.length > currentQuestionIndex
+                ? userAnswers[currentQuestionIndex]
+                : null,
+            onChanged: (value) {
+              setState(() {
+                if (userAnswers.length > currentQuestionIndex) {
+                  userAnswers[currentQuestionIndex] = value!;
+                } else {
+                  userAnswers.add(value!);
+                }
+              });
+            },
+          );
+        }).toList(),
+      );
+    } else if (questionType == 'Short Answer' || questionType == 'Paragraph') {
+      return TextField(
+        controller: textController,
+        onChanged: (value) {
+          // Update user answers
+          if (userAnswers.length > index) {
+            userAnswers[index] = value;
+          } else {
+            userAnswers.add(value);
+          }
+        },
+        maxLines: questionType == 'Paragraph' ? 3 : 1, // Adjust line count for paragraphs
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: const BorderSide(color: Colors.blueAccent),
+          ),
+          hintText: questionType == 'Short Answer'
+              ? "Enter your answer"
+              : "Write your response",
+        ),
+      );
+    } else {
+      return const SizedBox(); // Return empty widget for unknown types
     }
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  void _submitQuiz() {
+    int score = 0;
+    for (int i = 0; i < widget.questions.length; i++) {
+      if (userAnswers[i] == widget.questions[i]['correctAnswer']) {
+        score++;
+      }
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    final questionType = widget.question['type'];
-
-    return Card(
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.question['text'] ?? 'No Question',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 10),
-            if (questionType == 'Short Answer' || questionType == 'Paragraph')
-            // Text input for Short Answer or Paragraph
-              TextField(
-                controller: _controller,
-                onChanged: widget.onChanged,
-                decoration: InputDecoration(
-                  hintText: 'Type your answer here',
-                  border: OutlineInputBorder(),
-                ),
-                maxLines: questionType == 'Paragraph' ? 3 : 1,
-              ),
-            if (questionType == 'Multiple Choice')
-            // MCQ with radio buttons
-              Column(
-                children: widget.question['options']
-                    .map<Widget>((option) => RadioListTile<String>(
-                  title: Text(option),
-                  value: option,
-                  groupValue: selectedOption,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedOption = value;
-                      widget.onChanged(value); // Update the selected answer
-                    });
-                  },
-                ))
-                    .toList(),
-              ),
-          ],
-        ),
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text("Quiz Completed"),
+        content: Text("Your score is $score/${widget.questions.length}"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
+            },
+            child: const Text("OK"),
+          ),
+        ],
       ),
     );
   }

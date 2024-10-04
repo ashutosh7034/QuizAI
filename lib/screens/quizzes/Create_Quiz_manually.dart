@@ -13,13 +13,29 @@ class CreateQuizScreen extends StatefulWidget {
 class _CreateQuizScreenState extends State<CreateQuizScreen> {
   // Form fields
   final TextEditingController _formTitleController = TextEditingController();
-  final TextEditingController _formDescriptionController = TextEditingController();
+  final TextEditingController _formDescriptionController =
+      TextEditingController();
   bool collectEmail = false;
   bool limitResponses = false;
   bool isLoading = false; // For loading indicator
 
   // List to hold questions
   List<Map<String, dynamic>> questions = [];
+  Future<void> _createQuiz() async {
+    try {
+      await FirebaseFirestore.instance.collection('quizzes').add({
+        'title': _formTitleController.text,
+        'description': _formDescriptionController.text,
+        'createdBy': 'manual', // Set createdBy to 'manual'
+        'questions': [], // Include questions if applicable
+      });
+      // Optionally navigate back or show a success message
+      print("Quiz created successfully.");
+    } catch (e) {
+      print("Error creating quiz: $e");
+      // Handle error (show a message to the user)
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,17 +134,29 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
   Widget _buildQuestionOptions() {
     return Column(
       children: [
-        for (var question in questions)
+        for (int index = 0; index < questions.length; index++)
           ListTile(
-            title: Text(question['type'] ?? "Unknown Type"),
-            subtitle: Text(question['text'] ?? "No Question"),
-            trailing: IconButton(
-              icon: const Icon(Icons.delete, color: Colors.red),
-              onPressed: () {
-                setState(() {
-                  questions.remove(question);
-                });
-              },
+            title: Text(questions[index]['text'] ?? "No Question"),
+            subtitle: Text(
+                "Type: ${questions[index]['type'] ?? "Unknown Type"}\nCorrect Answer: ${questions[index]['correctAnswer'] ?? "Not Set"}"),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.edit, color: Colors.blue),
+                  onPressed: () {
+                    _showEditQuestionDialog(index);
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete, color: Colors.red),
+                  onPressed: () {
+                    setState(() {
+                      questions.removeAt(index);
+                    });
+                  },
+                ),
+              ],
             ),
           ),
         ElevatedButton(
@@ -146,6 +174,8 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     String questionType = 'Short Answer';
     List<String> multipleChoices = [];
     final TextEditingController optionController = TextEditingController();
+    String? correctAnswer; // Variable to hold the correct answer
+    bool showAnswer = false; // Variable to hold whether to show the answer
 
     showDialog(
       context: context,
@@ -154,18 +184,31 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
           builder: (context, setDialogState) {
             return AlertDialog(
               title: const Text("Add a Question"),
-              content: SingleChildScrollView( // Allow scrolling for long content
+              content: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    const Text(
+                      "Please enter your question below:",
+                      style: TextStyle(color: Colors.black54),
+                    ),
                     TextField(
                       controller: questionController,
-                      decoration: const InputDecoration(hintText: "Enter your question"),
+                      decoration: const InputDecoration(
+                          hintText: "Enter your question"),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      "Select Question Type:",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     DropdownButton<String>(
                       value: questionType,
-                      items: <String>['Short Answer', 'Paragraph', 'Multiple Choice']
-                          .map<DropdownMenuItem<String>>((String value) {
+                      items: <String>[
+                        'Short Answer',
+                        'Paragraph',
+                        'Multiple Choice'
+                      ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -175,46 +218,74 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                         setDialogState(() {
                           questionType = newValue!;
                           if (questionType != 'Multiple Choice') {
-                            // Reset options if the type is not Multiple Choice
                             multipleChoices.clear();
+                            correctAnswer = null; // Reset the correct answer
                           }
                         });
                       },
                     ),
-                    if (questionType == 'Multiple Choice')
-                      Column(
-                        children: [
-                          TextField(
-                            controller: optionController,
-                            decoration: const InputDecoration(
-                              hintText: "Enter an option",
-                            ),
-                          ),
-                          ElevatedButton(
+                    if (questionType == 'Multiple Choice') ...[
+                      const SizedBox(height: 10),
+                      const Text("Add Options:",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextField(
+                        controller: optionController,
+                        decoration:
+                            const InputDecoration(hintText: "Enter an option"),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          setDialogState(() {
+                            if (optionController.text.isNotEmpty) {
+                              multipleChoices.add(optionController.text);
+                              optionController.clear();
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Option cannot be empty!')),
+                              );
+                            }
+                          });
+                        },
+                        child: const Text("Add Option"),
+                      ),
+                      for (var option in multipleChoices)
+                        ListTile(
+                          title: Text(option),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete, color: Colors.red),
                             onPressed: () {
                               setDialogState(() {
-                                if (optionController.text.isNotEmpty) {
-                                  multipleChoices.add(optionController.text);
-                                  optionController.clear();
-                                }
+                                multipleChoices.remove(option);
                               });
                             },
-                            child: const Text("Add Option"),
                           ),
-                          for (var option in multipleChoices)
-                            ListTile(
-                              title: Text(option),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.delete, color: Colors.red),
-                                onPressed: () {
-                                  setDialogState(() {
-                                    multipleChoices.remove(option);
-                                  });
-                                },
-                              ),
-                            ),
-                        ],
+                        ),
+                      DropdownButton<String>(
+                        value: correctAnswer,
+                        hint: const Text("Select the correct answer"),
+                        items: multipleChoices.map((String option) {
+                          return DropdownMenuItem<String>(
+                            value: option,
+                            child: Text(option),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setDialogState(() {
+                            correctAnswer = newValue;
+                          });
+                        },
                       ),
+                    ],
+                    CheckboxListTile(
+                      title: const Text("Show Correct Answer"),
+                      value: showAnswer,
+                      onChanged: (bool? value) {
+                        setDialogState(() {
+                          showAnswer = value!;
+                        });
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -226,9 +297,20 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                         final question = {
                           'text': questionController.text,
                           'type': questionType,
-                          'options': questionType == 'Multiple Choice' ? multipleChoices : [],
+                          'options': questionType == 'Multiple Choice'
+                              ? multipleChoices
+                              : [],
+                          'correctAnswer':
+                              correctAnswer, // Add the correct answer to the question
+                          'showAnswer':
+                              showAnswer, // Add the show answer preference
                         };
                         questions.add(question);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('Question cannot be empty!')),
+                        );
                       }
                     });
                     Navigator.of(context).pop();
@@ -249,26 +331,173 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     );
   }
 
+  void _showEditQuestionDialog(int index) {
+    final TextEditingController questionController =
+        TextEditingController(text: questions[index]['text']);
+    String questionType = questions[index]['type'];
+    List<String> multipleChoices =
+        List<String>.from(questions[index]['options']);
+    final TextEditingController optionController = TextEditingController();
+    String? correctAnswer = questions[index]['correctAnswer'];
+    bool showAnswer = questions[index]['showAnswer'];
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            return AlertDialog(
+              title: const Text("Edit Question"),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: questionController,
+                      decoration: const InputDecoration(
+                          hintText: "Enter your question"),
+                    ),
+                    DropdownButton<String>(
+                      value: questionType,
+                      items: <String>[
+                        'Short Answer',
+                        'Paragraph',
+                        'Multiple Choice'
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setDialogState(() {
+                          questionType = newValue!;
+                          if (questionType != 'Multiple Choice') {
+                            // Reset options if the type is not Multiple Choice
+                            multipleChoices.clear();
+                            correctAnswer = null; // Reset the correct answer
+                          }
+                        });
+                      },
+                    ),
+                    if (questionType == 'Multiple Choice') ...[
+                      Column(
+                        children: [
+                          TextField(
+                            controller: optionController,
+                            decoration: const InputDecoration(
+                                hintText: "Enter an option"),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              setDialogState(() {
+                                if (optionController.text.isNotEmpty) {
+                                  multipleChoices.add(optionController.text);
+                                  optionController.clear();
+                                }
+                              });
+                            },
+                            child: const Text("Add Option"),
+                          ),
+                          for (var option in multipleChoices)
+                            ListTile(
+                              title: Text(option),
+                              trailing: IconButton(
+                                icon:
+                                    const Icon(Icons.delete, color: Colors.red),
+                                onPressed: () {
+                                  setDialogState(() {
+                                    multipleChoices.remove(option);
+                                  });
+                                },
+                              ),
+                            ),
+                          // Add dropdown for selecting the correct answer
+                          DropdownButton<String>(
+                            value: correctAnswer,
+                            hint: const Text("Select the correct answer"),
+                            items: multipleChoices.map((String option) {
+                              return DropdownMenuItem<String>(
+                                value: option,
+                                child: Text(option),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setDialogState(() {
+                                correctAnswer = newValue;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                    // Checkbox for showing the correct answer
+                    CheckboxListTile(
+                      title: const Text("Show Correct Answer"),
+                      value: showAnswer,
+                      onChanged: (bool? value) {
+                        setDialogState(() {
+                          showAnswer = value!;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      if (questionController.text.isNotEmpty) {
+                        final question = {
+                          'text': questionController.text,
+                          'type': questionType,
+                          'options': questionType == 'Multiple Choice'
+                              ? multipleChoices
+                              : [],
+                          'correctAnswer': correctAnswer,
+                          'showAnswer': showAnswer,
+                        };
+                        questions[index] =
+                            question; // Update the existing question
+                      }
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("Update"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("Cancel"),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
   Widget _buildFormSettings() {
     return Column(
       children: [
-        SwitchListTile(
+        CheckboxListTile(
           title: const Text("Collect Email Addresses"),
           value: collectEmail,
-          activeColor: Colors.blueAccent,
-          onChanged: (bool value) {
+          onChanged: (bool? value) {
             setState(() {
-              collectEmail = value;
+              collectEmail = value!;
             });
           },
         ),
-        SwitchListTile(
-          title: const Text("Limit responses to one person"),
+        CheckboxListTile(
+          title: const Text("Limit Responses"),
           value: limitResponses,
-          activeColor: Colors.blueAccent,
-          onChanged: (bool value) {
+          onChanged: (bool? value) {
             setState(() {
-              limitResponses = value;
+              limitResponses = value!;
             });
           },
         ),
@@ -278,35 +507,27 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
 
   Widget _buildBottomButtons() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ElevatedButton(
           onPressed: _previewQuiz,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.grey.shade300,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-          ),
-          child: const Text(
-            "Preview",
-            style: TextStyle(color: Colors.black),
-          ),
+          child: const Text("Preview"),
         ),
-        ElevatedButton(
-          onPressed: isLoading ? null : _shareQuiz,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blueAccent,
-            shape: RoundedRectangleBorder(
+        GestureDetector(
+          onTap: _shareQuiz,
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+            decoration: BoxDecoration(
+              color: Colors.blueAccent,
               borderRadius: BorderRadius.circular(12.0),
             ),
-          ),
-          child: isLoading
-              ? const CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
-              : const Text(
-            "Share",
-            style: TextStyle(color: Colors.white),
+            child: isLoading
+                ? const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
+                : const Text(
+                    "Share",
+                    style: TextStyle(color: Colors.white),
+                  ),
           ),
         ),
       ],
@@ -314,7 +535,80 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
   }
 
   void _previewQuiz() {
-    print("Previewing Quiz: ${_formTitleController.text}");
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Quiz Preview"),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Title: ${_formTitleController.text}",
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  "Description: ${_formDescriptionController.text}",
+                  style: const TextStyle(fontSize: 16, color: Colors.black54),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  "Questions:",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                const SizedBox(height: 10),
+                for (var question in questions)
+                  Card(
+                    margin: const EdgeInsets.symmetric(vertical: 8.0),
+                    elevation: 4,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            question['text'],
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                          if (question['type'] == 'Multiple Choice') ...[
+                            const SizedBox(height: 10),
+                            for (var option in question['options'])
+                              Text("- $option",
+                                  style: const TextStyle(fontSize: 14)),
+                          ],
+                          if (question['showAnswer'] == true)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Text(
+                                "Correct Answer: ${question['correctAnswer']}",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          const SizedBox(height: 10),
+                        ],
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Close"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Future<void> _shareQuiz() async {

@@ -78,14 +78,28 @@ class _LoginScreenState extends State<LoginScreen> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
-        // Save user info to Firestore
-        await _saveUserInfo(userCredential.user!.uid, userCredential.user!.email!);
 
-        _showLoginSuccessMessage();
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage()),
-        );
+        // Check if email is verified
+        User? user = userCredential.user;
+
+        if (user != null) {
+          // Check if the user's email is verified
+          if (!user.emailVerified) {
+            // Sign out the user if email is not verified
+            await FirebaseAuth.instance.signOut();
+            _showErrorDialog('Please verify your email before logging in.');
+            return;
+          }
+
+          // Save user info to Firestore
+          await _saveUserInfo(user.uid, user.email!);
+
+          _showLoginSuccessMessage();
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
+        }
       } catch (error) {
         _showErrorDialog('Invalid email or password. Please try again.');
       }
@@ -230,8 +244,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 10),
 
                 // Forgot Password button
-                // Inside your LoginScreen widget's build method, add this below your password text field
-
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
@@ -385,7 +397,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ],

@@ -25,7 +25,8 @@ class MyApp extends StatefulWidget {
   MyAppState createState() => MyAppState();  // Change here
 }
 
-class MyAppState extends State<MyApp> {  // Change here
+class MyAppState extends State<MyApp> {
+  // Change here
   ThemeMode _themeMode = ThemeMode.light; // Default to light mode
 
   void toggleThemeMode(ThemeMode mode) {
@@ -43,7 +44,8 @@ class MyAppState extends State<MyApp> {  // Change here
         useMaterial3: true,
       ),
       darkTheme: ThemeData.dark(),
-      themeMode: _themeMode, // Set the theme mode
+      themeMode: _themeMode,
+      // Set the theme mode
       home: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 400) {
@@ -68,16 +70,20 @@ class MyAppState extends State<MyApp> {  // Change here
   }
 
   // Method to navigate to QuizScreen with parameters
-  static void navigateToQuizScreen(BuildContext context, String title, String description, List<dynamic> questions) {
+  // Navigation method remains the same
+  static void navigateToQuizScreen(BuildContext context, String title,
+      String description, List<Map<String, dynamic>> questions) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => QuizScreen(
-          title: title,
-          description: description,
-          questions: questions,
-        ),
+        builder: (context) =>
+            QuizScreen(
+              title: title,
+              description: description,
+              questions: questions,
+            ),
       ),
     );
   }
 }
+
