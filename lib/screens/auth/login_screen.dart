@@ -71,6 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // Method to handle Email Sign-In with Firebase
+  // Method to handle Email Sign-In with Firebase
   Future<void> _handleEmailSignIn() async {
     if (_formKey.currentState!.validate()) {
       try {
@@ -79,20 +80,18 @@ class _LoginScreenState extends State<LoginScreen> {
           password: _passwordController.text.trim(),
         );
 
-        // Check if email is verified
         User? user = userCredential.user;
 
         if (user != null) {
           // Check if the user's email is verified
           if (!user.emailVerified) {
-            // Sign out the user if email is not verified
             await FirebaseAuth.instance.signOut();
             _showErrorDialog('Please verify your email before logging in.');
             return;
           }
 
-          // Save user info to Firestore
-          await _saveUserInfo(user.uid, user.email!);
+          // Update only the last login timestamp in Firestore
+          await _updateLastLogin(user.uid);
 
           _showLoginSuccessMessage();
           Navigator.pushReplacement(
@@ -106,17 +105,29 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  // Method to save user information to Firestore
+// Method to save user information to Firestore
   Future<void> _saveUserInfo(String uid, String email) async {
     try {
       await FirebaseFirestore.instance.collection('users').doc(uid).set({
         'email': email,
         'last_login': FieldValue.serverTimestamp(),
-      });
+      }, SetOptions(merge: true)); // Merge to avoid overwriting existing data
     } catch (e) {
       _showErrorDialog('Failed to save user info: $e');
     }
   }
+
+// Method to update the last login timestamp in Firestore
+  Future<void> _updateLastLogin(String uid) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(uid).update({
+        'last_login': FieldValue.serverTimestamp(),
+      });
+    } catch (e) {
+      _showErrorDialog('Failed to update last login: $e');
+    }
+  }
+
 
   // Show error dialog
   void _showErrorDialog(String message) {

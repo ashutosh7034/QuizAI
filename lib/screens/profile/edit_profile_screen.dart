@@ -52,9 +52,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     if (user != null) {
       await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
-        'name': updatedName,
+        'username': updatedName,
         'email': updatedEmail,
         'description': updatedDescription,
+
         // Optionally update the profile image URL here if needed
       });
 

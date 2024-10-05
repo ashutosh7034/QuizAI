@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'PrivacyPolicyScreen.dart';
 import 'TermsOfServiceScreen.dart';
 import 'login_screen.dart'; // Ensure to import your LoginScreen
@@ -42,10 +43,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
       });
 
       try {
+        // Create user with Firebase Authentication
         UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
+
+        // Store the user's full name, email, and last login in Firestore
+        await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+          'username': _nameController.text.trim(),
+          'email': _emailController.text.trim(),
+          'last_login': FieldValue.serverTimestamp(), // Store last login time
+        });
 
         // Send email verification
         await userCredential.user?.sendEmailVerification();
@@ -285,7 +294,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const TextSpan(text: ' and ', style: TextStyle(color: Colors.black)),
                 TextSpan(
-                  text: 'Terms of Use',
+                  text: 'Terms of Service',
                   style: const TextStyle(color: Colors.blue),
                   recognizer: TapGestureRecognizer()..onTap = _openTermsOfUse,
                 ),

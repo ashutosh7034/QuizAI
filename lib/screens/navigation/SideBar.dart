@@ -7,7 +7,6 @@ import '../auth/ChangePasswordScreen.dart';
 import '../auth/PrivacyPolicyScreen.dart';
 import '../profile/HelpSupportScreen.dart';
 
-
 class Sidebar extends StatefulWidget {
   @override
   _SidebarState createState() => _SidebarState();
@@ -28,26 +27,34 @@ class _SidebarState extends State<Sidebar> {
     final user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      // Fetch additional Google account data
-      GoogleSignInAccount? googleUser = await GoogleSignIn().signInSilently();
-      if (googleUser != null) {
-        setState(() {
-          userName = googleUser.displayName ?? userName;
-          userEmail = googleUser.email ?? userEmail;
-          profileImage = googleUser.photoUrl ?? profileImage;
-        });
-      }
-
       // Fetch data from Firestore
       DocumentSnapshot snapshot =
       await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
       if (snapshot.exists) {
         var userData = snapshot.data() as Map<String, dynamic>;
         setState(() {
-          userName = userData['name'] ?? userName;
-          userEmail = userData['email'] ?? userEmail;
-          profileImage = userData['profileImage'] ?? profileImage;
+          userName = userData['username'] ?? user.displayName ?? 'User Name'; // Ensure to get the name
+          userEmail = userData['email'] ?? user.email ?? 'user@example.com';
+          profileImage = userData['profileImage'] ?? profileImage; // Optional: Add profileImage field in Firestore if required
         });
+      } else {
+        // In case Firestore data is not available, you can set a default name
+        setState(() {
+          userName = user.displayName ?? 'User Name'; // Fallback to displayName if available
+          userEmail = user.email ?? 'user@example.com';
+        });
+      }
+
+      // If the user signed in using Google, get the Google account data
+      if (user.providerData.any((provider) => provider.providerId == 'google.com')) {
+        GoogleSignInAccount? googleUser = await GoogleSignIn().signInSilently();
+        if (googleUser != null) {
+          setState(() {
+            userName = googleUser.displayName ?? userName;
+            userEmail = googleUser.email ?? userEmail;
+            profileImage = googleUser.photoUrl ?? profileImage;
+          });
+        }
       }
     }
   }
@@ -164,7 +171,7 @@ class _SidebarState extends State<Sidebar> {
             ),
           ),
           onPressed: () {
-            Navigator.pushNamed(context, '/profile');
+            Navigator.pushNamed(context, '/profile'); // Ensure that the '/profile' route is defined
           },
           child: const Text(
             'View Profile',
@@ -204,7 +211,7 @@ class _SidebarState extends State<Sidebar> {
           onPressed: () async {
             await FirebaseAuth.instance.signOut();
             await GoogleSignIn().signOut(); // Ensure Google Sign-Out
-            Navigator.pushReplacementNamed(context, '/login');
+            Navigator.pushReplacementNamed(context, '/login'); // Navigate to Login page
           },
           child: const Text(
             'Logout',

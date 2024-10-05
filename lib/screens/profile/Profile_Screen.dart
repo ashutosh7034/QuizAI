@@ -50,14 +50,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
       if (snapshot.exists) {
         var userData = snapshot.data() as Map<String, dynamic>;
         setState(() {
-          name = userData['name'] ?? user.displayName ?? 'User Name';
+          name = userData['username'] ?? user.displayName ?? 'User Name'; // Ensure to get the name
           email = userData['email'] ?? user.email ?? 'user@example.com';
           description = userData['description'] ?? 'A short description here';
           profileImage = userData['profileImage'] ?? user.photoURL ?? 'https://via.placeholder.com/100';
         });
+      } else {
+        // In case Firestore data is not available, you can set a default name
+        setState(() {
+          name = user.displayName ?? 'User Name'; // Fallback to displayName if available
+          email = user.email ?? 'user@example.com';
+        });
       }
     }
   }
+
 
   Future<void> _fetchUserAchievements() async {
     final user = FirebaseAuth.instance.currentUser;
