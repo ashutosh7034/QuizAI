@@ -16,7 +16,7 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
   Future<void> _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['txt'],
+      allowedExtensions: ['pdf'],
     );
 
     if (result != null && result.files.single.path != null) {
@@ -29,10 +29,8 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
 
   Future<void> _createQuiz() async {
     if (_fileContent != null) {
-      // Logic to create quiz from file content
       print('Creating quiz from file content: $_fileContent');
 
-      // Split the file content into questions (you can customize this logic)
       List<Map<String, dynamic>> questions = _parseFileContent(_fileContent!);
 
       try {
@@ -54,18 +52,16 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
   }
 
   List<Map<String, dynamic>> _parseFileContent(String content) {
-    // Custom logic to parse the file content and convert it to a list of questions
     List<Map<String, dynamic>> questions = [];
 
-    // Example: Split by new lines and create dummy questions (customize as needed)
     List<String> lines = content.split('\n');
     for (String line in lines) {
       if (line.trim().isNotEmpty) {
         questions.add({
-          'text': line.trim(), // Use the line as the question text
-          'type': 'text', // Set the type as per your requirement
-          'options': [], // You can add options if applicable
-          'answer': '', // Set the answer if applicable
+          'text': line.trim(),
+          'type': 'text',
+          'options': [],
+          'answer': '',
         });
       }
     }
@@ -78,7 +74,7 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
       'description': 'Quiz created from $_fileName',
       'questions': questions,
       'created_at': FieldValue.serverTimestamp(),
-      'createdBy': 'file', // Set createdBy to 'file' for text files
+      'createdBy': 'file',
     };
 
     await FirebaseFirestore.instance.collection('quizzes').add(quizData);
@@ -91,7 +87,7 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
         title: const Text("Quizai", style: TextStyle(color: Colors.white)),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: const Color(0xFF9C27B0), // Dark Purple
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -103,7 +99,7 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
+                color: Color(0xFF9C27B0), // Dark Purple
               ),
             ),
             const SizedBox(height: 20),
@@ -115,7 +111,7 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
                 style: TextStyle(fontSize: 18),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orangeAccent,
+                backgroundColor: Colors.yellow[800], // Light Blue
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
@@ -145,7 +141,7 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
                 style: TextStyle(fontSize: 18),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueAccent,
+                backgroundColor: const Color(0xFF03A9F4), // Light Blue
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),

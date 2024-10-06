@@ -21,6 +21,825 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
       'answer': 'A programming language',
     },
     {
+      'question': 'What will be the output of the following code?\n\nconsole.log(typeof NaN);',
+      'options': ['number', 'undefined', 'NaN', 'Error'],
+      'answer': 'number',
+    },
+    {
+      'question': 'Which of the following correctly creates a promise in JavaScript?',
+      'options': [
+        'new Promise((resolve, reject) => {})',
+        'Promise.new((resolve, reject) => {})',
+        'new Promise(resolve, reject => {})',
+        'Promise((resolve, reject) => {})'
+      ],
+      'answer': 'new Promise((resolve, reject) => {})',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(0.1 + 0.2 === 0.3);',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'What is the purpose of the "bind" method in JavaScript?',
+      'options': [
+        'To create a new function that, when called, has its "this" keyword set to the provided value.',
+        'To create a copy of an object.',
+        'To concatenate two functions.',
+        'To check if a function is callable.'
+      ],
+      'answer': 'To create a new function that, when called, has its "this" keyword set to the provided value.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nvar a = 1;\nsetTimeout(() => { console.log(a); }, 0);\na = 2;',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question': 'Which of the following is not a JavaScript data type?',
+      'options': [
+        'Boolean',
+        'Undefined',
+        'Character',
+        'Null'
+      ],
+      'answer': 'Character',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nconsole.log([1] == [1]);',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'What is the purpose of the "closure" in JavaScript?',
+      'options': [
+        'To create private variables.',
+        'To define a new variable scope.',
+        'To combine two functions.',
+        'To execute a function immediately.'
+      ],
+      'answer': 'To create private variables.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(1 + "2" - 1);',
+      'options': ['1', '2', '3', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question': 'Which method is used to combine two or more arrays in JavaScript?',
+      'options': [
+        'Array.concat()',
+        'Array.join()',
+        'Array.merge()',
+        'Array.append()'
+      ],
+      'answer': 'Array.concat()',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("Hello" === "hello");',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'Which of the following correctly creates an object in JavaScript?',
+      'options': [
+        'const obj = {};',
+        'const obj = new Object();',
+        'const obj = Object.create();',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nconsole.log(2 + "2" === 22);',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'Which operator is used to create a new object in JavaScript?',
+      'options': [
+        'new',
+        'create',
+        'object',
+        'class'
+      ],
+      'answer': 'new',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nvar x = "5";\nconsole.log(x + 1);\n',
+      'options': ['51', '6', 'undefined', 'Error'],
+      'answer': '51',
+    },
+    {
+      'question': 'What is the purpose of the "this" keyword in JavaScript?',
+      'options': [
+        'To refer to the current object.',
+        'To create a new object.',
+        'To refer to the global object.',
+        'To access variables in an array.'
+      ],
+      'answer': 'To refer to the current object.',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nfunction foo() { return; }\nconsole.log(foo());',
+      'options': ['undefined', 'null', 'Error', 'void'],
+      'answer': 'undefined',
+    },
+    {
+      'question': 'Which of the following can be used to handle exceptions in JavaScript?',
+      'options': [
+        'try-catch blocks',
+        'if statements',
+        'switch statements',
+        'while loops'
+      ],
+      'answer': 'try-catch blocks',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(typeof null);',
+      'options': ['object', 'null', 'undefined', 'Error'],
+      'answer': 'object',
+    },
+    {
+      'question': 'Which of the following is used to define a function in JavaScript?',
+      'options': [
+        'function myFunction() {}',
+        'myFunction() {}',
+        'def myFunction() {}',
+        'func myFunction() {}'
+      ],
+      'answer': 'function myFunction() {}',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(5 === "5");',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nconsole.log([1, 2] == [1, 2]);',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'Which of the following is not a valid variable name in JavaScript?',
+      'options': [
+        'var1',
+        '1var',
+        '_var',
+        '\$var'
+      ],
+      'answer': '1var',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nvar a = 1;\nsetTimeout(() => { console.log(a); }, 0);\na = 2;',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '2',
+    },
+
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(typeof NaN);',
+      'options': ['number', 'undefined', 'NaN', 'Error'],
+      'answer': 'number',
+    },
+    {
+      'question': 'What is the purpose of the "bind" method in JavaScript?',
+      'options': [
+        'To create a new function that, when called, has its "this" keyword set to the provided value.',
+        'To create a copy of an object.',
+        'To concatenate two functions.',
+        'To check if a function is callable.'
+      ],
+      'answer': 'To create a new function that, when called, has its "this" keyword set to the provided value.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nvar a = 1;\nsetTimeout(() => { console.log(a); }, 0);\na = 2;',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question': 'Which of the following is not a JavaScript data type?',
+      'options': [
+        'Boolean',
+        'Undefined',
+        'Character',
+        'Null'
+      ],
+      'answer': 'Character',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log([1] == [1]);',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'What is the purpose of a closure in JavaScript?',
+      'options': [
+        'To create private variables.',
+        'To define a new variable scope.',
+        'To combine two functions.',
+        'To execute a function immediately.'
+      ],
+      'answer': 'To create private variables.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(1 + "2" - 1);',
+      'options': ['1', '2', '3', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question': 'Which method is used to combine two or more arrays in JavaScript?',
+      'options': [
+        'Array.concat()',
+        'Array.join()',
+        'Array.merge()',
+        'Array.append()'
+      ],
+      'answer': 'Array.concat()',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("Hello" === "hello");',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'Which of the following correctly creates an object in JavaScript?',
+      'options': [
+        'const obj = {};',
+        'const obj = new Object();',
+        'const obj = Object.create();',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(2 + "2" === 22);',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'Which operator is used to create a new object in JavaScript?',
+      'options': [
+        'new',
+        'create',
+        'object',
+        'class'
+      ],
+      'answer': 'new',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nvar x = "5";\nconsole.log(x + 1);',
+      'options': ['51', '6', 'undefined', 'Error'],
+      'answer': '51',
+    },
+    {
+      'question': 'What is the purpose of the "this" keyword in JavaScript?',
+      'options': [
+        'To refer to the current object.',
+        'To create a new object.',
+        'To refer to the global object.',
+        'To access variables in an array.'
+      ],
+      'answer': 'To refer to the current object.',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nfunction foo() { return; }\nconsole.log(foo());',
+      'options': ['undefined', 'null', 'Error', 'void'],
+      'answer': 'undefined',
+    },
+    {
+      'question': 'Which of the following can be used to handle exceptions in JavaScript?',
+      'options': [
+        'try-catch blocks',
+        'if statements',
+        'switch statements',
+        'while loops'
+      ],
+      'answer': 'try-catch blocks',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(typeof null);',
+      'options': ['object', 'null', 'undefined', 'Error'],
+      'answer': 'object',
+    },
+    {
+      'question': 'Which of the following is used to define a function in JavaScript?',
+      'options': [
+        'function myFunction() {}',
+        'myFunction() {}',
+        'def myFunction() {}',
+        'func myFunction() {}'
+      ],
+      'answer': 'function myFunction() {}',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(5 === "5");',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nconsole.log([1, 2] == [1, 2]);',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'Which of the following is not a valid variable name in JavaScript?',
+      'options': [
+        'var1',
+        '1var',
+        '_var',
+        '\$var' // Escaping the dollar sign
+      ],
+      'answer': '1var',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nvar a = 1;\nfunction foo() { var a = 2; }\nfoo();\nconsole.log(a);',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '1',
+    },
+    {
+      'question': 'Which of the following is true about the "async" keyword in JavaScript?',
+      'options': [
+        'It makes a function return a promise.',
+        'It is used to define a generator function.',
+        'It is used to declare a constant.',
+        'It makes a function synchronous.'
+      ],
+      'answer': 'It makes a function return a promise.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log([1, 2] + [3, 4]);',
+      'options': ['1,23,4', '1,2,3,4', 'undefined', 'Error'],
+      'answer': '1,23,4',
+    },
+    {
+      'question': 'Which of the following is used to terminate a loop in JavaScript?',
+      'options': [
+        'break',
+        'continue',
+        'exit',
+        'return'
+      ],
+      'answer': 'break',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nlet x = 1;\nconst y = x++;\nconsole.log(y);',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '1',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("2" + 2 - 2);',
+      'options': ['20', '2', 'Error', 'undefined'],
+      'answer': '2',
+    },
+    {
+      'question': 'Which of the following is used to create a new array in JavaScript?',
+      'options': [
+        'Array()',
+        'new Array()',
+        '[]',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nconsole.log(5 + "5" - 5);',
+      'options': ['55', '5', '10', 'Error'],
+      'answer': '5',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("Hello" + "World");',
+      'options': ['HelloWorld', 'Hello World', 'undefined', 'Error'],
+      'answer': 'HelloWorld',
+    },
+    {
+      'question': 'Which of the following is a method for creating an array from a string in JavaScript?',
+      'options': [
+        'split()',
+        'join()',
+        'map()',
+        'filter()'
+      ],
+      'answer': 'split()',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nlet a = "Hello";\nlet b = a;\nb += " World";\nconsole.log(a);',
+      'options': ['Hello', 'Hello World', 'undefined', 'Error'],
+      'answer': 'Hello',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(!!"Hello");',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'true',
+    },
+    {
+      'question': 'Which of the following is true about "undefined" in JavaScript?',
+      'options': [
+        'It is a type.',
+        'It is a value.',
+        'It is both a type and a value.',
+        'None of the above'
+      ],
+      'answer': 'It is both a type and a value.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nlet x = {a: 1};\nlet y = x;\ny.a = 2;\nconsole.log(x.a);',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question': 'What is the purpose of the "Array.from()" method in JavaScript?',
+      'options': [
+        'To create an array from an iterable object.',
+        'To convert an array to an object.',
+        'To combine two arrays.',
+        'To remove duplicates from an array.'
+      ],
+      'answer': 'To create an array from an iterable object.',
+    },
+
+    {
+      'question': 'What is the purpose of the "Promise.all()" method in JavaScript?',
+      'options': [
+        'To execute multiple promises in parallel.',
+        'To execute promises in sequence.',
+        'To combine results from multiple promises.',
+        'To cancel promises.'
+      ],
+      'answer': 'To execute multiple promises in parallel.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("1" == 1);',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'true',
+    },
+    {
+      'question': 'Which of the following methods can be used to convert a string to a number in JavaScript?',
+      'options': [
+        'parseInt()',
+        'parseFloat()',
+        'Number()',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nconsole.log([2] == 2);',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'true',
+    },
+    {
+      'question': 'What is a closure in JavaScript?',
+      'options': [
+        'A function that captures the lexical scope in which it was created.',
+        'A way to create private variables.',
+        'A method for error handling.',
+        'A type of object.'
+      ],
+      'answer': 'A function that captures the lexical scope in which it was created.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(typeof function() {});',
+      'options': ['function', 'undefined', 'object', 'Error'],
+      'answer': 'function',
+    },
+    {
+      'question': 'Which of the following is true about the "let" keyword in JavaScript?',
+      'options': [
+        'It creates a block-scoped variable.',
+        'It creates a globally-scoped variable.',
+        'It creates a constant variable.',
+        'It cannot be reassigned.'
+      ],
+      'answer': 'It creates a block-scoped variable.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("a" > "b");',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'Which of the following is the correct way to add a comment in JavaScript?',
+      'options': [
+        '// This is a comment',
+        '/* This is a comment */',
+        '// This is a comment\n/* This is a comment */',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nconsole.log([1, 2, 3].map(x => x * 2));',
+      'options': ['[2, 4, 6]', '[1, 2, 3]', 'undefined', 'Error'],
+      'answer': '[2, 4, 6]',
+    },
+    {
+      'question': 'Which of the following is used to handle asynchronous operations in JavaScript?',
+      'options': [
+        'Promise',
+        'Callback',
+        'Async/Await',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nvar a = 1;\nfunction foo() { var a = 2; }\nfoo();\nconsole.log(a);',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '1',
+    },
+    {
+      'question': 'Which of the following is true about the "async" keyword in JavaScript?',
+      'options': [
+        'It makes a function return a promise.',
+        'It is used to define a generator function.',
+        'It is used to declare a constant.',
+        'It makes a function synchronous.'
+      ],
+      'answer': 'It makes a function return a promise.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log([1, 2] + [3, 4]);',
+      'options': ['1,23,4', '1,2,3,4', 'undefined', 'Error'],
+      'answer': '1,23,4',
+    },
+    {
+      'question': 'Which of the following is used to terminate a loop in JavaScript?',
+      'options': [
+        'break',
+        'continue',
+        'exit',
+        'return'
+      ],
+      'answer': 'break',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nlet x = 1;\nconst y = x++;\nconsole.log(y);',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '1',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("2" + 2 - 2);',
+      'options': ['20', '2', 'Error', 'undefined'],
+      'answer': '2',
+    },
+    {
+      'question': 'Which of the following is used to create a new array in JavaScript?',
+      'options': [
+        'Array()',
+        'new Array()',
+        '[]',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nconsole.log(5 + "5" - 5);',
+      'options': ['55', '5', '10', 'Error'],
+      'answer': '5',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("Hello" + "World");',
+      'options': ['HelloWorld', 'Hello World', 'undefined', 'Error'],
+      'answer': 'HelloWorld',
+    },
+    {
+      'question': 'Which of the following is a method for creating an array from a string in JavaScript?',
+      'options': [
+        'split()',
+        'join()',
+        'map()',
+        'filter()'
+      ],
+      'answer': 'split()',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nlet a = "Hello";\nlet b = a;\nb += " World";\nconsole.log(a);',
+      'options': ['Hello', 'Hello World', 'undefined', 'Error'],
+      'answer': 'Hello',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(!!"Hello");',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'true',
+    },
+    {
+      'question': 'Which of the following is true about "undefined" in JavaScript?',
+      'options': [
+        'It is a type.',
+        'It is a value.',
+        'It is both a type and a value.',
+        'None of the above'
+      ],
+      'answer': 'It is both a type and a value.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nlet x = {a: 1};\nlet y = x;\ny.a = 2;\nconsole.log(x.a);',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question': 'What is the purpose of the "Array.from()" method in JavaScript?',
+      'options': [
+        'To create an array from an iterable object.',
+        'To convert an array to an object.',
+        'To combine two arrays.',
+        'To remove duplicates from an array.'
+      ],
+      'answer': 'To create an array from an iterable object.',
+    },
+
+    {
+      'question': 'What is the purpose of the "Promise.all()" method in JavaScript?',
+      'options': [
+        'To execute multiple promises in parallel.',
+        'To execute promises in sequence.',
+        'To combine results from multiple promises.',
+        'To cancel promises.'
+      ],
+      'answer': 'To execute multiple promises in parallel.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("1" == 1);',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'true',
+    },
+    {
+      'question': 'Which of the following methods can be used to convert a string to a number in JavaScript?',
+      'options': [
+        'parseInt()',
+        'parseFloat()',
+        'Number()',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nconsole.log([2] == 2);',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'true',
+    },
+    {
+      'question': 'What is a closure in JavaScript?',
+      'options': [
+        'A function that captures the lexical scope in which it was created.',
+        'A way to create private variables.',
+        'A method for error handling.',
+        'A type of object.'
+      ],
+      'answer': 'A function that captures the lexical scope in which it was created.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(typeof function() {});',
+      'options': ['function', 'undefined', 'object', 'Error'],
+      'answer': 'function',
+    },
+    {
+      'question': 'Which of the following is true about the "let" keyword in JavaScript?',
+      'options': [
+        'It creates a block-scoped variable.',
+        'It creates a globally-scoped variable.',
+        'It creates a constant variable.',
+        'It cannot be reassigned.'
+      ],
+      'answer': 'It creates a block-scoped variable.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("a" > "b");',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'false',
+    },
+    {
+      'question': 'Which of the following is the correct way to add a comment in JavaScript?',
+      'options': [
+        '// This is a comment',
+        '/* This is a comment */',
+        '// This is a comment\n/* This is a comment */',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nconsole.log([1, 2, 3].map(x => x * 2));',
+      'options': ['[2, 4, 6]', '[1, 2, 3]', 'undefined', 'Error'],
+      'answer': '[2, 4, 6]',
+    },
+    {
+      'question': 'Which of the following is used to handle asynchronous operations in JavaScript?',
+      'options': [
+        'Promise',
+        'Callback',
+        'Async/Await',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nvar a = 1;\nfunction foo() { var a = 2; }\nfoo();\nconsole.log(a);',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '1',
+    },
+    {
+      'question': 'Which of the following is true about the "async" keyword in JavaScript?',
+      'options': [
+        'It makes a function return a promise.',
+        'It is used to define a generator function.',
+        'It is used to declare a constant.',
+        'It makes a function synchronous.'
+      ],
+      'answer': 'It makes a function return a promise.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log([1, 2] + [3, 4]);',
+      'options': ['1,23,4', '1,2,3,4', 'undefined', 'Error'],
+      'answer': '1,23,4',
+    },
+    {
+      'question': 'Which of the following is used to terminate a loop in JavaScript?',
+      'options': [
+        'break',
+        'continue',
+        'exit',
+        'return'
+      ],
+      'answer': 'break',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nlet x = 1;\nconst y = x++;\nconsole.log(y);',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '1',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("2" + 2 - 2);',
+      'options': ['20', '2', 'Error', 'undefined'],
+      'answer': '2',
+    },
+    {
+      'question': 'Which of the following is used to create a new array in JavaScript?',
+      'options': [
+        'Array()',
+        'new Array()',
+        '[]',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nconsole.log(5 + "5" - 5);',
+      'options': ['55', '5', '10', 'Error'],
+      'answer': '5',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log("Hello" + "World");',
+      'options': ['HelloWorld', 'Hello World', 'undefined', 'Error'],
+      'answer': 'HelloWorld',
+    },
+    {
+      'question': 'Which of the following is a method for creating an array from a string in JavaScript?',
+      'options': [
+        'split()',
+        'join()',
+        'map()',
+        'filter()'
+      ],
+      'answer': 'split()',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nlet a = "Hello";\nlet b = a;\nb += " World";\nconsole.log(a);',
+      'options': ['Hello', 'Hello World', 'undefined', 'Error'],
+      'answer': 'Hello',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nconsole.log(!!"Hello");',
+      'options': ['true', 'false', 'undefined', 'Error'],
+      'answer': 'true',
+    },
+    {
+      'question': 'Which of the following is true about "undefined" in JavaScript?',
+      'options': [
+        'It is a type.',
+        'It is a value.',
+        'It is both a type and a value.',
+        'None of the above'
+      ],
+      'answer': 'It is both a type and a value.',
+    },
+    {
+      'question': 'What will be the output of the following code?\n\nlet x = {a: 1};\nlet y = x;\ny.a = 2;\nconsole.log(x.a);',
+      'options': ['1', '2', 'undefined', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question': 'What is the purpose of the "Array.from()" method in JavaScript?',
+      'options': [
+        'To create an array from an iterable object.',
+        'To convert an array to an object.',
+        'To combine two arrays.',
+        'To remove duplicates from an array.'
+      ],
+      'answer': 'To create an array from an iterable object.',
+    },
+
+    {
       'question': 'Which symbol is used for comments in JavaScript?',
       'options': ['//', '/*', '#', '<!--'],
       'answer': '//',

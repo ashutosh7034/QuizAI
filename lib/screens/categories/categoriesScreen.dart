@@ -16,7 +16,10 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Programming Languages',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         automaticallyImplyLeading: false,
         centerTitle: true,
@@ -80,17 +83,23 @@ class CategoriesScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
               child: category.isAsset
                   ? Image.asset(
-                category.imageUrl,
-                height: 80,
-                errorBuilder: (context, error, stackTrace) => const Icon(Icons.error, size: 80, color: Colors.redAccent),
-                fit: BoxFit.cover,
-              )
+                      category.imageUrl,
+                      height: 80,
+                      errorBuilder: (context, error, stackTrace) => const Icon(
+                          Icons.error,
+                          size: 80,
+                          color: Colors.redAccent),
+                      fit: BoxFit.cover,
+                    )
                   : Image.network(
-                category.imageUrl,
-                height: 80,
-                errorBuilder: (context, error, stackTrace) => const Icon(Icons.error, size: 80, color: Colors.redAccent),
-                fit: BoxFit.cover,
-              ),
+                      category.imageUrl,
+                      height: 80,
+                      errorBuilder: (context, error, stackTrace) => const Icon(
+                          Icons.error,
+                          size: 80,
+                          color: Colors.redAccent),
+                      fit: BoxFit.cover,
+                    ),
             ),
             const SizedBox(height: 10),
             Text(
@@ -98,7 +107,7 @@ class CategoriesScreen extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF9C27B0),
+                color: Color(0xFF9C27B0), // Title color
               ),
             ),
           ],
@@ -126,7 +135,7 @@ class CategoriesScreen extends StatelessWidget {
         targetScreen = DartQuizScreen();
         break;
       default:
-        targetScreen = Container(); // Fallback
+        targetScreen = Container(); // Fallback for unrecognized categories
     }
 
     Navigator.push(

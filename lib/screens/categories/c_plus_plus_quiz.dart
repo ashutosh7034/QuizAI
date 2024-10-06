@@ -16,6 +16,743 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
       'answer': 'Hello World',
     },
     {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    int y = 10;\n    cout << (x > y ? x : y);\n    return 0;\n}',
+      'options': ['5', '10', 'Error', 'None'],
+      'answer': '10',
+    },
+    {
+      'question': 'What does the "new" keyword do in C++?',
+      'options': [
+        'Allocates memory on the stack',
+        'Allocates memory on the heap',
+        'Deallocates memory',
+        'None of the above'
+      ],
+      'answer': 'Allocates memory on the heap',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 0;\n    int y = 0;\n    cout << (x++ || ++y);\n    cout << y;\n    return 0;\n}',
+      'options': ['0', '1', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question': 'What is the purpose of the "virtual" keyword in C++?',
+      'options': [
+        'To create a static method',
+        'To enable polymorphism',
+        'To prevent inheritance',
+        'None of the above'
+      ],
+      'answer': 'To enable polymorphism',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 10, b = 20;\n    cout << a + b << endl;\n    return 0;\n}',
+      'options': ['10', '20', '30', 'Error'],
+      'answer': '30',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    cout << ++a + a++;\n    return 0;\n}',
+      'options': ['10', '11', '12', 'Error'],
+      'answer': '11',
+    },
+    {
+      'question': 'What is a pure virtual function in C++?',
+      'options': [
+        'A function with no implementation',
+        'A function that cannot be overridden',
+        'A function that must have a body',
+        'None of the above'
+      ],
+      'answer': 'A function with no implementation',
+    },
+    {
+      'question':
+          'Which of the following is the correct way to declare a pointer in C++?',
+      'options': ['int *ptr;', 'int ptr*;', 'int &ptr;', 'None of the above'],
+      'answer': 'int *ptr;',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    int b = 2;\n    cout << a / b;\n    return 0;\n}',
+      'options': ['2', '2.5', '2.0', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question': 'Which of the following is not a feature of C++?',
+      'options': [
+        'Encapsulation',
+        'Polymorphism',
+        'Inheritance',
+        'None of the above'
+      ],
+      'answer': 'None of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 0;\n    if (x)\n        cout << "True";\n    else\n        cout << "False";\n    return 0;\n}',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'False',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    int b = 10;\n    a += b;\n    cout << a;\n    return 0;\n}',
+      'options': ['5', '10', '15', 'Error'],
+      'answer': '15',
+    },
+    {
+      'question': 'What does the "delete" keyword do in C++?',
+      'options': [
+        'Allocates memory',
+        'Deallocates memory',
+        'Declares a variable',
+        'None of the above'
+      ],
+      'answer': 'Deallocates memory',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 10;\n    int *p = &x;\n    cout << *p;\n    return 0;\n}',
+      'options': ['10', 'Error', 'None', '0'],
+      'answer': '10',
+    },
+    {
+      'question': 'Which of the following is a type of constructor in C++?',
+      'options': [
+        'Default constructor',
+        'Parameterized constructor',
+        'Copy constructor',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    const int a = 5;\n    a = 10;\n    cout << a;\n    return 0;\n}',
+      'options': ['5', '10', 'Error', 'None'],
+      'answer': 'Error',
+    },
+    {
+      'question': 'What is the purpose of the "static" keyword in C++?',
+      'options': [
+        'To create a static variable',
+        'To create a global variable',
+        'To create a local variable',
+        'None of the above'
+      ],
+      'answer': 'To create a static variable',
+    },
+    {
+      'question': 'Which of the following is not a valid data type in C++?',
+      'options': ['int', 'float', 'char', 'decimal'],
+      'answer': 'decimal',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    int *p = &a;\n    cout << *p++;\n    return 0;\n}',
+      'options': ['5', 'Error', 'None', '10'],
+      'answer': '5',
+    },
+    {
+      'question': 'What is a destructor in C++?',
+      'options': [
+        'A function that initializes objects',
+        'A function that is called when an object is destroyed',
+        'A function that returns a value',
+        'None of the above'
+      ],
+      'answer': 'A function that is called when an object is destroyed',
+    },
+    {
+      'question': 'Which of the following is used to handle exceptions in C++?',
+      'options': ['try', 'catch', 'throw', 'All of the above'],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    for (int i = 0; i < 5; i++)\n        if (i == 3) break;\n    cout << i;\n    return 0;\n}',
+      'options': ['3', '4', '5', 'Error'],
+      'answer': 'Error',
+    },
+    {
+      'question': 'What is the purpose of the "friend" keyword in C++?',
+      'options': [
+        'To declare a function as a friend',
+        'To give access to private members',
+        'To declare a global function',
+        'None of the above'
+      ],
+      'answer': 'To give access to private members',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 0;\n    while (x < 5) {\n        x++;\n        if (x == 3) break;\n    }\n    cout << x;\n    return 0;\n}',
+      'options': ['2', '3', '5', 'Error'],
+      'answer': '3',
+    },
+    {
+      'question': 'Which of the following is not a standard library in C++?',
+      'options': ['iostream', 'vector', 'string', 'algorithm'],
+      'answer': 'None of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    int b = 2;\n    cout << a % b;\n    return 0;\n}',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following is used to declare a constant in C++?',
+      'options': ['const', 'final', 'static', 'None of the above'],
+      'answer': 'const',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    x += x++;\n    cout << x;\n    return 0;\n}',
+      'options': ['10', '11', '5', 'Error'],
+      'answer': '11',
+    },
+    {
+      'question': 'What is a stack in C++?',
+      'options': [
+        'A linear data structure',
+        'A non-linear data structure',
+        'A type of loop',
+        'None of the above'
+      ],
+      'answer': 'A linear data structure',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[5] = {1, 2, 3, 4, 5};\n    cout << arr[2];\n    return 0;\n}',
+      'options': ['2', '3', '4', 'Error'],
+      'answer': '3',
+    },
+    {
+      'question': 'Which of the following is used to read input in C++?',
+      'options': ['cin', 'scanf', 'getline', 'All of the above'],
+      'answer': 'All of the above',
+    },
+    {
+      'question': 'What is the purpose of the "sizeof" operator in C++?',
+      'options': [
+        'To get the size of a variable',
+        'To get the size of a data type',
+        'To get the size of an array',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 10;\n    int b = 20;\n    cout << (a > b) << endl;\n    return 0;\n}',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    for (int i = 0; i < 5; i++) {\n        if (i == 2) continue;\n        cout << i;\n    }\n    return 0;\n}',
+      'options': ['01234', '01234', '0134', 'Error'],
+      'answer': '0134',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to declare a variable in C++?',
+      'options': ['int a;', 'float b;', 'string c;', 'char[] d;'],
+      'answer': 'char[] d;',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 10;\n    int y = 20;\n    cout << (x < y ? x : y);\n    return 0;\n}',
+      'options': ['10', '20', 'Error', 'None'],
+      'answer': '10',
+    },
+    {
+      'question': 'What is the purpose of the "this" pointer in C++?',
+      'options': [
+        'To refer to the current object',
+        'To refer to the parent class',
+        'To refer to a static variable',
+        'None of the above'
+      ],
+      'answer': 'To refer to the current object',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    int y = x++;\n    cout << y;\n    return 0;\n}',
+      'options': ['5', '6', 'Error', 'None'],
+      'answer': '5',
+    },
+    {
+      'question': 'What does the "static_cast" keyword do in C++?',
+      'options': [
+        'Converts types',
+        'Creates static variables',
+        'Defines a class',
+        'None of the above'
+      ],
+      'answer': 'Converts types',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[3] = {1, 2, 3};\n    cout << arr[3];\n    return 0;\n}',
+      'options': ['1', '2', '3', 'Error'],
+      'answer': 'Error',
+    },
+    {
+      'question': 'What is the purpose of the "virtual destructor" in C++?',
+      'options': [
+        'To prevent memory leaks',
+        'To allow polymorphism in destructors',
+        'To create a static destructor',
+        'None of the above'
+      ],
+      'answer': 'To allow polymorphism in destructors',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    cout << (x == 5) << endl;\n    return 0;\n}',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question': 'Which of the following is not a valid type of loop in C++?',
+      'options': ['for', 'while', 'do-while', 'repeat'],
+      'answer': 'repeat',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    int b = 10;\n    cout << (a < b && b > 5);\n    return 0;\n}',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question': 'What is the purpose of the "const" keyword in C++?',
+      'options': [
+        'To define a constant variable',
+        'To define a variable as mutable',
+        'To define a reference variable',
+        'None of the above'
+      ],
+      'answer': 'To define a constant variable',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 10;\n    x++;\n    cout << x;\n    return 0;\n}',
+      'options': ['9', '10', '11', 'Error'],
+      'answer': '11',
+    },
+    {
+      'question': 'What does the "inline" keyword do in C++?',
+      'options': [
+        'Creates inline functions',
+        'Creates static variables',
+        'Creates global variables',
+        'None of the above'
+      ],
+      'answer': 'Creates inline functions',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    cout << (x != 5);\n    return 0;\n}',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create an array in C++?',
+      'options': [
+        'int arr[5];',
+        'int arr(){};',
+        'int arr[] = {1, 2, 3};',
+        'None of the above'
+      ],
+      'answer': 'int arr(){};',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    int b = 2;\n    cout << a / b;\n    return 0;\n}',
+      'options': ['2', '2.5', '2.0', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'What does the "sizeof" operator return for a pointer in C++?',
+      'options': [
+        'The size of the pointer',
+        'The size of the pointed object',
+        'The total size of the array',
+        'None of the above'
+      ],
+      'answer': 'The size of the pointer',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[5] = {1, 2, 3, 4, 5};\n    cout << arr[1];\n    return 0;\n}',
+      'options': ['1', '2', '3', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following keywords is used to declare a class in C++?',
+      'options': ['class', 'struct', 'object', 'None of the above'],
+      'answer': 'class',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 10;\n    int b = 20;\n    a = b;\n    cout << a;\n    return 0;\n}',
+      'options': ['10', '20', 'Error', 'None'],
+      'answer': '20',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    x += 2 * x;\n    cout << x;\n    return 0;\n}',
+      'options': ['5', '10', '15', 'Error'],
+      'answer': '15',
+    },
+    {
+      'question':
+          'What is the purpose of the "protected" access modifier in C++?',
+      'options': [
+        'To allow access to derived classes',
+        'To prevent access to derived classes',
+        'To allow access to all classes',
+        'None of the above'
+      ],
+      'answer': 'To allow access to derived classes',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    int y = 10;\n    cout << (x + y);\n    return 0;\n}',
+      'options': ['5', '10', '15', 'Error'],
+      'answer': '15',
+    },
+    {
+      'question': 'Which of the following is not a valid operator in C++?',
+      'options': ['+', '-', '*', '/'],
+      'answer': 'None of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 0;\n    while (x < 5) {\n        x++;\n    }\n    cout << x;\n    return 0;\n}',
+      'options': ['4', '5', 'Error', 'None'],
+      'answer': '5',
+    },
+    {
+      'question': 'What is the purpose of the "volatile" keyword in C++?',
+      'options': [
+        'To prevent optimization',
+        'To optimize performance',
+        'To create global variables',
+        'None of the above'
+      ],
+      'answer': 'To prevent optimization',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    x++;\n    cout << ++x;\n    return 0;\n}',
+      'options': ['5', '6', '7', 'Error'],
+      'answer': '7',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    if (x)\n        cout << "True";\n    else\n        cout << "False";\n    return 0;\n}',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question': 'Which of the following is used to create an object in C++?',
+      'options': ['new', 'create', 'class', 'None of the above'],
+      'answer': 'new',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    int b = 2;\n    cout << a - b;\n    return 0;\n}',
+      'options': ['3', '2', 'Error', 'None'],
+      'answer': '3',
+    },
+    {
+      'question': 'What is the purpose of the "goto" statement in C++?',
+      'options': [
+        'To transfer control to a different part of the program',
+        'To create loops',
+        'To create functions',
+        'None of the above'
+      ],
+      'answer': 'To transfer control to a different part of the program',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    x += x++ + ++x;\n    cout << x;\n    return 0;\n}',
+      'options': ['16', '17', '18', 'Error'],
+      'answer': 'Error',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to declare a function in C++?',
+      'options': [
+        'void func();',
+        'void func(){};',
+        'void func[];',
+        'None of the above'
+      ],
+      'answer': 'void func[];',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 1, b = 2;\n    cout << (a == b);\n    return 0;\n}',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question': 'What is the purpose of the "enum" keyword in C++?',
+      'options': [
+        'To create enumerated types',
+        'To define variables',
+        'To create classes',
+        'None of the above'
+      ],
+      'answer': 'To create enumerated types',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 10;\n    int y = 5;\n    cout << (x == y);\n    return 0;\n}',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question': 'What is the purpose of the "namespace" keyword in C++?',
+      'options': [
+        'To avoid name conflicts',
+        'To create variables',
+        'To define functions',
+        'None of the above'
+      ],
+      'answer': 'To avoid name conflicts',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    if (x < 5)\n        cout << "Less";\n    else\n        cout << "Greater";\n    return 0;\n}',
+      'options': ['Less', 'Greater', 'Error', 'None'],
+      'answer': 'Greater',
+    },
+    {
+      'question': 'What is the purpose of the "template" keyword in C++?',
+      'options': [
+        'To create generic functions',
+        'To define classes',
+        'To create variables',
+        'None of the above'
+      ],
+      'answer': 'To create generic functions',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    cout << ++a << endl;\n    cout << a++ << endl;\n    return 0;\n}',
+      'options': ['5 6', '6 5', '5 5', 'Error'],
+      'answer': '6 5',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 0;\n    for (int i = 0; i < 5; i++) {\n        x += i;\n    }\n    cout << x;\n    return 0;\n}',
+      'options': ['10', '15', '20', 'Error'],
+      'answer': '10',
+    },
+    {
+      'question': 'What is the purpose of the "static" keyword in a class?',
+      'options': [
+        'To declare static members',
+        'To prevent inheritance',
+        'To create an object',
+        'None of the above'
+      ],
+      'answer': 'To declare static members',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    x += 2 * x;\n    cout << x;\n    return 0;\n}',
+      'options': ['10', '15', '20', 'Error'],
+      'answer': '15',
+    },
+    {
+      'question':
+          'Which of the following is a valid way to create a reference in C++?',
+      'options': [
+        'int &x = 10;',
+        'int x = &y;',
+        'int &x = y;',
+        'None of the above'
+      ],
+      'answer': 'int &x = y;',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[3] = {1, 2, 3};\n    cout << arr[0] << " " << arr[1] << " " << arr[2];\n    return 0;\n}',
+      'options': ['1 2 3', '1 2', 'Error', 'None'],
+      'answer': '1 2 3',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    cout << (x != 5);\n    return 0;\n}',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question': 'What is the purpose of the "friend" keyword in C++?',
+      'options': [
+        'To allow access to private members',
+        'To create a function',
+        'To define a class',
+        'None of the above'
+      ],
+      'answer': 'To allow access to private members',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    x += x++;\n    cout << x;\n    return 0;\n}',
+      'options': ['10', '11', 'Error', 'None'],
+      'answer': '11',
+    },
+    {
+      'question': 'What is the purpose of the "const_cast" keyword in C++?',
+      'options': [
+        'To cast away constness',
+        'To convert types',
+        'To define variables',
+        'None of the above'
+      ],
+      'answer': 'To cast away constness',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    cout << ++x;\n    return 0;\n}',
+      'options': ['5', '6', 'Error', 'None'],
+      'answer': '6',
+    },
+    {
+      'question': 'What is the purpose of the "mutable" keyword in C++?',
+      'options': [
+        'To allow modification of constant members',
+        'To create variables',
+        'To create classes',
+        'None of the above'
+      ],
+      'answer': 'To allow modification of constant members',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    cout << (x < 5);\n    return 0;\n}',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question': 'What is the purpose of the "namespace" keyword in C++?',
+      'options': [
+        'To avoid name conflicts',
+        'To create variables',
+        'To define functions',
+        'None of the above'
+      ],
+      'answer': 'To avoid name conflicts',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    if (x < 5)\n        cout << "Less";\n    else\n        cout << "Greater";\n    return 0;\n}',
+      'options': ['Less', 'Greater', 'Error', 'None'],
+      'answer': 'Greater',
+    },
+    {
+      'question': 'What is the purpose of the "template" keyword in C++?',
+      'options': [
+        'To create generic functions',
+        'To define classes',
+        'To create variables',
+        'None of the above'
+      ],
+      'answer': 'To create generic functions',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    cout << ++a << endl;\n    cout << a++ << endl;\n    return 0;\n}',
+      'options': ['5 6', '6 5', '5 5', 'Error'],
+      'answer': '6 5',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 0;\n    for (int i = 0; i < 5; i++) {\n        x += i;\n    }\n    cout << x;\n    return 0;\n}',
+      'options': ['10', '15', '20', 'Error'],
+      'answer': '10',
+    },
+    {
+      'question': 'What is the purpose of the "static" keyword in a class?',
+      'options': [
+        'To declare static members',
+        'To prevent inheritance',
+        'To create an object',
+        'None of the above'
+      ],
+      'answer': 'To declare static members',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    x += 2 * x;\n    cout << x;\n    return 0;\n}',
+      'options': ['10', '15', '20', 'Error'],
+      'answer': '15',
+    },
+    {
+      'question':
+          'Which of the following is a valid way to create a reference in C++?',
+      'options': [
+        'int &x = 10;',
+        'int x = &y;',
+        'int &x = y;',
+        'None of the above'
+      ],
+      'answer': 'int &x = y;',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[3] = {1, 2, 3};\n    cout << arr[0] << " " << arr[1] << " " << arr[2];\n    return 0;\n}',
+      'options': ['1 2 3', '1 2', 'Error', 'None'],
+      'answer': '1 2 3',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    cout << (x != 5);\n    return 0;\n}',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question': 'What is the purpose of the "friend" keyword in C++?',
+      'options': [
+        'To allow access to private members',
+        'To create a function',
+        'To define a class',
+        'None of the above'
+      ],
+      'answer': 'To allow access to private members',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\n#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    x += x++;\n    cout << x;\n    return 0;\n}',
+      'options': ['10', '11', 'Error', 'None'],
+      'answer': '11',
+    },
+    {
+      'question': 'What is the purpose of the "const_cast" keyword in C++?',
+      'options': [
+        'To cast away constness',
+        'To convert types',
+        'To define variables',
+        'None of the above'
+      ],
+      'answer': 'To cast away constness',
+    },
+    {
       'question': 'What is the correct way to define a class in C++?',
       'options': [
         'class MyClass {}',
@@ -102,7 +839,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "Which of the following is the correct syntax to declare a variable in C++?",
+          "Which of the following is the correct syntax to declare a variable in C++?",
       "options": ["int x;", "int x = 10;", "Both a and b", "None"],
       "answer": "Both a and b"
     },
@@ -113,7 +850,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << 5 + 2 * 3 ?",
+          "What is the output of the following code: cout << 5 + 2 * 3 ?",
       "options": ["11", "16", "21", "None"],
       "answer": "11"
     },
@@ -154,7 +891,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "Which of the following is used to include standard libraries in C++?",
+          "Which of the following is used to include standard libraries in C++?",
       "options": [
         "#include <iostream>",
         "#include <library>",
@@ -175,13 +912,13 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (10 > 5) ? 'True' : 'False';?",
+          "What is the output of the following code: cout << (10 > 5) ? 'True' : 'False';?",
       "options": ["True", "False", "Error", "None"],
       "answer": "True"
     },
     {
       "question":
-      "What is the default access modifier for members of a class in C++?",
+          "What is the default access modifier for members of a class in C++?",
       "options": ["public", "private", "protected", "None"],
       "answer": "private"
     },
@@ -212,7 +949,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "Which of the following is an example of a unary operator in C++?",
+          "Which of the following is an example of a unary operator in C++?",
       "options": ["++", "+", "*", "None"],
       "answer": "++"
     },
@@ -303,7 +1040,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "Which of the following is the correct way to define a constant in C++?",
+          "Which of the following is the correct way to define a constant in C++?",
       "options": [
         "const int x = 10;",
         "define x 10",
@@ -324,13 +1061,13 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << 5 * 2 + 10 / 2;?",
+          "What is the output of the following code: cout << 5 * 2 + 10 / 2;?",
       "options": ["20", "15", "25", "None"],
       "answer": "20"
     },
     {
       "question":
-      "Which operator is used for accessing members of a structure in C++?",
+          "Which operator is used for accessing members of a structure in C++?",
       "options": ["->", ".", "*", "None"],
       "answer": "."
     },
@@ -356,7 +1093,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (1 == 1) && (2 == 2);?",
+          "What is the output of the following code: cout << (1 == 1) && (2 == 2);?",
       "options": ["true", "false", "Error", "None"],
       "answer": "true"
     },
@@ -387,7 +1124,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "Which of the following is a valid way to initialize a pointer?",
+          "Which of the following is a valid way to initialize a pointer?",
       "options": [
         "int *ptr = &x;",
         "int *ptr = x;",
@@ -468,7 +1205,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << 2 + 3 * 4;?",
+          "What is the output of the following code: cout << 2 + 3 * 4;?",
       "options": ["14", "20", "12", "None"],
       "answer": "14"
     },
@@ -609,13 +1346,13 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "Which operator is used for dynamic memory allocation in C++?",
+          "Which operator is used for dynamic memory allocation in C++?",
       "options": ["new", "malloc", "calloc", "All of the above"],
       "answer": "new"
     },
     {
       "question":
-      "What is the output of the following code: cout << true + 2;?",
+          "What is the output of the following code: cout << true + 2;?",
       "options": ["3", "2", "1", "None"],
       "answer": "3"
     },
@@ -626,7 +1363,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << 'A' + 'B';?",
+          "What is the output of the following code: cout << 'A' + 'B';?",
       "options": ["131", "AB", "C", "None"],
       "answer": "131"
     },
@@ -652,7 +1389,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "Which of the following can be used to create a dynamic array in C++?",
+          "Which of the following can be used to create a dynamic array in C++?",
       "options": ["new", "malloc", "Both a and b", "None"],
       "answer": "Both a and b"
     },
@@ -693,7 +1430,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (5 > 2) ? 'Yes' : 'No';?",
+          "What is the output of the following code: cout << (5 > 2) ? 'Yes' : 'No';?",
       "options": ["Yes", "No", "Error", "None"],
       "answer": "Yes"
     },
@@ -754,7 +1491,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (true && false);?",
+          "What is the output of the following code: cout << (true && false);?",
       "options": ["1", "0", "True", "None"],
       "answer": "0"
     },
@@ -770,7 +1507,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "Which of the following is a C++ standard input/output library?",
+          "Which of the following is a C++ standard input/output library?",
       "options": ["<iostream>", "<cstdio>", "<cstdlib>", "All of the above"],
       "answer": "All of the above"
     },
@@ -786,7 +1523,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (2 << 2);?",
+          "What is the output of the following code: cout << (2 << 2);?",
       "options": ["8", "4", "2", "None"],
       "answer": "8"
     },
@@ -807,7 +1544,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (10 == 10);?",
+          "What is the output of the following code: cout << (10 == 10);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
@@ -823,7 +1560,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "Which of the following is not a member function of a class in C++?",
+          "Which of the following is not a member function of a class in C++?",
       "options": [
         "Constructor",
         "Destructor",
@@ -854,7 +1591,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (5 == 5) && (6 == 7);?",
+          "What is the output of the following code: cout << (5 == 5) && (6 == 7);?",
       "options": ["1", "0", "True", "None"],
       "answer": "0"
     },
@@ -880,13 +1617,13 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (4 > 2 && 2 < 3);?",
+          "What is the output of the following code: cout << (4 > 2 && 2 < 3);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
     {
       "question":
-      "Which of the following is a valid way to define an array in C++?",
+          "Which of the following is a valid way to define an array in C++?",
       "options": [
         "int arr[5];",
         "int arr[] = {1, 2, 3};",
@@ -937,7 +1674,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << sizeof(char);?",
+          "What is the output of the following code: cout << sizeof(char);?",
       "options": ["1", "2", "4", "None"],
       "answer": "1"
     },
@@ -973,7 +1710,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (true || false);?",
+          "What is the output of the following code: cout << (true || false);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
@@ -989,7 +1726,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (0.1 + 0.2 == 0.3);?",
+          "What is the output of the following code: cout << (0.1 + 0.2 == 0.3);?",
       "options": ["True", "False", "Error", "None"],
       "answer": "False"
     },
@@ -1035,7 +1772,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (1 << 3);?",
+          "What is the output of the following code: cout << (1 << 3);?",
       "options": ["8", "3", "1", "None"],
       "answer": "8"
     },
@@ -1061,7 +1798,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (6 / 2 * 3);?",
+          "What is the output of the following code: cout << (6 / 2 * 3);?",
       "options": ["9", "3", "12", "None"],
       "answer": "9"
     },
@@ -1137,7 +1874,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (5.0 / 2);?",
+          "What is the output of the following code: cout << (5.0 / 2);?",
       "options": ["2", "2.5", "3", "None"],
       "answer": "2.5"
     },
@@ -1173,7 +1910,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (2 + 3 * 4);?",
+          "What is the output of the following code: cout << (2 + 3 * 4);?",
       "options": ["14", "20", "26", "None"],
       "answer": "14"
     },
@@ -1199,7 +1936,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (10 % 3);?",
+          "What is the output of the following code: cout << (10 % 3);?",
       "options": ["1", "2", "3", "None"],
       "answer": "1"
     },
@@ -1225,7 +1962,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (10 / 2 + 3);?",
+          "What is the output of the following code: cout << (10 / 2 + 3);?",
       "options": ["8", "3", "7", "None"],
       "answer": "8"
     },
@@ -1276,7 +2013,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (10 - 5);?",
+          "What is the output of the following code: cout << (10 - 5);?",
       "options": ["5", "10", "None", "All of the above"],
       "answer": "5"
     },
@@ -1312,7 +2049,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (true && true);?",
+          "What is the output of the following code: cout << (true && true);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
@@ -1325,7 +2062,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
         "All of the above"
       ],
       "answer":
-      "Specifies that the value is constant and evaluated at compile time"
+          "Specifies that the value is constant and evaluated at compile time"
     },
     {
       "question": "What is the purpose of 'friend' keyword in C++?",
@@ -1339,7 +2076,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (4 != 4);?",
+          "What is the output of the following code: cout << (4 != 4);?",
       "options": ["1", "0", "True", "None"],
       "answer": "0"
     },
@@ -1365,7 +2102,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (7 == 7);?",
+          "What is the output of the following code: cout << (7 == 7);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
@@ -1386,7 +2123,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (true || false);?",
+          "What is the output of the following code: cout << (true || false);?",
       "options": ["1", "0", "True", "None"],
       "answer": "1"
     },
@@ -1399,11 +2136,11 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
         "All of the above"
       ],
       "answer":
-      "A smart pointer that shares ownership of a dynamically allocated object"
+          "A smart pointer that shares ownership of a dynamically allocated object"
     },
     {
       "question":
-      "What is the output of the following code: cout << (1 << 2);?",
+          "What is the output of the following code: cout << (1 << 2);?",
       "options": ["2", "3", "4", "None"],
       "answer": "4"
     },
@@ -1419,7 +2156,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     },
     {
       "question":
-      "What is the output of the following code: cout << (0b1010);?",
+          "What is the output of the following code: cout << (0b1010);?",
       "options": ["10", "2", "None", "All of the above"],
       "answer": "10"
     },
@@ -1433,7 +2170,6 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
       ],
       "answer": "Deduce the type of an expression"
     },
-
     {
       "question": "What is the purpose of 'volatile' in C++?",
       "options": [
@@ -1484,7 +2220,8 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
   }
 
   Widget _buildQuestionInput() {
-    final TextEditingController questionCountController = TextEditingController();
+    final TextEditingController questionCountController =
+        TextEditingController();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -1512,7 +2249,8 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
             int? count = int.tryParse(questionCountController.text);
             if (count != null && count > 0) {
               setState(() {
-                totalQuestions = count > questions.length ? questions.length : count;
+                totalQuestions =
+                    count > questions.length ? questions.length : count;
                 selectedQuestions = _getRandomQuestions(totalQuestions);
                 selectedAnswers = List.filled(totalQuestions, '');
                 currentQuestionIndex = 0;
@@ -1529,7 +2267,8 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
   Widget _buildQuiz() {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 300),
-      child: Container( // New Container with a gradient background
+      child: Container(
+        // New Container with a gradient background
         width: double.infinity,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
@@ -1539,13 +2278,15 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
             end: Alignment.bottomRight,
           ),
         ),
-        child: SingleChildScrollView( // Wrap the Column in SingleChildScrollView
+        child: SingleChildScrollView(
+          // Wrap the Column in SingleChildScrollView
           child: Column(
             key: ValueKey<int>(currentQuestionIndex),
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(10),
@@ -1567,7 +2308,8 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
                 style: TextStyle(fontSize: 18, color: Colors.redAccent),
               ),
               const SizedBox(height: 20),
-              Column( // Nested Column for options
+              Column(
+                // Nested Column for options
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: selectedQuestions[currentQuestionIndex]['options']
                     .map<Widget>((option) {
@@ -1600,8 +2342,6 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     );
   }
 
-
-
   void _startTimer() {
     _timeLeft = 5;
     _answered = false;
@@ -1633,7 +2373,8 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
 
   List<Map<String, dynamic>> _getRandomQuestions(int count) {
     final random = Random();
-    List<Map<String, dynamic>> shuffledQuestions = List.from(questions)..shuffle(random);
+    List<Map<String, dynamic>> shuffledQuestions = List.from(questions)
+      ..shuffle(random);
     return shuffledQuestions.take(count).toList();
   }
 
@@ -1655,7 +2396,8 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Quiz Completed!', style: TextStyle(color: Colors.deepPurple)),
+        title: const Text('Quiz Completed!',
+            style: TextStyle(color: Colors.deepPurple)),
         content: Text('Your score is $score out of $totalQuestions',
             style: const TextStyle(color: Colors.black)),
         actions: [

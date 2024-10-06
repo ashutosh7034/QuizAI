@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'EditYourManuallyQuizScreen.dart'; // Import your EditYourManuallyQuizScreen
+import 'ManageYourQuizzes.dart'; // Import your ManageYourQuizzes
 import 'CreateQuizFromFileScreen.dart';
 import 'CreateQuizFromExcelScreen.dart'; // Import the new screen for Excel
 
@@ -13,7 +13,7 @@ class CreateQuizOptionScreen extends StatelessWidget {
         title: const Text("Quizai", style: TextStyle(color: Colors.white)),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: const Color(0xFF9C27B0), // Dark Purple
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -23,9 +23,9 @@ class CreateQuizOptionScreen extends StatelessWidget {
             const Text(
               "Create a Quiz",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 28, // Increased font size for better visibility
                 fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
+                color: Color(0xFF9C27B0), // Dark Purple
               ),
             ),
             const SizedBox(height: 20),
@@ -37,7 +37,7 @@ class CreateQuizOptionScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const EditYourManuallyQuizScreen()), // Update to redirect here
+                  MaterialPageRoute(builder: (context) => const ManageYourQuizzes()),
                 );
               },
             ),
@@ -83,15 +83,17 @@ class CreateQuizOptionScreen extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 4,
+      color: Colors.white, // Card color
+      shadowColor: const Color(0xFF9C27B0).withOpacity(0.2), // Shadow color matching theme
       child: ListTile(
         contentPadding: const EdgeInsets.all(16),
-        leading: Icon(icon, size: 40, color: Colors.blueAccent),
+        leading: Icon(icon, size: 40, color: const Color(0xFF9C27B0)), // Dark Purple
         title: Text(
           title,
           style: const TextStyle(
-            fontSize: 20,
+            fontSize: 22, // Increased font size for better visibility
             fontWeight: FontWeight.bold,
-            color: Colors.black87,
+            color: Color(0xFF9C27B0), // Dark Purple
           ),
         ),
         subtitle: Text(

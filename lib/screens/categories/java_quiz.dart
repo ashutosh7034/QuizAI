@@ -36,6 +36,574 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
       'answer': '4 bytes',
     },
     {
+      'question':
+          'What will be the output of the following code?\n\nString str = "Java";\nstr.concat("Programming");\nSystem.out.println(str);',
+      'options': ['JavaProgramming', 'Java Programming', 'Java', 'Error'],
+      'answer': 'Java',
+    },
+    {
+      'question':
+          'Which of the following is not a primitive data type in Java?',
+      'options': ['int', 'char', 'String', 'boolean'],
+      'answer': 'String',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nString str = "abc";\nstr.replace("a", "d");\nSystem.out.println(str);',
+      'options': ['abc', 'dbc', 'Error', 'None of the above'],
+      'answer': 'abc',
+    },
+    {
+      'question':
+          'Which of the following can be used to create a singleton class in Java?',
+      'options': [
+        'Private constructor',
+        'Static method',
+        'Enum',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nint a = 5;\nint b = 10;\nb = a + b++;\nSystem.out.println(b);',
+      'options': ['15', '16', '10', 'Error'],
+      'answer': '16',
+    },
+    {
+      'question':
+          'What will happen if you try to compile the following code?\n\nint a = 10;\nint b = 20;\nif(a = b) {\n  System.out.println("Equal");\n}',
+      'options': ['Equal', 'Error', 'False', 'None of the above'],
+      'answer': 'Error',
+    },
+    {
+      'question':
+          'Which of the following keywords is used to declare an abstract class in Java?',
+      'options': ['abstract', 'interface', 'class', 'final'],
+      'answer': 'abstract',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nint[] arr = new int[5];\nSystem.out.println(arr[4]);',
+      'options': ['0', 'null', '5', 'Error'],
+      'answer': '0',
+    },
+    {
+      'question':
+          'Which of the following is used for thread synchronization in Java?',
+      'options': [
+        'synchronized keyword',
+        'wait() method',
+        'notify() method',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nString str = "Java";\nstr = str.substring(1);\nSystem.out.println(str);',
+      'options': ['Java', 'ava', 'J', 'Error'],
+      'answer': 'ava',
+    },
+    {
+      'question':
+          'Which of the following statements is true regarding Java constructors?',
+      'options': [
+        'A constructor can return a value.',
+        'A constructor can have the same name as the class.',
+        'Constructors cannot be overloaded.',
+        'Constructors can be private.'
+      ],
+      'answer': 'A constructor can have the same name as the class.',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nfor(int i = 0; i < 5; i++) {\n  if(i == 2) {\n    continue;\n  }\n  System.out.print(i);\n}',
+      'options': ['01234', '0134', '1234', '01234'],
+      'answer': '0134',
+    },
+    {
+      'question':
+          'Which of the following cannot be used as a key in a HashMap?',
+      'options': ['String', 'Integer', 'Object', 'Mutable object'],
+      'answer': 'Mutable object',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nSystem.out.println(10 + 20 + "30" + 40 + 50);',
+      'options': ['10203040', '103050', 'Error', '102030'],
+      'answer': '10203040',
+    },
+    {
+      'question':
+          'Which of the following is not a valid type of exception in Java?',
+      'options': ['RuntimeException', 'IOException', 'Error', 'ThrowException'],
+      'answer': 'ThrowException',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nint x = 0;\nfor(int i = 1; i <= 5; i++) {\n  x += i;\n}\nSystem.out.println(x);',
+      'options': ['5', '15', '20', 'Error'],
+      'answer': '15',
+    },
+    {
+      'question':
+          'Which of the following statements is correct about the finalize() method?',
+      'options': [
+        'It is called before an object is garbage collected.',
+        'It can be called multiple times.',
+        'It can be overridden.',
+        'None of the above'
+      ],
+      'answer': 'It is called before an object is garbage collected.',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nString str = "Hello";\nstr = str.toLowerCase();\nSystem.out.println(str);',
+      'options': ['Hello', 'hello', 'Error', 'None of the above'],
+      'answer': 'hello',
+    },
+    {
+      'question':
+          'Which of the following keywords is used to define a class that cannot be subclassed?',
+      'options': ['final', 'static', 'abstract', 'private'],
+      'answer': 'final',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nint x = 5;\nint y = 10;\ny = ++x * y++;\nSystem.out.println(y);',
+      'options': ['55', '60', '50', 'Error'],
+      'answer': '60',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nString s1 = "Java";\nString s2 = "Java";\nSystem.out.println(s1.equals(s2));',
+      'options': ['true', 'false', 'Error', 'None of the above'],
+      'answer': 'true',
+    },
+    {
+      'question': 'Which of the following is not a feature of Java?',
+      'options': [
+        'Platform-independent',
+        'Object-oriented',
+        'Use of pointers',
+        'Automatic garbage collection'
+      ],
+      'answer': 'Use of pointers',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nint[] arr = {1, 2, 3};\nSystem.out.println(arr[3]);',
+      'options': ['3', '2', 'Error', '0'],
+      'answer': 'Error',
+    },
+    {
+      'question':
+          'Which of the following is a valid way to declare a multi-dimensional array in Java?',
+      'options': [
+        'int[][] arr;',
+        'int arr[][];',
+        'int arr[5][5];',
+        'Both a and b'
+      ],
+      'answer': 'Both a and b',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nint a = 10;\nint b = 5;\nb = a + b++;\nSystem.out.println(b);',
+      'options': ['15', '16', '10', 'Error'],
+      'answer': '16',
+    },
+    {
+      'question':
+          'Which of the following methods is used to sort a list in Java?',
+      'options': ['sort()', 'order()', 'arrange()', 'None of the above'],
+      'answer': 'sort()',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nint x = 0;\nfor(int i = 1; i < 5; i++) {\n  x += i;\n}\nSystem.out.println(x);',
+      'options': ['10', '15', '5', 'Error'],
+      'answer': '10',
+    },
+    {
+      'question':
+          'Which of the following cannot be used in a synchronized method?',
+      'options': ['this', 'ClassName.class', 'any object', 'static'],
+      'answer': 'static',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nString str = "Java";\nstr = str + " Programming";\nSystem.out.println(str);',
+      'options': ['JavaProgramming', 'Java Programming', 'Java', 'Error'],
+      'answer': 'Java Programming',
+    },
+    {
+      'question':
+          'Which of the following statements is true regarding the main method in Java?',
+      'options': [
+        'It must be public.',
+        'It must return void.',
+        'It can be overloaded.',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nint x = 5;\nint y = 10;\ny += x++;\nSystem.out.println(y);',
+      'options': ['15', '16', '10', 'Error'],
+      'answer': '15',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to handle exceptions in Java?',
+      'options': [
+        'try-catch block',
+        'throw statement',
+        'throws clause',
+        'catch clause'
+      ],
+      'answer': 'catch clause',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nint a = 10;\nif(a > 0) {\n  System.out.println("Positive");\n} else if(a < 0) {\n  System.out.println("Negative");\n} else {\n  System.out.println("Zero");\n}',
+      'options': ['Positive', 'Negative', 'Zero', 'Error'],
+      'answer': 'Positive',
+    },
+    {
+      'question': 'Which of the following is a way to create a thread in Java?',
+      'options': [
+        'Extending Thread class',
+        'Implementing Runnable interface',
+        'Using Executor service',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nString str = "Java";\nString s1 = str + " Programming";\nSystem.out.println(s1);',
+      'options': [
+        'Java Programming',
+        'JavaProgramming',
+        'Error',
+        'None of the above'
+      ],
+      'answer': 'Java Programming',
+    },
+    {
+      'question': 'Which of the following is not a feature of Java?',
+      'options': [
+        'Platform-independent',
+        'Object-oriented',
+        'Use of pointers',
+        'Automatic garbage collection'
+      ],
+      'answer': 'Use of pointers',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nString str = "123";\nint num = Integer.parseInt(str);\nSystem.out.println(num + 1);',
+      'options': ['1231', '124', 'Error', '1241'],
+      'answer': '124',
+    },
+    {
+      'question': 'Which of the following cannot be overridden?',
+      'options': [
+        'static methods',
+        'final methods',
+        'private methods',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nSystem.out.println(10 + 20 + "30" + 40 + 50);',
+      'options': ['103050', '102030', '10203040', 'Error'],
+      'answer': '10203040',
+    },
+    {
+      'question':
+          'Which of the following is not a valid access modifier in Java?',
+      'options': ['public', 'private', 'protected', 'internal'],
+      'answer': 'internal',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nint x = 0;\nfor(int i = 0; i < 5; i++) {\n   x += i;\n}\nSystem.out.println(x);',
+      'options': ['5', '10', '15', '20'],
+      'answer': '10',
+    },
+    {
+      'question':
+          'Which of the following statements is true regarding Java interfaces?',
+      'options': [
+        'Interfaces can contain method implementations.',
+        'Interfaces cannot extend other interfaces.',
+        'A class can implement multiple interfaces.',
+        'Interfaces can have constructors.'
+      ],
+      'answer': 'A class can implement multiple interfaces.',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nString str = "Java";\nstr.concat(" Programming");\nSystem.out.println(str);',
+      'options': ['Java Programming', 'Java', 'Java Programming', 'Error'],
+      'answer': 'Java',
+    },
+    {
+      'question':
+          'Which of the following keywords is used to define a constant in Java?',
+      'options': ['const', 'constant', 'final', 'static'],
+      'answer': 'final',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nint a = 10;\nint b = 20;\nSystem.out.println(a > b ? a : b);',
+      'options': ['10', '20', 'Error', 'None of the above'],
+      'answer': '20',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nint[] arr = {1, 2, 3};\nSystem.out.println(arr[3]);',
+      'options': ['1', '2', '3', 'ArrayIndexOutOfBoundsException'],
+      'answer': 'ArrayIndexOutOfBoundsException',
+    },
+    {
+      'question':
+          'Which of the following collections allows duplicate elements in Java?',
+      'options': ['HashSet', 'TreeSet', 'ArrayList', 'HashMap'],
+      'answer': 'ArrayList',
+    },
+    {
+      'question': 'What is the default value of a boolean variable in Java?',
+      'options': ['true', 'false', '0', '1'],
+      'answer': 'false',
+    },
+    {
+      'question':
+          'Which of the following is true about Java exception handling?',
+      'options': [
+        'Exceptions can be thrown without being caught.',
+        'All exceptions must be checked.',
+        'Runtime exceptions must be handled or declared.',
+        'Finally block is executed only when an exception is thrown.'
+      ],
+      'answer': 'Exceptions can be thrown without being caught.',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nString str = "Hello";\nstr = str.toUpperCase();\nSystem.out.println(str);',
+      'options': ['hello', 'Hello', 'HELLO', 'Error'],
+      'answer': 'HELLO',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a thread in Java?',
+      'options': [
+        'Extending Thread class',
+        'Implementing Runnable interface',
+        'Using ExecutorService',
+        'Using Process class'
+      ],
+      'answer': 'Using Process class',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nint x = 10;\nint y = 20;\ny = x++;\nSystem.out.println(y);',
+      'options': ['10', '20', '0', 'Error'],
+      'answer': '10',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nString str1 = "Java";\nString str2 = "Java";\nSystem.out.println(str1 == str2);',
+      'options': ['true', 'false', 'Error', 'None of the above'],
+      'answer': 'true',
+    },
+    {
+      'question':
+          'Which of the following statements is correct about Java garbage collection?',
+      'options': [
+        'Garbage collection occurs automatically.',
+        'Garbage collection can be forced.',
+        'Garbage collection is done by the JVM.',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nfor(int i = 0; i < 5; i++) {\n  if(i == 3) {\n    break;\n  }\n  System.out.print(i);\n}',
+      'options': ['012', '0123', '123', '01234'],
+      'answer': '012',
+    },
+    {
+      'question':
+          'Which of the following is used to compare two strings in Java?',
+      'options': [
+        '== operator',
+        'equals() method',
+        'compareTo() method',
+        'Both b and c'
+      ],
+      'answer': 'Both b and c',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nint[] arr = new int[3];\nSystem.out.println(arr[0]);',
+      'options': ['0', 'null', 'Error', 'undefined'],
+      'answer': '0',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nString str = "abc";\nstr = str + "def";\nSystem.out.println(str.length());',
+      'options': ['3', '6', '4', 'Error'],
+      'answer': '6',
+    },
+    {
+      'question':
+          'Which of the following keywords is used to prevent a class from being subclassed in Java?',
+      'options': ['static', 'final', 'abstract', 'synchronized'],
+      'answer': 'final',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nint x = 5;\nint y = 10;\ny += x++;\nSystem.out.println(y);',
+      'options': ['15', '16', '10', 'Error'],
+      'answer': '15',
+    },
+    {
+      'question': 'Which of the following is not a feature of Java?',
+      'options': [
+        'Platform-independent',
+        'Object-oriented',
+        'Use of pointers',
+        'Automatic garbage collection'
+      ],
+      'answer': 'Use of pointers',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nint a = 5;\nint b = 10;\nSystem.out.println(a + b + " is the sum.");',
+      'options': [
+        '15 is the sum.',
+        '510 is the sum.',
+        'Error',
+        'None of the above'
+      ],
+      'answer': '15 is the sum.',
+    },
+    {
+      'question':
+          'Which of the following statements about the "this" keyword is true?',
+      'options': [
+        'It refers to the current object.',
+        'It can be used in static methods.',
+        'It can refer to the parent class.',
+        'None of the above'
+      ],
+      'answer': 'It refers to the current object.',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nSystem.out.println(3 + 2 + "5");',
+      'options': ['5', '32', '35', 'Error'],
+      'answer': '35',
+    },
+    {
+      'question':
+          'Which of the following exceptions is thrown when an application tries to use null in a case where an object is required?',
+      'options': [
+        'NullPointerException',
+        'ArrayIndexOutOfBoundsException',
+        'ClassCastException',
+        'IllegalArgumentException'
+      ],
+      'answer': 'NullPointerException',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nStringBuilder sb = new StringBuilder("Hello");\nsb.append(" World");\nSystem.out.println(sb);',
+      'options': ['Hello', 'Hello World', 'HelloWorld', 'Error'],
+      'answer': 'Hello World',
+    },
+    {
+      'question': 'Which of the following methods cannot be overridden?',
+      'options': [
+        'final method',
+        'static method',
+        'private method',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nint a = 10;\nint b = 5;\nSystem.out.println(a > b ? a : b);',
+      'options': ['10', '5', 'Error', 'None of the above'],
+      'answer': '10',
+    },
+    {
+      'question': 'Which of the following is a marker interface in Java?',
+      'options': ['Serializable', 'Cloneable', 'Remote', 'All of the above'],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nString s1 = "Hello";\nString s2 = "Hello";\nSystem.out.println(s1 == s2);',
+      'options': ['true', 'false', 'Error', 'None of the above'],
+      'answer': 'true',
+    },
+    {
+      'question': 'Which of the following is not a wrapper class in Java?',
+      'options': ['Integer', 'Float', 'Double', 'Decimal'],
+      'answer': 'Decimal',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nString str = "Java";\nstr = str.substring(0, 2);\nSystem.out.println(str);',
+      'options': ['Ja', 'ava', 'Java', 'Error'],
+      'answer': 'Ja',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nSystem.out.println(1 + 2 + "3" + 4 + 5);',
+      'options': ['12345', '6', '12345', 'Error'],
+      'answer': '12345',
+    },
+    {
+      'question':
+          'Which of the following statements is true about the main method in Java?',
+      'options': [
+        'It must be public.',
+        'It must return void.',
+        'It can be overloaded.',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nString s = "Hello";\ns = s.toLowerCase();\nSystem.out.println(s);',
+      'options': ['HELLO', 'Hello', 'hello', 'Error'],
+      'answer': 'hello',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nfor(int i = 0; i < 5; i++) {\n  if(i == 2) {\n    continue;\n  }\n  System.out.print(i);\n}',
+      'options': ['01234', '0134', '1234', '01234'],
+      'answer': '0134',
+    },
+    {
+      'question':
+          'Which of the following is used to handle exceptions in Java?',
+      'options': ['try-catch', 'throw', 'throws', 'All of the above'],
+      'answer': 'All of the above',
+    },
+    {
       'question': 'What is the default value of a boolean variable in Java?',
       'options': ['true', 'false', '1', '0'],
       'answer': 'false',
@@ -47,7 +615,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following is not a valid access modifier in Java?',
+          'Which of the following is not a valid access modifier in Java?',
       'options': ['public', 'private', 'protected', 'visible'],
       'answer': 'visible',
     },
@@ -103,7 +671,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following is not a primitive data type in Java?',
+          'Which of the following is not a primitive data type in Java?',
       'options': ['int', 'char', 'String', 'float'],
       'answer': 'String',
     },
@@ -119,7 +687,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following is not a valid access modifier in Java?',
+          'Which of the following is not a valid access modifier in Java?',
       'options': ['public', 'private', 'protected', 'visible'],
       'answer': 'visible',
     },
@@ -175,7 +743,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following is not a primitive data type in Java?',
+          'Which of the following is not a primitive data type in Java?',
       'options': ['int', 'char', 'String', 'float'],
       'answer': 'String',
     },
@@ -206,7 +774,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following is a collection framework class in Java?',
+          'Which of the following is a collection framework class in Java?',
       'options': ['ArrayList', 'HashMap', 'LinkedList', 'All of the above'],
       'answer': 'All of the above',
     },
@@ -412,7 +980,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'What is the difference between method overloading and method overriding?',
+          'What is the difference between method overloading and method overriding?',
       'options': [
         'Overloading has the same name but different parameters, overriding has the same name and parameters',
         'Both are the same',
@@ -420,7 +988,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
         'None'
       ],
       'answer':
-      'Overloading has the same name but different parameters, overriding has the same name and parameters',
+          'Overloading has the same name but different parameters, overriding has the same name and parameters',
     },
     {
       'question': 'What is the purpose of the yield() method?',
@@ -474,7 +1042,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following is used to handle checked exceptions?',
+          'Which of the following is used to handle checked exceptions?',
       'options': [
         'try-catch block',
         'throw keyword',
@@ -497,11 +1065,11 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
         'None of the above'
       ],
       'answer':
-      'Defining a method in a subclass with the same name and parameters as in the parent class',
+          'Defining a method in a subclass with the same name and parameters as in the parent class',
     },
     {
       'question':
-      'Which of the following is not a part of Java exception handling?',
+          'Which of the following is not a part of Java exception handling?',
       'options': ['throw', 'throws', 'catch', 'raise'],
       'answer': 'raise',
     },
@@ -607,7 +1175,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'What is the difference between StringBuffer and StringBuilder?',
+          'What is the difference between StringBuffer and StringBuilder?',
       'options': [
         'StringBuffer is synchronized, StringBuilder is not',
         'Both are the same',
@@ -628,7 +1196,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following can be used to iterate through a collection?',
+          'Which of the following can be used to iterate through a collection?',
       'options': ['for loop', 'while loop', 'Iterator', 'All of the above'],
       'answer': 'All of the above',
     },
@@ -674,7 +1242,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following is an example of a checked exception?',
+          'Which of the following is an example of a checked exception?',
       'options': [
         'NullPointerException',
         'IOException',
@@ -705,7 +1273,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'What is the output of the following code: int a = 5; int b = 2; System.out.println(a / b);',
+          'What is the output of the following code: int a = 5; int b = 2; System.out.println(a / b);',
       'options': ['2', '2.5', '3', 'None'],
       'answer': '2',
     },
@@ -726,7 +1294,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'What is the difference between the ArrayList and LinkedList classes?',
+          'What is the difference between the ArrayList and LinkedList classes?',
       'options': [
         'ArrayList is faster for random access, LinkedList is faster for sequential access',
         'Both are the same',
@@ -734,11 +1302,11 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
         'None'
       ],
       'answer':
-      'ArrayList is faster for random access, LinkedList is faster for sequential access',
+          'ArrayList is faster for random access, LinkedList is faster for sequential access',
     },
     {
       'question':
-      'Which of the following is a valid way to create an object in Java?',
+          'Which of the following is a valid way to create an object in Java?',
       'options': [
         'ClassName obj = new ClassName();',
         'ClassName obj;',
@@ -759,7 +1327,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following is not a valid way to compare two strings?',
+          'Which of the following is not a valid way to compare two strings?',
       'options': [
         '== operator',
         '.equals() method',
@@ -805,7 +1373,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'What is the output of the following code: System.out.println(10 % 3);',
+          'What is the output of the following code: System.out.println(10 % 3);',
       'options': ['3', '1', '10', 'None'],
       'answer': '1',
     },
@@ -828,7 +1396,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
         'None of the above'
       ],
       'answer':
-      'A variable or method belongs to the class rather than instances of the class',
+          'A variable or method belongs to the class rather than instances of the class',
     },
     {
       'question': 'What is the output of the expression "Hello".length()?',
@@ -837,7 +1405,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following is an example of a runtime exception?',
+          'Which of the following is an example of a runtime exception?',
       'options': [
         'ArrayIndexOutOfBoundsException',
         'IOException',
@@ -933,7 +1501,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following is used to handle exceptions in Java?',
+          'Which of the following is used to handle exceptions in Java?',
       'options': ['try', 'catch', 'finally', 'All of the above'],
       'answer': 'All of the above',
     },
@@ -999,7 +1567,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
     },
     {
       'question':
-      'Which of the following is used to create an immutable object?',
+          'Which of the following is used to create an immutable object?',
       'options': [
         'String class',
         'StringBuilder class',
@@ -1133,7 +1701,8 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
   }
 
   Widget _buildQuestionInput() {
-    final TextEditingController questionCountController = TextEditingController();
+    final TextEditingController questionCountController =
+        TextEditingController();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -1161,7 +1730,8 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
             int? count = int.tryParse(questionCountController.text);
             if (count != null && count > 0) {
               setState(() {
-                totalQuestions = count > questions.length ? questions.length : count;
+                totalQuestions =
+                    count > questions.length ? questions.length : count;
                 selectedQuestions = _getRandomQuestions(totalQuestions);
                 selectedAnswers = List.filled(totalQuestions, '');
                 currentQuestionIndex = 0;
@@ -1183,18 +1753,23 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
         height: MediaQuery.of(context).size.height, // Ensures full height
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.deepPurple.withOpacity(0.7), Colors.purpleAccent.withOpacity(0.7)],
+            colors: [
+              Colors.deepPurple.withOpacity(0.7),
+              Colors.purpleAccent.withOpacity(0.7)
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
         ),
-        child: SingleChildScrollView( // Scrollable content
+        child: SingleChildScrollView(
+          // Scrollable content
           child: Column(
             key: ValueKey<int>(currentQuestionIndex),
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(10),
@@ -1216,7 +1791,8 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
                 style: TextStyle(fontSize: 18, color: Colors.redAccent),
               ),
               const SizedBox(height: 20),
-              Column( // Options in a Column for better scrolling
+              Column(
+                // Options in a Column for better scrolling
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: selectedQuestions[currentQuestionIndex]['options']
                     .map<Widget>((option) {
@@ -1228,7 +1804,8 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.purpleAccent,
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0)),
                       ),
                       onPressed: _answered ? null : () => selectAnswer(option),
                       child: Text(option, style: const TextStyle(fontSize: 18)),
@@ -1247,7 +1824,6 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
       ),
     );
   }
-
 
   void _startTimer() {
     _timeLeft = 5;
@@ -1280,7 +1856,8 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
 
   List<Map<String, dynamic>> _getRandomQuestions(int count) {
     final random = Random();
-    List<Map<String, dynamic>> shuffledQuestions = List.from(questions)..shuffle(random);
+    List<Map<String, dynamic>> shuffledQuestions = List.from(questions)
+      ..shuffle(random);
     return shuffledQuestions.take(count).toList();
   }
 

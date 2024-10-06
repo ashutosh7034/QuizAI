@@ -26,10 +26,10 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
   int timePerQuestion = 5;
   bool isLoading = false;
 
-  // Adjust these colors to match your app's theme
-  final Color primaryColor = Color(0xFF006699); // Replace with your primary color
-  final Color secondaryColor = Color(0xFF0099CC); // Replace with your secondary color
-  final Color accentColor = Color(0xFFFFCC00); // Replace with your accent color
+  // Adjusted colors to match your app's theme
+  final Color primaryColor = Color(0xFF9C27B0); // Dark Purple
+  final Color secondaryColor = Color(0xFF03A9F4); // Light Blue
+  final Color accentColor = Color(0xFFFFCC00); // Yellow
   final Color textColor = Colors.white;
 
   void _addQuestion() {
@@ -95,11 +95,15 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Create a Quiz"),
+        title: const Text(
+          "Create a Quiz",
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
         elevation: 0,
         backgroundColor: primaryColor,
       ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -211,8 +215,9 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
         ElevatedButton(
           style: ElevatedButton.styleFrom(backgroundColor: primaryColor),
           onPressed: _addQuestion,
-          child: const Text("Add Question"),
+          child: const Text("Add Question", style: TextStyle(color: Colors.white)),
         ),
+
       ],
     );
   }
@@ -286,7 +291,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
         ElevatedButton(
           style: ElevatedButton.styleFrom(backgroundColor: primaryColor),
           onPressed: _previewQuiz,
-          child: const Text("Preview"),
+          child: const Text("Preview", style: TextStyle(color: Colors.white)),
         ),
         GestureDetector(
           onTap: _createQuiz,

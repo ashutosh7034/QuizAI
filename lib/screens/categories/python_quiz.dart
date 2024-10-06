@@ -16,6 +16,3048 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
       'answer': '4',
     },
     {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\nprint(x * 2)',
+      'options': [
+        '[1, 2, 3, 1, 2, 3]',
+        '[1, 2, 3, 2, 3, 3]',
+        '[2, 3, 3]',
+        'Error'
+      ],
+      'answer': '[1, 2, 3, 1, 2, 3]',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint(type([]) is list)',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is the correct syntax for a decorator in Python?',
+      'options': [
+        '@decorator',
+        'decorator@',
+        'def decorator',
+        'None of the above'
+      ],
+      'answer': '@decorator',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\ndef func(a, b=[]):\n    b.append(a)\n    return b\n\nprint(func(1))',
+      'options': ['[1]', '[1, 1]', '[1, 2]', 'Error'],
+      'answer': '[1]',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nx = {1, 2, 3}\ny = {2, 3, 4}\nprint(x & y)',
+      'options': ['{1, 2, 3}', '{2, 3}', '{4}', 'Error'],
+      'answer': '{2, 3}',
+    },
+    {
+      'question':
+          'Which of the following can be used to create an empty tuple in Python?',
+      'options': ['()', 'tuple()', '{}', 'None of the above'],
+      'answer': '()',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nx = [1, 2, 3]\nprint(x[-1])',
+      'options': ['1', '2', '3', 'Error'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint(1 < 2 < 3)',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following statements will correctly raise an exception?',
+      'options': [
+        'raise Exception',
+        'throw Exception',
+        'raise Exception()',
+        'throw Exception()'
+      ],
+      'answer': 'raise Exception',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\ny = x\ny.append(4)\nprint(x)',
+      'options': ['[1, 2, 3]', '[1, 2, 3, 4]', '[1, 2]', 'Error'],
+      'answer': '[1, 2, 3, 4]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello" + 3)',
+      'options': ['Hello3', 'Error', 'Hello', 'None of the above'],
+      'answer': 'Error',
+    },
+    {
+      'question':
+          'Which of the following can be used to check if a key exists in a dictionary?',
+      'options': [
+        'key in dict',
+        'dict.has_key(key)',
+        'key in dict.keys()',
+        'All of the above'
+      ],
+      'answer': 'key in dict',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nx = {1: "one", 2: "two"}\nprint(x.get(3, "three"))',
+      'options': ['three', 'None', 'Error', 'three'],
+      'answer': 'three',
+    },
+    {
+      'question':
+          'Which of the following statements is true about Python lists?',
+      'options': [
+        'Lists are immutable',
+        'Lists can hold mixed data types',
+        'Lists cannot be nested',
+        'All of the above'
+      ],
+      'answer': 'Lists can hold mixed data types',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint(3 * "A")',
+      'options': ['AAA', 'A', 'Error', 'None of the above'],
+      'answer': 'AAA',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\ndef f():\n    return 1, 2, 3\n\nprint(f())',
+      'options': ['1, 2, 3', '[1, 2, 3]', '(1, 2, 3)', 'Error'],
+      'answer': '(1, 2, 3)',
+    },
+    {
+      'question':
+          'Which of the following statements is correct regarding Python sets?',
+      'options': [
+        'Sets are ordered',
+        'Sets allow duplicates',
+        'Sets are mutable',
+        'None of the above'
+      ],
+      'answer': 'Sets are mutable',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\nprint(x[::-1])',
+      'options': ['[1, 2, 3]', '[3, 2, 1]', 'Error', 'None of the above'],
+      'answer': '[3, 2, 1]',
+    },
+    {
+      'question':
+          'Which of the following is a valid way to import a module in Python?',
+      'options': [
+        'import module',
+        'from module import *',
+        'import module as alias',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nx = 5\nprint(x == 5 and x > 3)',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint(0.1 + 0.2 == 0.3)',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'False',
+    },
+    {
+      'question': 'Which of the following is used to define a class in Python?',
+      'options': [
+        'class ClassName:',
+        'define ClassName:',
+        'class ClassName[]:',
+        'None of the above'
+      ],
+      'answer': 'class ClassName:',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nx = {1, 2, 3}\ny = {3, 4, 5}\nprint(x | y)',
+      'options': ['{1, 2, 3, 4, 5}', '{1, 2, 3}', '{3, 4, 5}', 'Error'],
+      'answer': '{1, 2, 3, 4, 5}',
+    },
+    {
+      'question': 'Which of the following is used to read a file in Python?',
+      'options': [
+        'open("file.txt")',
+        'file.read()',
+        'read.file()',
+        'All of the above'
+      ],
+      'answer': 'open("file.txt")',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nx = [1, 2, 3]\nprint(x.append(4))',
+      'options': ['None', '[1, 2, 3, 4]', 'Error', '4'],
+      'answer': 'None',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint({x: x**2 for x in (1, 2, 3)})',
+      'options': [
+        '{1: 1, 2: 4, 3: 9}',
+        '{1: 1, 2: 2, 3: 3}',
+        'Error',
+        'None of the above'
+      ],
+      'answer': '{1: 1, 2: 4, 3: 9}',
+    },
+    {
+      'question':
+          'Which of the following is a valid way to create a generator in Python?',
+      'options': [
+        '(x*x for x in range(3))',
+        '[x*x for x in range(3)]',
+        'generator(x*x for x in range(3))',
+        'None of the above'
+      ],
+      'answer': '(x*x for x in range(3))',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\ndef foo(x, y=5):\n    return x + y\n\nprint(foo(3))',
+      'options': ['8', '5', '3', 'Error'],
+      'answer': '8',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nx = {1, 2, 3}\ny = {1, 2}\nprint(x - y)',
+      'options': ['{3}', '{1, 2}', '{1, 2, 3}', 'Error'],
+      'answer': '{3}',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello World".split())',
+      'options': ['["Hello", "World"]', 'Error', 'None', '["Hello World"]'],
+      'answer': '["Hello", "World"]',
+    },
+    {
+      'question':
+          'Which of the following methods can be used to convert a string to an integer in Python?',
+      'options': ['int()', 'str()', 'float()', 'None of the above'],
+      'answer': 'int()',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nx = [1, 2, 3]\nprint(x[1:3])',
+      'options': ['[2, 3]', '[1, 2]', 'Error', 'None'],
+      'answer': '[2, 3]',
+    },
+    {
+      'question':
+          'Which of the following is not a built-in data type in Python?',
+      'options': ['List', 'Tuple', 'Dictionary', 'Array'],
+      'answer': 'Array',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint((lambda x: x + 1)(2))',
+      'options': ['3', '2', 'Error', 'None'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'Which of the following statements is true regarding Python dictionaries?',
+      'options': [
+        'Dictionaries are ordered',
+        'Dictionaries cannot contain duplicates',
+        'Dictionaries can be indexed',
+        'All of the above'
+      ],
+      'answer': 'Dictionaries cannot contain duplicates',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint([1, 2, 3] == [1, 2, 3])',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint(type((x for x in range(3))))',
+      'options': [
+        '<class "generator">',
+        '<class "list">',
+        '<class "tuple">',
+        'Error'
+      ],
+      'answer': '<class "generator">',
+    },
+    {
+      'question':
+          'Which of the following is used to handle exceptions in Python?',
+      'options': [
+        'try-except',
+        'try-catch',
+        'except-throw',
+        'None of the above'
+      ],
+      'answer': 'try-except',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nx = None\nprint(x is None)',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = {1, 2, 3}\ny = frozenset(x)\nprint(y)',
+      'options': ['{1, 2, 3}', 'Error', 'None', 'frozenset{1, 2, 3}'],
+      'answer': 'frozenset{1, 2, 3}',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint(len("Hello"))',
+      'options': ['5', 'Error', 'None', '4'],
+      'answer': '5',
+    },
+    {
+      'question':
+          'Which of the following keywords is used to define a function in Python?',
+      'options': ['function', 'def', 'func', 'define'],
+      'answer': 'def',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("ABCD"[2:])',
+      'options': ['C', 'CD', 'D', 'Error'],
+      'answer': 'CD',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a list in Python?',
+      'options': ['list()', '[1, 2, 3]', '[]', 'list[1, 2, 3]'],
+      'answer': 'list[1, 2, 3]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\nprint(x[0])',
+      'options': ['1', '2', '3', 'Error'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following methods is used to add an element to a set in Python?',
+      'options': ['add()', 'append()', 'insert()', 'None of the above'],
+      'answer': 'add()',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nprint(5 // 2)',
+      'options': ['2.5', '2', 'Error', 'None'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following functions is used to find the maximum value in a list?',
+      'options': ['max()', 'min()', 'maxValue()', 'None of the above'],
+      'answer': 'max()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python" * 3)',
+      'options': ['PythonPythonPython', 'Error', 'Python 3', 'None'],
+      'answer': 'PythonPythonPython',
+    },
+    {
+      'question':
+          'Which of the following statements is used to exit a loop in Python?',
+      'options': ['continue', 'break', 'exit', 'stop'],
+      'answer': 'break',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\nprint(x[-2])',
+      'options': ['2', '1', '3', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question': 'Which of the following is a mutable data type in Python?',
+      'options': ['List', 'Tuple', 'String', 'None of the above'],
+      'answer': 'List',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint(2 ** 3)',
+      'options': ['6', '8', 'Error', 'None'],
+      'answer': '8',
+    },
+    {
+      'question':
+          'Which of the following methods is used to remove an element from a list?',
+      'options': ['remove()', 'delete()', 'discard()', 'None of the above'],
+      'answer': 'remove()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\nx[1] = 4\nprint(x)',
+      'options': ['[1, 4, 3]', '[1, 2, 3]', '[4]', 'Error'],
+      'answer': '[1, 4, 3]',
+    },
+    {
+      'question':
+          'Which of the following is used to define a private method in Python?',
+      'options': ['__method', 'method__', '_method', 'method'],
+      'answer': '__method',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint("A" < "B")',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question': 'Which of the following is true regarding Python lists?',
+      'options': [
+        'Lists are ordered',
+        'Lists cannot contain duplicates',
+        'Lists are immutable',
+        'All of the above'
+      ],
+      'answer': 'Lists are ordered',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("1" + "2")',
+      'options': ['12', '3', 'Error', 'None'],
+      'answer': '12',
+    },
+    {
+      'question': 'Which of the following is a valid Python comment?',
+      'options': [
+        '# Comment',
+        '/* Comment */',
+        '// Comment',
+        'None of the above'
+      ],
+      'answer': '# Comment',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = {1, 2, 3}\ny = {2, 3, 4}\nprint(x & y)',
+      'options': ['{1, 2, 3}', '{2, 3}', '{4}', 'Error'],
+      'answer': '{2, 3}',
+    },
+    {
+      'question':
+          'Which of the following keywords is used for exception handling in Python?',
+      'options': ['catch', 'finally', 'except', 'None of the above'],
+      'answer': 'except',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint(type([]))',
+      'options': [
+        '<class "list">',
+        '<class "array">',
+        '<class "set">',
+        'Error'
+      ],
+      'answer': '<class "list">',
+    },
+    {
+      'question':
+          'Which of the following functions can be used to convert a string to a float?',
+      'options': ['float()', 'str()', 'int()', 'None of the above'],
+      'answer': 'float()',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nx = "Python"\nprint(x[0])',
+      'options': ['P', 'Error', 'None', 'Python'],
+      'answer': 'P',
+    },
+    {
+      'question': 'Which of the following is used to sort a list in Python?',
+      'options': ['sort()', 'order()', 'arrange()', 'None of the above'],
+      'answer': 'sort()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello World".replace("World", "Python"))',
+      'options': ['Hello Python', 'Hello World', 'Error', 'None'],
+      'answer': 'Hello Python',
+    },
+    {
+      'question':
+          'Which of the following methods can be used to find the length of a string?',
+      'options': ['len()', 'size()', 'length()', 'None of the above'],
+      'answer': 'len()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("ABCD"[-1])',
+      'options': ['A', 'B', 'C', 'D'],
+      'answer': 'D',
+    },
+    {
+      'question':
+          'Which of the following is not a valid variable name in Python?',
+      'options': ['my_var', 'myVar', 'my-var', 'myVar1'],
+      'answer': 'my-var',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nx = (1, 2, 3)\nprint(x[1])',
+      'options': ['1', '2', '3', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question': 'Which of the following is a built-in function in Python?',
+      'options': ['map()', 'filter()', 'reduce()', 'All of the above'],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint([1, 2] + [3, 4])',
+      'options': ['[1, 2, 3, 4]', '[1, 2, 3]', '[1, 2] [3, 4]', 'Error'],
+      'answer': '[1, 2, 3, 4]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint(bool(""))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'False',
+    },
+    {
+      'question': 'Which of the following is true regarding Python tuples?',
+      'options': [
+        'Tuples are immutable',
+        'Tuples can contain duplicates',
+        'Tuples can be nested',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint(1 + 2 * 3)',
+      'options': ['9', '6', '7', 'Error'],
+      'answer': '7',
+    },
+    {
+      'question':
+          'Which of the following functions can be used to create a list from a string?',
+      'options': ['list()', 'split()', 'join()', 'None of the above'],
+      'answer': 'split()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint(range(3))',
+      'options': ['range(0, 3)', '[0, 1, 2]', '[1, 2, 3]', 'Error'],
+      'answer': 'range(0, 3)',
+    },
+    {
+      'question': 'Which of the following is not a core data type in Python?',
+      'options': ['List', 'Dictionary', 'Set', 'Class'],
+      'answer': 'Class',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint("Hello".upper())',
+      'options': ['HELLO', 'Hello', 'Error', 'None'],
+      'answer': 'HELLO',
+    },
+    {
+      'question':
+          'Which of the following is used to handle exceptions in Python?',
+      'options': [
+        'try-catch',
+        'try-except',
+        'catch-except',
+        'None of the above'
+      ],
+      'answer': 'try-except',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\nprint(x.pop(0))',
+      'options': ['1', '2', '3', 'Error'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("1" == 1)',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'False',
+    },
+    {
+      'question':
+          'Which of the following statements is true regarding Python strings?',
+      'options': [
+        'Strings are mutable',
+        'Strings can be concatenated',
+        'Strings cannot be indexed',
+        'All of the above'
+      ],
+      'answer': 'Strings can be concatenated',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".find("e"))',
+      'options': ['1', '0', '-1', 'Error'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following methods can be used to clear all items from a list?',
+      'options': ['clear()', 'remove()', 'delete()', 'None of the above'],
+      'answer': 'clear()',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint(len([1, 2, 3]))',
+      'options': ['3', '2', 'Error', 'None'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'Which of the following is used to read the entire contents of a file in Python?',
+      'options': ['read()', 'readline()', 'readlines()', 'None of the above'],
+      'answer': 'read()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("A" * 2 + "B")',
+      'options': ['AAB', 'AAAB', 'AB', 'Error'],
+      'answer': 'AAB',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a function in Python?',
+      'options': [
+        'def my_func():',
+        'function my_func():',
+        'def my_func(param):',
+        'None of the above'
+      ],
+      'answer': 'function my_func():',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = 10\nprint(type(x))',
+      'options': ['<class "int">', '<class "str">', '<class "float">', 'Error'],
+      'answer': '<class "int">',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a set in Python?',
+      'options': ['set()', '{}', '[]', 'set([1, 2, 3])'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint("ABC"[-1])',
+      'options': ['A', 'B', 'C', 'Error'],
+      'answer': 'C',
+    },
+    {
+      'question':
+          'Which of the following is used to import a module in Python?',
+      'options': [
+        'import module',
+        'require module',
+        'include module',
+        'None of the above'
+      ],
+      'answer': 'import module',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = (1, 2, 3)\nprint(len(x))',
+      'options': ['3', '2', 'Error', 'None'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'Which of the following is a way to define a constant in Python?',
+      'options': [
+        'CONSTANT = value',
+        'const CONSTANT = value',
+        'CONSTANT := value',
+        'None of the above'
+      ],
+      'answer': 'CONSTANT = value',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\nprint(x + [4])',
+      'options': ['[1, 2, 3, 4]', '[4, 1, 2, 3]', '[1, 2, 3] [4]', 'Error'],
+      'answer': '[1, 2, 3, 4]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = "Hello"\nprint(x[1:4])',
+      'options': ['ell', 'ell', 'Hello', 'Error'],
+      'answer': 'ell',
+    },
+    {
+      'question':
+          'Which of the following functions can be used to convert a list to a tuple?',
+      'options': ['tuple()', 'list()', 'convert()', 'None of the above'],
+      'answer': 'tuple()',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nprint(10 % 3)',
+      'options': ['3', '1', '0', 'Error'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following is not a built-in function in Python?',
+      'options': ['sum()', 'max()', 'min()', 'average()'],
+      'answer': 'average()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint([1, 2, 3] * 2)',
+      'options': ['[1, 2, 3, 1, 2, 3]', '[1, 2, 3]', '[1, 2, 3, 2]', 'Error'],
+      'answer': '[1, 2, 3, 1, 2, 3]',
+    },
+    {
+      'question':
+          'Which of the following methods is used to add an element at a specific position in a list?',
+      'options': ['insert()', 'add()', 'append()', 'None of the above'],
+      'answer': 'insert()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("A" + "B")',
+      'options': ['AB', 'A+B', 'Error', 'None'],
+      'answer': 'AB',
+    },
+    {
+      'question':
+          'Which of the following keywords is used to define a class in Python?',
+      'options': ['class', 'define', 'func', 'None of the above'],
+      'answer': 'class',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = "Hello"\nprint(x[::-1])',
+      'options': ['olleH', 'Hello', 'Error', 'None'],
+      'answer': 'olleH',
+    },
+    {
+      'question':
+          'Which of the following methods is used to reverse a list in Python?',
+      'options': ['reverse()', 'invert()', 'rev()', 'None of the above'],
+      'answer': 'reverse()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = "Hello"\nprint(x[1])',
+      'options': ['e', 'Error', 'None', 'Hello'],
+      'answer': 'e',
+    },
+    {
+      'question': 'Which of the following is used to format strings in Python?',
+      'options': ['format()', 'style()', 'template()', 'None of the above'],
+      'answer': 'format()',
+    },
+    {
+      'question':
+          'What will be the output of the following code?\n\nprint("Hello".endswith("o"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is used to create a generator in Python?',
+      'options': ['()', '[]', '{}', 'None of the above'],
+      'answer': '()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello World"[0])',
+      'options': ['H', 'Error', 'None', 'Hello'],
+      'answer': 'H',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a number is even in Python?',
+      'options': [
+        'if num % 2 == 0:',
+        'if num & 1 == 0:',
+        'if num // 2:',
+        'None of the above'
+      ],
+      'answer': 'if num // 2:',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\nx.remove(2)\nprint(x)',
+      'options': ['[1, 2, 3]', '[1, 3]', 'Error', '[2, 3]'],
+      'answer': '[1, 3]',
+    },
+    {
+      'question':
+          'Which of the following is used to handle multiple exceptions in Python?',
+      'options': ['try-except', 'except-else', 'try-catch', 'except'],
+      'answer': 'except',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".replace("e", "a"))',
+      'options': ['Hallo', 'Hello', 'Error', 'None'],
+      'answer': 'Hallo',
+    },
+    {
+      'question':
+          'Which of the following is used to iterate over a list in Python?',
+      'options': ['for loop', 'while loop', 'iter()', 'All of the above'],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\nprint(x.index(3))',
+      'options': ['2', '1', '0', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a string to lowercase in Python?',
+      'options': ['lower()', 'upcase()', 'downcase()', 'None of the above'],
+      'answer': 'lower()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".startswith("Py"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question': 'Which of the following is used to open a file in Python?',
+      'options': ['open()', 'create()', 'file()', 'None of the above'],
+      'answer': 'open()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".find("y"))',
+      'options': ['1', '0', '-1', 'Error'],
+      'answer': '1',
+    },
+    {
+      'question': 'Which of the following is true regarding Python sets?',
+      'options': [
+        'Sets are ordered',
+        'Sets can contain duplicates',
+        'Sets are mutable',
+        'All of the above'
+      ],
+      'answer': 'Sets are mutable',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".islower())',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'False',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to define a variable in Python?',
+      'options': [
+        'my_var = 10',
+        'my var = 10',
+        'myVar = 10',
+        'None of the above'
+      ],
+      'answer': 'my var = 10',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[1:3])',
+      'options': ['Py', 'yt', 'tho', 'Error'],
+      'answer': 'yt',
+    },
+    {
+      'question':
+          'Which of the following is used to find the smallest value in a list?',
+      'options': ['min()', 'lowest()', 'smallest()', 'None of the above'],
+      'answer': 'min()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = {1, 2, 3}\nprint(x.add(4))',
+      'options': ['None', '4', 'Error', '{1, 2, 3, 4}'],
+      'answer': 'None',
+    },
+    {
+      'question': 'Which of the following is a Python dictionary method?',
+      'options': ['keys()', 'values()', 'items()', 'All of the above'],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".count("l"))',
+      'options': ['2', '1', 'Error', 'None'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following is used to generate random numbers in Python?',
+      'options': [
+        'random()',
+        'randint()',
+        'random.randint()',
+        'None of the above'
+      ],
+      'answer': 'random.randint()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".upper())',
+      'options': ['PYTHON', 'Python', 'Error', 'None'],
+      'answer': 'PYTHON',
+    },
+    {
+      'question':
+          'Which of the following is used to merge two dictionaries in Python?',
+      'options': ['merge()', 'update()', 'join()', 'None of the above'],
+      'answer': 'update()',
+    },
+    {
+      'question': 'What is the output of the following code?\n\nprint(10 // 3)',
+      'options': ['3', '4', '1', 'Error'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'Which of the following is used to create a view object that displays a list of a dictionary\'s key-value pairs?',
+      'options': ['view()', 'items()', 'pairs()', 'None of the above'],
+      'answer': 'items()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("ABC"[0])',
+      'options': ['A', 'B', 'C', 'Error'],
+      'answer': 'A',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a string in Python?',
+      'options': ['""', 'None', '\'\'', '""'],
+      'answer': 'None',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\nprint(x[-2])',
+      'options': ['1', '2', '3', 'Error'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following is used to remove an element from a set in Python?',
+      'options': ['remove()', 'discard()', 'pop()', 'All of the above'],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".isalpha())',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a float in Python?',
+      'options': ['float(1)', '1.0', '1', 'None'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint([1, 2, 3].pop())',
+      'options': ['3', 'Error', '[1, 2]', '[1, 2, 3]'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a key exists in a dictionary?',
+      'options': ['exists()', 'has_key()', 'in', 'None of the above'],
+      'answer': 'in',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = "abc"\nprint(x[::-1])',
+      'options': ['cba', 'abc', 'Error', 'None'],
+      'answer': 'cba',
+    },
+    {
+      'question': 'Which of the following is used to create a list in Python?',
+      'options': ['[]', '()', '{}', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello"[1])',
+      'options': ['e', 'Error', 'None', 'Hello'],
+      'answer': 'e',
+    },
+    {
+      'question':
+          'Which of the following is used to find the largest value in a list?',
+      'options': ['max()', 'highest()', 'largest()', 'None of the above'],
+      'answer': 'max()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("abc".capitalize())',
+      'options': ['Abc', 'abc', 'Error', 'None'],
+      'answer': 'Abc',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string contains only digits in Python?',
+      'options': [
+        'isnumeric()',
+        'isdigit()',
+        'isdecimal()',
+        'All of the above'
+      ],
+      'answer': 'All of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".replace("o", "a"))',
+      'options': ['Python', 'Pythan', 'Error', 'None'],
+      'answer': 'Pythan',
+    },
+    {
+      'question':
+          'Which of the following is used to remove whitespace from the start and end of a string in Python?',
+      'options': ['strip()', 'trim()', 'remove()', 'None of the above'],
+      'answer': 'strip()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint([1, 2] == [2, 1])',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'False',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to iterate through a dictionary in Python?',
+      'options': [
+        'for key in dict:',
+        'for value in dict.values():',
+        'for item in dict.items():',
+        'for index in dict:'
+      ],
+      'answer': 'for index in dict:',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[2])',
+      'options': ['t', 'P', 'y', 'Error'],
+      'answer': 't',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check the type of a variable in Python?',
+      'options': ['type()', 'isinstance()', 'check_type()', 'None'],
+      'answer': 'check_type()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[1:4])',
+      'options': ['Pyt', 'yth', 'yth', 'Error'],
+      'answer': 'yth',
+    },
+    {
+      'question':
+          'Which of the following is used to create a new dictionary in Python?',
+      'options': ['{}', '[]', '()', 'None of the above'],
+      'answer': '{}',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".swapcase())',
+      'options': ['hELLO', 'Hello', 'Error', 'None'],
+      'answer': 'hELLO',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to define a lambda function in Python?',
+      'options': [
+        'lambda x: x * 2',
+        'def lambda x: x * 2',
+        'lambda x: x + 1',
+        'None of the above'
+      ],
+      'answer': 'def lambda x: x * 2',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = "Python"\nprint(x[0:3])',
+      'options': ['Pyt', 'Py', 'Pyth', 'Error'],
+      'answer': 'Pyt',
+    },
+    {
+      'question':
+          'Which of the following is used to access values in a dictionary?',
+      'options': ['()', '[]', '{}', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint([1, 2, 3] + [4])',
+      'options': ['[1, 2, 3, 4]', '[1, 2, 3] [4]', '[4, 1, 2, 3]', 'Error'],
+      'answer': '[1, 2, 3, 4]',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to remove an item from a list in Python?',
+      'options': ['remove()', 'delete()', 'pop()', 'All of the above'],
+      'answer': 'delete()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python" == "python")',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'False',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a string to an integer in Python?',
+      'options': ['int()', 'str()', 'float()', 'None of the above'],
+      'answer': 'int()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[3:])',
+      'options': ['on', 'Py', 'thon', 'Error'],
+      'answer': 'thon',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a number is positive in Python?',
+      'options': [
+        'if num > 0:',
+        'if num >= 0:',
+        'if num == 0:',
+        'None of the above'
+      ],
+      'answer': 'if num == 0:',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("ABC".lower())',
+      'options': ['abc', 'ABC', 'Error', 'None'],
+      'answer': 'abc',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a boolean in Python?',
+      'options': ['bool(1)', 'True', 'false', 'None'],
+      'answer': 'false',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".find("o"))',
+      'options': ['4', '0', 'Error', 'None'],
+      'answer': '4',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string contains only whitespace in Python?',
+      'options': [
+        'isspace()',
+        'iswhitespace()',
+        'isblank()',
+        'None of the above'
+      ],
+      'answer': 'isspace()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".title())',
+      'options': ['Hello', 'hello', 'Error', 'None'],
+      'answer': 'Hello',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a dictionary in Python?',
+      'options': ['{}', 'dict()', '[]', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".count("y"))',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question': 'Which of the following is used to create a tuple in Python?',
+      'options': ['[]', '()', '{}', 'None of the above'],
+      'answer': '()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[0:2])',
+      'options': ['Py', 'Pyth', 'Error', 'None'],
+      'answer': 'Py',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a string to a float in Python?',
+      'options': ['float()', 'int()', 'str()', 'None of the above'],
+      'answer': 'float()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".split(","))',
+      'options': [
+        '["Hello", " World"]',
+        'Error',
+        '["Hello, World"]',
+        '["Hello World"]'
+      ],
+      'answer': '["Hello", " World"]',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to convert a list to a string in Python?',
+      'options': ['str()', 'join()', 'join()', 'None of the above'],
+      'answer': 'str()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint([1, 2, 3].extend([4, 5]))\nprint([1, 2, 3])',
+      'options': [
+        'None\n[1, 2, 3, 4, 5]',
+        '[1, 2, 3, 4, 5]',
+        '[1, 2, 3]',
+        'Error'
+      ],
+      'answer': 'None\n[1, 2, 3, 4, 5]',
+    },
+    {
+      'question':
+          'Which of the following is used to create a new list in Python?',
+      'options': ['[]', '()', '{}', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint([1, 2, 3].insert(0, 4))\nprint([1, 2, 3])',
+      'options': ['None\n[4, 1, 2, 3]', 'Error', '[1, 2, 3]', '[1, 2, 3, 4]'],
+      'answer': 'None\n[4, 1, 2, 3]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nx = [1, 2, 3]\nprint(x.remove(1))\nprint(x)',
+      'options': ['None\n[2, 3]', '[1, 2, 3]', '[2, 3]', 'Error'],
+      'answer': 'None\n[2, 3]',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a variable in Python?',
+      'options': [
+        'my_var = 10',
+        'my var = 10',
+        'myVar = 10',
+        'None of the above'
+      ],
+      'answer': 'my var = 10',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".replace("World", "Python"))',
+      'options': ['Hello, Python', 'Hello, World', 'Error', 'None'],
+      'answer': 'Hello, Python',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string contains only alphabets in Python?',
+      'options': [
+        'isalpha()',
+        'isletters()',
+        'isalphabet()',
+        'None of the above'
+      ],
+      'answer': 'isalpha()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python" * 2)',
+      'options': ['PythonPython', 'Python', 'Error', 'None'],
+      'answer': 'PythonPython',
+    },
+    {
+      'question':
+          'Which of the following is used to get the length of a list in Python?',
+      'options': ['len()', 'length()', 'size()', 'None of the above'],
+      'answer': 'len()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("abc".upper())',
+      'options': ['ABC', 'abc', 'Error', 'None'],
+      'answer': 'ABC',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to define a function in Python?',
+      'options': [
+        'def my_func():',
+        'my_func() = def:',
+        'lambda x: x + 1',
+        'None of the above'
+      ],
+      'answer': 'my_func() = def:',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".find("P"))',
+      'options': ['0', '1', 'Error', '-1'],
+      'answer': '0',
+    },
+    {
+      'question': 'Which of the following is used to create a set in Python?',
+      'options': ['[]', '()', '{}', 'None of the above'],
+      'answer': '{}',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[0:5])',
+      'options': ['Pytho', 'Pyth', 'Python', 'Error'],
+      'answer': 'Pytho',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to concatenate two strings in Python?',
+      'options': [
+        'str1 + str2',
+        'str1.append(str2)',
+        'str1.join(str2)',
+        'None of the above'
+      ],
+      'answer': 'str1.append(str2)',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".index("o"))',
+      'options': ['4', '3', 'Error', 'None'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string starts with a specific substring in Python?',
+      'options': [
+        'startswith()',
+        'beginswith()',
+        'start()',
+        'None of the above'
+      ],
+      'answer': 'startswith()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[0:2])',
+      'options': ['Py', 'Pyt', 'Error', 'None'],
+      'answer': 'Py',
+    },
+    {
+      'question':
+          'Which of the following is used to create a frozenset in Python?',
+      'options': ['frozenset()', 'set()', '{}', 'None of the above'],
+      'answer': 'frozenset()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".capitalize())',
+      'options': ['Python', 'Python', 'Error', 'None'],
+      'answer': 'Python',
+    },
+    {
+      'question':
+          'Which of the following is used to remove an element from a dictionary?',
+      'options': ['del', 'remove()', 'discard()', 'None of the above'],
+      'answer': 'del',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[-1])',
+      'options': ['n', 'Error', 'None', 'Python'],
+      'answer': 'n',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to compare two strings in Python?',
+      'options': ['==', '!=', 'compare()', 'None of the above'],
+      'answer': 'compare()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[-3])',
+      'options': ['t', 'n', 'Error', 'o'],
+      'answer': 't',
+    },
+    {
+      'question':
+          'Which of the following is used to create an empty dictionary in Python?',
+      'options': ['{}', '[]', '()', 'None of the above'],
+      'answer': '{}',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("abc".endswith("c"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is used to create a frozenset in Python?',
+      'options': ['frozenset()', 'set()', '[]', 'None of the above'],
+      'answer': 'frozenset()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python" == "Python")',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is used to create an empty list in Python?',
+      'options': ['[]', '()', '{}', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("abc".find("a"))',
+      'options': ['0', '1', 'Error', '-1'],
+      'answer': '0',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a number is odd in Python?',
+      'options': [
+        'if num % 2 == 1:',
+        'if num & 1:',
+        'if num // 2 != 0:',
+        'None of the above'
+      ],
+      'answer': 'if num // 2 != 0:',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".count("l"))',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a number is even in Python?',
+      'options': [
+        'if num % 2 == 0:',
+        'if num & 1 == 0:',
+        'if num // 2 == 0:',
+        'None of the above'
+      ],
+      'answer': 'if num % 2 == 0:',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[-3:])',
+      'options': ['ton', 'Py', 'Error', 'n'],
+      'answer': 'ton',
+    },
+    {
+      'question':
+          'Which of the following is used to create a new string in Python?',
+      'options': ['str()', 'new_string()', 'string()', 'None of the above'],
+      'answer': 'str()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".isupper())',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'False',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string contains only lowercase letters in Python?',
+      'options': [
+        'islower()',
+        'is_lower()',
+        'is_lowercase()',
+        'None of the above'
+      ],
+      'answer': 'islower()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello"[1:3])',
+      'options': ['el', 'e', 'Error', 'He'],
+      'answer': 'el',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a string in Python?',
+      'options': ['"Hello"', "'Hello'", 'Hello', 'None of the above'],
+      'answer': 'Hello',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python" + "Programming")',
+      'options': ['PythonProgramming', 'Error', 'None', 'Python Programming'],
+      'answer': 'PythonProgramming',
+    },
+    {
+      'question':
+          'Which of the following is used to get the absolute value of a number in Python?',
+      'options': ['abs()', 'absolute()', 'abs_value()', 'None of the above'],
+      'answer': 'abs()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".replace("P", "J"))',
+      'options': ['Jython', 'Python', 'Error', 'None'],
+      'answer': 'Jython',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string contains only uppercase letters in Python?',
+      'options': [
+        'isupper()',
+        'is_upper()',
+        'is_uppercase()',
+        'None of the above'
+      ],
+      'answer': 'isupper()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[:3])',
+      'options': ['Pyt', 'Py', 'Pyth', 'Error'],
+      'answer': 'Pyt',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a variable is None in Python?',
+      'options': [
+        'if var is None:',
+        'if var == None:',
+        'if var != None:',
+        'None of the above'
+      ],
+      'answer': 'if var != None:',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python" * 3)',
+      'options': ['PythonPythonPython', 'Python', 'Error', 'None'],
+      'answer': 'PythonPythonPython',
+    },
+    {
+      'question': 'Which of the following is used to round a number in Python?',
+      'options': ['round()', 'ceil()', 'floor()', 'None of the above'],
+      'answer': 'round()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello"[0])',
+      'options': ['H', 'e', 'Error', 'Hello'],
+      'answer': 'H',
+    },
+    {
+      'question':
+          'Which of the following is used to create an empty set in Python?',
+      'options': ['set()', '{}', 'None', 'All of the above'],
+      'answer': 'set()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python" + "3.0")',
+      'options': ['Python3.0', 'Error', 'None', 'Python 3.0'],
+      'answer': 'Python3.0',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to get the current time in Python?',
+      'options': [
+        'time()',
+        'datetime.now()',
+        'time.localtime()',
+        'None of the above'
+      ],
+      'answer': 'time()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".startswith("He"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a string to a boolean in Python?',
+      'options': ['bool()', 'convert()', 'to_bool()', 'None of the above'],
+      'answer': 'bool()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[-2])',
+      'options': ['o', 'n', 'Error', 'None'],
+      'answer': 'o',
+    },
+    {
+      'question':
+          'Which of the following is used to convert an integer to a string in Python?',
+      'options': ['str()', 'int()', 'string()', 'None of the above'],
+      'answer': 'str()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[-3:])',
+      'options': ['ton', 'on', 'Error', 'n'],
+      'answer': 'ton',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to define a dictionary in Python?',
+      'options': ['{}', 'dict()', '[]', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[0])',
+      'options': ['P', 'p', 'Error', 'None'],
+      'answer': 'P',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a variable is an integer in Python?',
+      'options': [
+        'isinstance(var, int)',
+        'type(var) == int',
+        'isint()',
+        'None of the above'
+      ],
+      'answer': 'isint()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".startswith("P"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is used to get the maximum value in a dictionary?',
+      'options': ['max()', 'highest()', 'max_value()', 'None of the above'],
+      'answer': 'max()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".islower())',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'False',
+    },
+    {
+      'question':
+          'Which of the following is used to remove a key from a dictionary?',
+      'options': ['del', 'remove()', 'discard()', 'None of the above'],
+      'answer': 'del',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[-1])',
+      'options': ['n', 'Error', 'None', 'Python'],
+      'answer': 'n',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a boolean in Python?',
+      'options': ['bool(0)', 'True', 'false', 'None'],
+      'answer': 'false',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".count("o"))',
+      'options': ['0', '1', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question': 'Which of the following is used to create a list in Python?',
+      'options': ['[]', '()', '{}', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".index("n"))',
+      'options': ['5', '4', 'Error', 'None'],
+      'answer': '4',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a number is positive in Python?',
+      'options': [
+        'if num > 0:',
+        'if num >= 0:',
+        'if num < 0:',
+        'None of the above'
+      ],
+      'answer': 'if num < 0:',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".count("P"))',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following is used to create a new variable in Python?',
+      'options': ['=', '==', ':=', 'None of the above'],
+      'answer': '=',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".split("l"))',
+      'options': ['["He", "lo"]', '["Hel", "o"]', 'Error', 'None'],
+      'answer': '["He", "lo"]',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is empty in Python?',
+      'options': [
+        'if not string:',
+        'if string == "":',
+        'if string:',
+        'None of the above'
+      ],
+      'answer': 'if string:',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[2:5])',
+      'options': ['tho', 'tho', 'Pyt', 'Error'],
+      'answer': 'tho',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current date in Python?',
+      'options': [
+        'date.today()',
+        'datetime.now()',
+        'datetime.today()',
+        'None of the above'
+      ],
+      'answer': 'date.today()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".strip("H"))',
+      'options': ['ello', 'Hello', 'Error', 'None'],
+      'answer': 'ello',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a number in Python?',
+      'options': ['10', '10.5', '0b10', 'None of the above'],
+      'answer': 'None of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[:-1])',
+      'options': ['Pytho', 'Pytho', 'Error', 'Python'],
+      'answer': 'Pytho',
+    },
+    {
+      'question':
+          'Which of the following is used to create a slice of a list in Python?',
+      'options': ['slice()', '[:]', '[::]', 'None of the above'],
+      'answer': '[:]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[-2:])',
+      'options': ['on', 'n', 'Error', 'None'],
+      'answer': 'on',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is numeric in Python?',
+      'options': [
+        'isnumeric()',
+        'isdigit()',
+        'is_number()',
+        'None of the above'
+      ],
+      'answer': 'is_number()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".upper())',
+      'options': ['HELLO', 'hello', 'Error', 'None'],
+      'answer': 'HELLO',
+    },
+    {
+      'question':
+          'Which of the following is used to remove all elements from a list in Python?',
+      'options': ['clear()', 'remove()', 'delete()', 'None of the above'],
+      'answer': 'clear()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[-1:])',
+      'options': ['n', 'Error', 'None', 'Python'],
+      'answer': 'n',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string contains only digits in Python?',
+      'options': [
+        'isdigit()',
+        'is_numeric()',
+        'isdecimal()',
+        'None of the above'
+      ],
+      'answer': 'is_numeric()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".rfind("n"))',
+      'options': ['4', '5', 'Error', 'None'],
+      'answer': '4',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string contains only whitespace in Python?',
+      'options': [
+        'isspace()',
+        'is_whitespace()',
+        'isblank()',
+        'None of the above'
+      ],
+      'answer': 'isspace()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".strip("H"))',
+      'options': ['ello, World', 'Hello, World', 'Error', 'None'],
+      'answer': 'ello, World',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is alphanumeric in Python?',
+      'options': [
+        'isalnum()',
+        'is_alpha_numeric()',
+        'is_alnum()',
+        'None of the above'
+      ],
+      'answer': 'is_alpha_numeric()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".count("P"))',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following is used to create an empty bytearray in Python?',
+      'options': ['bytearray()', '[]', '{}', 'None of the above'],
+      'answer': 'bytearray()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".split(" "))',
+      'options': ['["Hello,", "World"]', '["Hello", "World"]', 'Error', 'None'],
+      'answer': '["Hello,", "World"]',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a variable in Python?',
+      'options': [
+        'my_var = 10',
+        'my var = 10',
+        'myVar = 10',
+        'None of the above'
+      ],
+      'answer': 'my var = 10',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".rindex("n"))',
+      'options': ['4', '5', 'Error', 'None'],
+      'answer': '4',
+    },
+    {
+      'question':
+          'Which of the following is used to create a new bytearray in Python?',
+      'options': ['bytearray()', '[]', '{}', 'None of the above'],
+      'answer': 'bytearray()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello"[1])',
+      'options': ['H', 'e', 'Error', 'l'],
+      'answer': 'e',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string is a valid identifier in Python?',
+      'options': [
+        'isidentifier()',
+        'is_valid()',
+        'is_id()',
+        'None of the above'
+      ],
+      'answer': 'isidentifier()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".capitalize())',
+      'options': ['Python', 'Error', 'None', 'PYTHON'],
+      'answer': 'Python',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to remove duplicates from a list in Python?',
+      'options': ['set()', 'list()', 'unique()', 'None of the above'],
+      'answer': 'unique()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".startswith("Hello"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is used to get the number of items in a dictionary?',
+      'options': ['len()', 'length()', 'size()', 'None of the above'],
+      'answer': 'len()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".endswith("n"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a bytearray to a string in Python?',
+      'options': ['decode()', 'encode()', 'str()', 'None of the above'],
+      'answer': 'decode()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".find("o"))',
+      'options': ['4', '3', 'Error', 'None'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'Which of the following is used to get the length of a string in Python?',
+      'options': ['len()', 'length()', 'size()', 'None of the above'],
+      'answer': 'len()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".replace("o", "a"))',
+      'options': ['Hella, Warld', 'Hello, World', 'Error', 'None'],
+      'answer': 'Hella, Warld',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a tuple in Python?',
+      'options': ['()', '[]', 'tuple()', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".count("l"))',
+      'options': ['3', '2', 'Error', 'None'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a string to an integer in Python?',
+      'options': ['int()', 'str()', 'float()', 'None of the above'],
+      'answer': 'int()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".split(","))',
+      'options': ['["Hello", " World"]', '["Hello", "World"]', 'Error', 'None'],
+      'answer': '["Hello", " World"]',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a float in Python?',
+      'options': ['10', '10.0', '0b10', 'None of the above'],
+      'answer': '0b10',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[0:2])',
+      'options': ['Py', 'Pyt', 'Error', 'None'],
+      'answer': 'Py',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string contains only letters in Python?',
+      'options': [
+        'isalpha()',
+        'is_letters()',
+        'isalpha_numeric()',
+        'None of the above'
+      ],
+      'answer': 'isalpha()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".count("o"))',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a string to a float in Python?',
+      'options': ['float()', 'int()', 'str()', 'None of the above'],
+      'answer': 'float()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".find("l"))',
+      'options': ['2', '1', 'Error', 'None'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is a valid email in Python?',
+      'options': [
+        'is_valid_email()',
+        're.match()',
+        'is_email()',
+        'None of the above'
+      ],
+      'answer': 'is_valid_email()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".startswith("y"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'False',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a float to a string in Python?',
+      'options': ['str()', 'float()', 'to_string()', 'None of the above'],
+      'answer': 'str()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".endswith("World"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a frozenset in Python?',
+      'options': ['frozenset()', '[]', 'set()', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".index("l"))',
+      'options': ['2', '1', 'Error', 'None'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following is used to get the minimum value in a dictionary?',
+      'options': ['min()', 'lowest()', 'min_value()', 'None of the above'],
+      'answer': 'min()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".capitalize())',
+      'options': ['Hello', 'hello', 'Error', 'None'],
+      'answer': 'Hello',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is uppercase in Python?',
+      'options': [
+        'isupper()',
+        'is_upper()',
+        'is_uppercase()',
+        'None of the above'
+      ],
+      'answer': 'is_upper()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[1:3])',
+      'options': ['Py', 'yth', 'Error', 'yt'],
+      'answer': 'yth',
+    },
+    {
+      'question':
+          'Which of the following is used to create an empty dictionary in Python?',
+      'options': ['{}', 'dict()', 'Both', 'None of the above'],
+      'answer': 'Both',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".replace("n", "N"))',
+      'options': ['PythoN', 'Error', 'Python', 'None'],
+      'answer': 'PythoN',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is a valid URL in Python?',
+      'options': [
+        'is_valid_url()',
+        're.match()',
+        'is_url()',
+        'None of the above'
+      ],
+      'answer': 'is_valid_url()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".isupper())',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'False',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a byte to a string in Python?',
+      'options': ['decode()', 'encode()', 'str()', 'None of the above'],
+      'answer': 'decode()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".isalpha())',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a set in Python?',
+      'options': ['set()', '[]', '{}', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".join(["Hello", "World"]))',
+      'options': ['HelloPythonWorld', 'Hello World', 'Error', 'None'],
+      'answer': 'HelloPythonWorld',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current time in Python?',
+      'options': [
+        'time.time()',
+        'datetime.now()',
+        'time.localtime()',
+        'None of the above'
+      ],
+      'answer': 'datetime.now()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".title())',
+      'options': ['Hello', 'Hello World', 'Error', 'None'],
+      'answer': 'Hello',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a variable is a list in Python?',
+      'options': [
+        'isinstance(var, list)',
+        'type(var) == list',
+        'is_list()',
+        'None of the above'
+      ],
+      'answer': 'is_list()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".find("x"))',
+      'options': ['-1', 'Error', 'None', '0'],
+      'answer': '-1',
+    },
+    {
+      'question':
+          'Which of the following is used to get the length of a dictionary in Python?',
+      'options': ['len()', 'length()', 'size()', 'None of the above'],
+      'answer': 'len()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".count("a"))',
+      'options': ['0', '1', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a frozenset in Python?',
+      'options': ['frozenset()', '[]', 'set()', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".startswith("P"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is used to get the maximum value in a dictionary?',
+      'options': ['max()', 'highest()', 'max_value()', 'None of the above'],
+      'answer': 'max()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".split("l"))',
+      'options': [
+        '["He", "lo, World"]',
+        '["Hel", "lo, Wor", "d"]',
+        'Error',
+        'None'
+      ],
+      'answer': '["Hel", "lo, Wor", "d"]',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a boolean in Python?',
+      'options': ['True', 'False', '1', 'None of the above'],
+      'answer': 'None of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".index("o"))',
+      'options': ['4', '5', 'Error', 'None'],
+      'answer': '4',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current date and time in Python?',
+      'options': [
+        'datetime.now()',
+        'datetime.today()',
+        'datetime.current()',
+        'None of the above'
+      ],
+      'answer': 'datetime.now()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".isalnum())',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a variable is a tuple in Python?',
+      'options': [
+        'isinstance(var, tuple)',
+        'type(var) == tuple',
+        'is_tuple()',
+        'None of the above'
+      ],
+      'answer': 'is_tuple()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".find("y"))',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a list to a set in Python?',
+      'options': ['set()', 'list()', '[]', 'None of the above'],
+      'answer': 'set()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".count("l"))',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a variable is a string in Python?',
+      'options': [
+        'isinstance(var, str)',
+        'type(var) == str',
+        'is_string()',
+        'None of the above'
+      ],
+      'answer': 'is_string()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".index("o"))',
+      'options': ['3', '4', 'Error', 'None'],
+      'answer': 'Error',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string contains only numbers in Python?',
+      'options': [
+        'isnumeric()',
+        'isdigit()',
+        'is_number()',
+        'None of the above'
+      ],
+      'answer': 'isnumeric()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".count("n"))',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string is lowercase in Python?',
+      'options': [
+        'islower()',
+        'is_lower()',
+        'is_lowercase()',
+        'None of the above'
+      ],
+      'answer': 'islower()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".find("H"))',
+      'options': ['0', '1', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a lambda function in Python?',
+      'options': [
+        'lambda x: x + 1',
+        'x => x + 1',
+        'lambda x: x + 1',
+        'None of the above'
+      ],
+      'answer': 'x => x + 1',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".title())',
+      'options': ['Python', 'Error', 'None', 'Python'],
+      'answer': 'Python',
+    },
+    {
+      'question':
+          'Which of the following is used to create a dictionary in Python?',
+      'options': ['{}', '[]', '()', 'None of the above'],
+      'answer': '{}',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".replace("o", "O"))',
+      'options': ['HellO, WOrld', 'Hello, World', 'Error', 'None'],
+      'answer': 'HellO, WOrld',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is a valid JSON in Python?',
+      'options': [
+        'is_valid_json()',
+        'json.loads()',
+        'is_json()',
+        'None of the above'
+      ],
+      'answer': 'is_valid_json()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".endswith("on"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current date in Python?',
+      'options': [
+        'date.today()',
+        'datetime.now()',
+        'datetime.today()',
+        'None of the above'
+      ],
+      'answer': 'date.today()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".count("l"))',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a tuple in Python?',
+      'options': ['()', '[]', 'tuple()', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".find("o"))',
+      'options': ['-1', 'Error', 'None', '0'],
+      'answer': '-1',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current time in Python?',
+      'options': [
+        'time.time()',
+        'datetime.now()',
+        'time.localtime()',
+        'None of the above'
+      ],
+      'answer': 'datetime.now()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".join(["Hello", "World"]))',
+      'options': ['HelloPythonWorld', 'Hello World', 'Error', 'None'],
+      'answer': 'HelloPythonWorld',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is a valid URL in Python?',
+      'options': [
+        'is_valid_url()',
+        're.match()',
+        'is_url()',
+        'None of the above'
+      ],
+      'answer': 'is_valid_url()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".title())',
+      'options': ['Hello', 'Hello World', 'Error', 'None'],
+      'answer': 'Hello',
+    },
+    {
+      'question':
+          'Which of the following is used to create an empty dictionary in Python?',
+      'options': ['{}', 'dict()', 'Both', 'None of the above'],
+      'answer': 'Both',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".replace("n", "N"))',
+      'options': ['PythoN', 'Error', 'Python', 'None'],
+      'answer': 'PythoN',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is uppercase in Python?',
+      'options': [
+        'isupper()',
+        'is_upper()',
+        'is_uppercase()',
+        'None of the above'
+      ],
+      'answer': 'is_upper()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[1:3])',
+      'options': ['Py', 'yth', 'Error', 'yt'],
+      'answer': 'yth',
+    },
+    {
+      'question':
+          'Which of the following is used to get the maximum value in a dictionary?',
+      'options': ['max()', 'highest()', 'max_value()', 'None of the above'],
+      'answer': 'max()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".split("l"))',
+      'options': [
+        '["He", "lo, World"]',
+        '["Hel", "lo, Wor", "d"]',
+        'Error',
+        'None'
+      ],
+      'answer': '["Hel", "lo, Wor", "d"]',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a boolean in Python?',
+      'options': ['True', 'False', '1', 'None of the above'],
+      'answer': 'None of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".index("o"))',
+      'options': ['4', '5', 'Error', 'None'],
+      'answer': '4',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current date and time in Python?',
+      'options': [
+        'datetime.now()',
+        'datetime.today()',
+        'datetime.current()',
+        'None of the above'
+      ],
+      'answer': 'datetime.now()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".isalnum())',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a variable is a tuple in Python?',
+      'options': [
+        'isinstance(var, tuple)',
+        'type(var) == tuple',
+        'is_tuple()',
+        'None of the above'
+      ],
+      'answer': 'is_tuple()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".find("y"))',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a list to a set in Python?',
+      'options': ['set()', 'list()', '[]', 'None of the above'],
+      'answer': 'set()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".count("l"))',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a variable is a string in Python?',
+      'options': [
+        'isinstance(var, str)',
+        'type(var) == str',
+        'is_string()',
+        'None of the above'
+      ],
+      'answer': 'is_string()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".index("o"))',
+      'options': ['3', '4', 'Error', 'None'],
+      'answer': 'Error',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string contains only numbers in Python?',
+      'options': [
+        'isnumeric()',
+        'isdigit()',
+        'is_number()',
+        'None of the above'
+      ],
+      'answer': 'isnumeric()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".count("n"))',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string is lowercase in Python?',
+      'options': [
+        'islower()',
+        'is_lower()',
+        'is_lowercase()',
+        'None of the above'
+      ],
+      'answer': 'islower()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".find("H"))',
+      'options': ['0', '1', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a lambda function in Python?',
+      'options': [
+        'lambda x: x + 1',
+        'x => x + 1',
+        'lambda x: x + 1',
+        'None of the above'
+      ],
+      'answer': 'x => x + 1',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".title())',
+      'options': ['Python', 'Error', 'None', 'Python'],
+      'answer': 'Python',
+    },
+    {
+      'question':
+          'Which of the following is used to create a dictionary in Python?',
+      'options': ['{}', '[]', '()', 'None of the above'],
+      'answer': '{}',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".replace("o", "O"))',
+      'options': ['HellO, WOrld', 'Hello, World', 'Error', 'None'],
+      'answer': 'HellO, WOrld',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is a valid JSON in Python?',
+      'options': [
+        'is_valid_json()',
+        'json.loads()',
+        'is_json()',
+        'None of the above'
+      ],
+      'answer': 'is_valid_json()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".endswith("on"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current date in Python?',
+      'options': [
+        'date.today()',
+        'datetime.now()',
+        'datetime.today()',
+        'None of the above'
+      ],
+      'answer': 'date.today()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".count("l"))',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a tuple in Python?',
+      'options': ['()', '[]', 'tuple()', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".find("o"))',
+      'options': ['-1', 'Error', 'None', '0'],
+      'answer': '-1',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current time in Python?',
+      'options': [
+        'time.time()',
+        'datetime.now()',
+        'time.localtime()',
+        'None of the above'
+      ],
+      'answer': 'datetime.now()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".join(["Hello", "World"]))',
+      'options': ['HelloPythonWorld', 'Hello World', 'Error', 'None'],
+      'answer': 'HelloPythonWorld',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is a valid URL in Python?',
+      'options': [
+        'is_valid_url()',
+        're.match()',
+        'is_url()',
+        'None of the above'
+      ],
+      'answer': 'is_valid_url()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".title())',
+      'options': ['Hello', 'Hello World', 'Error', 'None'],
+      'answer': 'Hello',
+    },
+    {
+      'question':
+          'Which of the following is used to create an empty dictionary in Python?',
+      'options': ['{}', 'dict()', 'Both', 'None of the above'],
+      'answer': 'Both',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".replace("n", "N"))',
+      'options': ['PythoN', 'Error', 'Python', 'None'],
+      'answer': 'PythoN',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is uppercase in Python?',
+      'options': [
+        'isupper()',
+        'is_upper()',
+        'is_uppercase()',
+        'None of the above'
+      ],
+      'answer': 'is_upper()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[1:3])',
+      'options': ['Py', 'yth', 'Error', 'yt'],
+      'answer': 'yth',
+    },
+    {
+      'question':
+          'Which of the following is used to get the maximum value in a dictionary?',
+      'options': ['max()', 'highest()', 'max_value()', 'None of the above'],
+      'answer': 'max()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".split("l"))',
+      'options': [
+        '["He", "lo, World"]',
+        '["Hel", "lo, Wor", "d"]',
+        'Error',
+        'None'
+      ],
+      'answer': '["Hel", "lo, Wor", "d"]',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a boolean in Python?',
+      'options': ['True', 'False', '1', 'None of the above'],
+      'answer': 'None of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".index("o"))',
+      'options': ['4', '5', 'Error', 'None'],
+      'answer': '4',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current date and time in Python?',
+      'options': [
+        'datetime.now()',
+        'datetime.today()',
+        'datetime.current()',
+        'None of the above'
+      ],
+      'answer': 'datetime.now()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".isalnum())',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a variable is a tuple in Python?',
+      'options': [
+        'isinstance(var, tuple)',
+        'type(var) == tuple',
+        'is_tuple()',
+        'None of the above'
+      ],
+      'answer': 'is_tuple()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".find("y"))',
+      'options': ['1', '0', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following is used to convert a list to a set in Python?',
+      'options': ['set()', 'list()', '[]', 'None of the above'],
+      'answer': 'set()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".count("l"))',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '2',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a variable is a string in Python?',
+      'options': [
+        'isinstance(var, str)',
+        'type(var) == str',
+        'is_string()',
+        'None of the above'
+      ],
+      'answer': 'is_string()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".index("o"))',
+      'options': ['3', '4', 'Error', 'None'],
+      'answer': 'Error',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string contains only numbers in Python?',
+      'options': [
+        'isnumeric()',
+        'isdigit()',
+        'is_number()',
+        'None of the above'
+      ],
+      'answer': 'isnumeric()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".count("n"))',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '1',
+    },
+    {
+      'question':
+          'Which of the following is used to check if a string is lowercase in Python?',
+      'options': [
+        'islower()',
+        'is_lower()',
+        'is_lowercase()',
+        'None of the above'
+      ],
+      'answer': 'islower()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".find("H"))',
+      'options': ['0', '1', 'Error', 'None'],
+      'answer': '0',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a lambda function in Python?',
+      'options': [
+        'lambda x: x + 1',
+        'x => x + 1',
+        'lambda x: x + 1',
+        'None of the above'
+      ],
+      'answer': 'x => x + 1',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".title())',
+      'options': ['Python', 'Error', 'None', 'Python'],
+      'answer': 'Python',
+    },
+    {
+      'question':
+          'Which of the following is used to create a dictionary in Python?',
+      'options': ['{}', '[]', '()', 'None of the above'],
+      'answer': '{}',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".replace("o", "O"))',
+      'options': ['HellO, WOrld', 'Hello, World', 'Error', 'None'],
+      'answer': 'HellO, WOrld',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is a valid JSON in Python?',
+      'options': [
+        'is_valid_json()',
+        'json.loads()',
+        'is_json()',
+        'None of the above'
+      ],
+      'answer': 'is_valid_json()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".endswith("on"))',
+      'options': ['True', 'False', 'Error', 'None'],
+      'answer': 'True',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current date in Python?',
+      'options': [
+        'date.today()',
+        'datetime.now()',
+        'datetime.today()',
+        'None of the above'
+      ],
+      'answer': 'date.today()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".count("l"))',
+      'options': ['1', '2', 'Error', 'None'],
+      'answer': '3',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a tuple in Python?',
+      'options': ['()', '[]', 'tuple()', 'None of the above'],
+      'answer': '[]',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".find("o"))',
+      'options': ['-1', 'Error', 'None', '0'],
+      'answer': '-1',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current time in Python?',
+      'options': [
+        'time.time()',
+        'datetime.now()',
+        'time.localtime()',
+        'None of the above'
+      ],
+      'answer': 'datetime.now()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".join(["Hello", "World"]))',
+      'options': ['HelloPythonWorld', 'Hello World', 'Error', 'None'],
+      'answer': 'HelloPythonWorld',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is a valid URL in Python?',
+      'options': [
+        'is_valid_url()',
+        're.match()',
+        'is_url()',
+        'None of the above'
+      ],
+      'answer': 'is_valid_url()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello".title())',
+      'options': ['Hello', 'Hello World', 'Error', 'None'],
+      'answer': 'Hello',
+    },
+    {
+      'question':
+          'Which of the following is used to create an empty dictionary in Python?',
+      'options': ['{}', 'dict()', 'Both', 'None of the above'],
+      'answer': 'Both',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python".replace("n", "N"))',
+      'options': ['PythoN', 'Error', 'Python', 'None'],
+      'answer': 'PythoN',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to check if a string is uppercase in Python?',
+      'options': [
+        'isupper()',
+        'is_upper()',
+        'is_uppercase()',
+        'None of the above'
+      ],
+      'answer': 'is_upper()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Python"[1:3])',
+      'options': ['Py', 'yth', 'Error', 'yt'],
+      'answer': 'yth',
+    },
+    {
+      'question':
+          'Which of the following is used to get the maximum value in a dictionary?',
+      'options': ['max()', 'highest()', 'max_value()', 'None of the above'],
+      'answer': 'max()',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".split("l"))',
+      'options': [
+        '["He", "lo, World"]',
+        '["Hel", "lo, Wor", "d"]',
+        'Error',
+        'None'
+      ],
+      'answer': '["Hel", "lo, Wor", "d"]',
+    },
+    {
+      'question':
+          'Which of the following is not a valid way to create a boolean in Python?',
+      'options': ['True', 'False', '1', 'None of the above'],
+      'answer': 'None of the above',
+    },
+    {
+      'question':
+          'What is the output of the following code?\n\nprint("Hello, World".index("o"))',
+      'options': ['4', '5', 'Error', 'None'],
+      'answer': '4',
+    },
+    {
+      'question':
+          'Which of the following is used to get the current date and time in Python?',
+      'options': [
+        'datetime.now()',
+        'datetime.today()',
+        'datetime.current()',
+        'None of the above'
+      ],
+      'answer': 'datetime.now()',
+    },
+    {
       'question': 'What is the output of print("abc"[-2:])?',
       'options': ['bc', 'ab', 'Error', 'None'],
       'answer': 'bc'
@@ -1072,18 +4114,23 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
         height: MediaQuery.of(context).size.height, // Ensures full height
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.deepPurple.withOpacity(0.7), Colors.purpleAccent.withOpacity(0.7)],
+            colors: [
+              Colors.deepPurple.withOpacity(0.7),
+              Colors.purpleAccent.withOpacity(0.7)
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
         ),
-        child: SingleChildScrollView( // Scrollable content
+        child: SingleChildScrollView(
+          // Scrollable content
           child: Column(
             key: ValueKey<int>(currentQuestionIndex),
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(10),
@@ -1105,7 +4152,8 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
                 style: TextStyle(fontSize: 18, color: Colors.redAccent),
               ),
               const SizedBox(height: 20),
-              Column( // Options in a Column for better scrolling
+              Column(
+                // Options in a Column for better scrolling
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: selectedQuestions[currentQuestionIndex]['options']
                     .map<Widget>((option) {
@@ -1117,7 +4165,8 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.purpleAccent,
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0)),
                       ),
                       onPressed: _answered ? null : () => selectAnswer(option),
                       child: Text(option, style: const TextStyle(fontSize: 18)),
@@ -1136,7 +4185,6 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
       ),
     );
   }
-
 
   void _startTimer() {
     _timeLeft = 5;

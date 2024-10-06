@@ -186,7 +186,7 @@ class _EditQuizDetailsScreenState extends State<EditQuizDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Edit Quiz"),
-        backgroundColor: Colors.blueAccent, // Use your preferred color
+        backgroundColor: Color(0xFF9C27B0), // Use your preferred color
         actions: [
           IconButton(
             icon: Icon(Icons.save),
@@ -200,39 +200,43 @@ class _EditQuizDetailsScreenState extends State<EditQuizDetailsScreen> {
         child: Column(
           children: [
             // Quiz Title
-            TextField(
-              controller: _titleController,
-              decoration: InputDecoration(
-                labelText: 'Quiz Title',
-                labelStyle: TextStyle(color: Colors.grey[700]),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blueAccent), // Your color
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey[400]!),
+            SingleChildScrollView( // Make title scrollable
+              child: TextField(
+                controller: _titleController,
+                decoration: InputDecoration(
+                  labelText: 'Quiz Title',
+                  labelStyle: TextStyle(color: Colors.grey[700]),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blueAccent),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey[400]!),
+                  ),
                 ),
               ),
             ),
             const SizedBox(height: 10),
             // Quiz Description
-            TextField(
-              controller: _descriptionController,
-              decoration: InputDecoration(
-                labelText: 'Quiz Description',
-                labelStyle: TextStyle(color: Colors.grey[700]),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blueAccent),
+            SingleChildScrollView( // Make description scrollable
+              child: TextField(
+                controller: _descriptionController,
+                decoration: InputDecoration(
+                  labelText: 'Quiz Description',
+                  labelStyle: TextStyle(color: Colors.grey[700]),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blueAccent),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey[400]!),
+                  ),
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey[400]!),
-                ),
+                maxLines: 3,
               ),
-              maxLines: 3,
             ),
             const SizedBox(height: 20),
             const Text(
               "Questions:",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueAccent),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF9C27B0)),
             ),
             const SizedBox(height: 10),
             Expanded(
@@ -341,9 +345,10 @@ class _EditQuizDetailsScreenState extends State<EditQuizDetailsScreen> {
                                 ElevatedButton.icon(
                                   onPressed: () => _addOption(index),
                                   icon: const Icon(Icons.add, color: Colors.white),
-                                  label: const Text("Add Option"),
+                                  label: const Text("Add Option",style: TextStyle(color: Colors.white)),
+
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blueAccent, // Your button color
+                                    backgroundColor:Color(0xFF9C27B0), // Your button color
                                   ),
                                 ),
                               ],

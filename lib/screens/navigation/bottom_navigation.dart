@@ -11,18 +11,46 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   int _currentIndex = 0; // Track the current tab index
   PageController _pageController = PageController(); // Controller for PageView
+  late AnimationController _animationController; // Animation controller
+  late Animation<double> _animation; // Animation for scaling text
+  bool _isBellEnabled = true; // Variable to track the state of the bell button
 
   // List of screens for each tab
   final List<Widget> _screens = [
-    SelectQuizScreen(),          // Updated to HomeScreen from Home_Page
-    CategoriesScreen(),    // Categories tab
-    MyQuizzesScreen(),     // My Quizzes tab
-    LeaderboardScreen(),   // Leaderboard tab
-    AchieverScreen(),      // Achievements tab
+    SelectQuizScreen(),
+    CategoriesScreen(),
+    MyQuizzesScreen(),
+    LeaderboardScreen(),
+    AchieverScreen(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize animation controller
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+    _animation = Tween<double>(begin: 1.0, end: 1.2).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    // Start the animation and create a loop
+    _animationController.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose(); // Dispose the controller when not needed
+    super.dispose();
+  }
 
   // Handles the tap on the bottom navigation bar
   void _onTap(int index) {
@@ -30,6 +58,8 @@ class _HomePageState extends State<HomePage> {
       _currentIndex = index; // Update current index
       _pageController.animateToPage(index,
           duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+      // Restart animation when changing tabs
+      _animationController.forward(from: 0.0);
     });
   }
 
@@ -40,16 +70,47 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // Method to handle bell button click
+  void _onBellButtonClick() {
+    setState(() {
+      _isBellEnabled = !_isBellEnabled; // Toggle the state
+    });
+
+    // Additional actions can be added here, like showing a notification
+    if (_isBellEnabled) {
+      print("Notifications enabled");
+    } else {
+      print("Notifications disabled");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Quizai",
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
+        title: ScaleTransition(
+          scale: _animation,
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: "Quiz",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  ),
+                ),
+                TextSpan(
+                  text: "ai",
+                  style: TextStyle(
+                    color: Colors.purple,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         elevation: 4,
@@ -57,21 +118,22 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications, color: Colors.black),
-            onPressed: () {
-              // Handle notifications
-            },
+            icon: Icon(
+              _isBellEnabled ? Icons.notifications : Icons.notifications_off,
+              color: _isBellEnabled ? Colors.black : Colors.grey,
+            ),
+            onPressed: _onBellButtonClick,
           ),
         ],
         iconTheme: IconThemeData(color: Colors.black),
       ),
-      drawer: Sidebar(), // Sidebar navigation
+      drawer: Sidebar(),
       body: PageView.builder(
-        controller: _pageController, // Connect the controller
-        onPageChanged: _onPageChanged, // Page change listener
-        itemCount: _screens.length, // Number of screens
+        controller: _pageController,
+        onPageChanged: _onPageChanged,
+        itemCount: _screens.length,
         itemBuilder: (context, index) {
-          return _screens[index]; // Return current screen
+          return _screens[index];
         },
       ),
       bottomNavigationBar: Container(
@@ -86,8 +148,8 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         child: BottomNavigationBar(
-          currentIndex: _currentIndex, // Highlight the current tab
-          onTap: _onTap, // Handle tap on tab
+          currentIndex: _currentIndex,
+          onTap: _onTap,
           items: [
             _buildBottomNavigationBarItem(Icons.home, 'Home', 0),
             _buildBottomNavigationBarItem(Icons.category, 'Categories', 1),
@@ -95,10 +157,10 @@ class _HomePageState extends State<HomePage> {
             _buildBottomNavigationBarItem(Icons.leaderboard, 'Leaderboard', 3),
             _buildBottomNavigationBarItem(Icons.star, 'Achievements', 4),
           ],
-          selectedItemColor: Colors.blue, // Color for selected item
-          unselectedItemColor: Colors.grey, // Color for unselected items
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
           backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed, // Fixed type
+          type: BottomNavigationBarType.fixed,
           elevation: 8,
           selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -106,13 +168,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // Method to build individual items for the BottomNavigationBar
-  BottomNavigationBarItem _buildBottomNavigationBarItem(
-      IconData icon, String label, int index) {
+  BottomNavigationBarItem _buildBottomNavigationBarItem(IconData icon, String label, int index) {
     return BottomNavigationBarItem(
       icon: AnimatedContainer(
-        duration: Duration(milliseconds: 300), // Animation duration
-        padding: EdgeInsets.symmetric(vertical: _currentIndex == index ? 8.0 : 0.0), // Dynamic padding based on selection
+        duration: Duration(milliseconds: 300),
+        padding: EdgeInsets.symmetric(vertical: _currentIndex == index ? 8.0 : 0.0),
         child: Icon(icon, color: _currentIndex == index ? Colors.blue : Colors.grey),
       ),
       label: label,

@@ -84,6 +84,7 @@ class _SidebarState extends State<Sidebar> {
                 MaterialPageRoute(builder: (context) => ChangePasswordScreen()),
               );
             },
+            textColor: Colors.purple, // Change color for this item
           ),
           _createDrawerItem(
             icon: Icons.info,
@@ -94,6 +95,7 @@ class _SidebarState extends State<Sidebar> {
                 MaterialPageRoute(builder: (context) => AboutUsScreen()),
               );
             },
+            textColor: Colors.purple, // Change color for this item
           ),
           _createDrawerItem(
             icon: Icons.help,
@@ -104,6 +106,7 @@ class _SidebarState extends State<Sidebar> {
                 MaterialPageRoute(builder: (context) => HelpSupportScreen()),
               );
             },
+            textColor: Colors.purple, // Change color for this item
           ),
           _createDrawerItem(
             icon: Icons.privacy_tip,
@@ -114,6 +117,7 @@ class _SidebarState extends State<Sidebar> {
                 MaterialPageRoute(builder: (context) => PrivacyPolicyScreen()),
               );
             },
+            textColor: Colors.purple, // Change color for this item
           ),
           _createDrawerItem(
             icon: Icons.article,
@@ -124,6 +128,7 @@ class _SidebarState extends State<Sidebar> {
                 MaterialPageRoute(builder: (context) => PrivacyPolicyScreen()),
               );
             },
+            textColor: Colors.purple, // Change color for this item
           ),
           const SizedBox(height: 20),
           _createLogoutButton(context),
@@ -181,17 +186,17 @@ class _SidebarState extends State<Sidebar> {
       ),
     );
   }
-
   Widget _createDrawerItem({
     required IconData icon,
     required String text,
     required GestureTapCallback onTap,
+    Color textColor = Colors.black87, // Default text color
   }) {
     return ListTile(
       leading: Icon(icon, color: Color(0xFF9C27B0)),
       title: Text(
         text,
-        style: const TextStyle(color: Colors.black87),
+        style: TextStyle(color: textColor), // Use the specified text color
       ),
       onTap: onTap,
     );

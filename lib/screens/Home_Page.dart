@@ -14,11 +14,15 @@ class SelectQuizScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text(
             "Select Quiz",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 22, // Slightly larger font size
+            ),
           ),
           elevation: 0,
           centerTitle: true,
-          backgroundColor: Color(0xFF9C27B0), // purple
+          backgroundColor: Color(0xFF9C27B0), // Purple
           automaticallyImplyLeading: false, // Removes the back arrow
         ),
         body: SafeArea(
@@ -43,23 +47,29 @@ class SelectQuizScreen extends StatelessWidget {
                 const Text(
                   'Quiz Time',
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: 32, // Larger title font size
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF9C27B0), // purple
+                    color: Color(0xFF6200EE), // Deep purple for title
+                    fontFamily: 'Roboto', // Change to a nicer font if available
                   ),
                 ),
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   'Start Your Quiz',
                   style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.grey,
+                    fontSize: 20, // Slightly larger subtitle font size
+                    color: Colors.grey[800], // Darker grey for contrast
+                    fontWeight: FontWeight.w600, // Semi-bold
                   ),
                 ),
                 const SizedBox(height: 10),
                 const Text(
                   'Welcome to QuizApp, your ultimate destination for testing your knowledge and improving your skills. Whether you\'re a student looking to ace your exams or a faculty member aiming to create engaging quizzes, we have the tools for you.',
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey, // Light grey for description
+                    height: 1.5, // Better line height for readability
+                  ),
                 ),
                 const SizedBox(height: 20),
 
@@ -72,7 +82,7 @@ class SelectQuizScreen extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF9C27B0), // purple
+                    backgroundColor: Color(0xFF9C27B0), // Purple
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
@@ -87,7 +97,12 @@ class SelectQuizScreen extends StatelessWidget {
                       SizedBox(width: 10),
                       Text(
                         'Attempt Quiz',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style: TextStyle(
+                          fontSize: 20, // Increased font size for buttons
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold, // Bold text
+                          fontFamily: 'Roboto', // Change to a nicer font if available
+                        ),
                       ),
                     ],
                   ),
@@ -105,10 +120,15 @@ class SelectQuizScreen extends StatelessWidget {
                   icon: const Icon(Icons.edit, size: 24, color: Colors.white),
                   label: const Text(
                     'Create Quiz',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: 20, // Increased font size for buttons
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold, // Bold text
+                      fontFamily: 'Roboto', // Change to a nicer font if available
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF03A9F4), // blue-green
+                    backgroundColor: Color(0xFF03A9F4), // Blue-green
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
@@ -126,4 +146,3 @@ class SelectQuizScreen extends StatelessWidget {
     );
   }
 }
-

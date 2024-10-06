@@ -88,19 +88,11 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
           int timePerQuestion = 5; // Default time per question
 
           if (question.isNotEmpty && type.isNotEmpty && options.isNotEmpty && answer.isNotEmpty) {
-            // Split options correctly
             List<String> optionsList = options.split(',').map((option) => options.trim()).toList();
-
-            // Debugging: Print the parsed data
-            print('Question: $question');
-            print('Type: $type');
-            print('Options: $optionsList');
-            print('Answer: $answer');
-
             questions.add({
               'text': question,
               'type': type,
-              'options': optionsList, // Ensure options are stored as a list
+              'options': optionsList,
               'answer': answer,
               'timePerQuestion': timePerQuestion,
             });
@@ -108,7 +100,6 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
         }
       }
     }
-    print('Final Questions List: $questions'); // Print the final list
     return questions;
   }
 
@@ -135,52 +126,6 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
     await FirebaseFirestore.instance.collection('quizzes').add(quizData);
   }
 
-  Future<void> _fetchQuizData() async {
-    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-    final CollectionReference _quizCollection = _firestore.collection('quizzes');
-
-    try {
-      QuerySnapshot querySnapshot = await _quizCollection.get();
-      if (querySnapshot.docs.isEmpty) {
-        print('No quizzes found in Firestore.');
-        return;
-      }
-
-      for (var doc in querySnapshot.docs) {
-        final quizData = doc.data() as Map<String, dynamic>?;
-        if (quizData == null) {
-          print('Quiz data is null.');
-          continue;
-        }
-
-        print('Quiz Title: ${quizData['title']}');
-        final questions = quizData['questions'] as List<dynamic>?;
-        if (questions == null || questions.isEmpty) {
-          print('No questions found in quiz: ${quizData['title']}');
-          continue;
-        }
-
-        for (var question in questions) {
-          final questionData = question as Map<String, dynamic>?;
-          if (questionData == null) {
-            print('Question data is null.');
-            continue;
-          }
-
-          print('Question Text: ${questionData['text']}');
-          final options = questionData['options'];
-          if (options == null) {
-            print('No options found for question: ${questionData['text']}');
-          } else {
-            print('Options for question "${questionData['text']}": $options');
-          }
-        }
-      }
-    } catch (e) {
-      print('Error fetching quiz data: $e');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -188,7 +133,7 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
         title: const Text("Quizai", style: TextStyle(color: Colors.white)),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: const Color(0xFF9C27B0), // Dark Purple
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -200,7 +145,7 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
+                color: Color(0xFF9C27B0), // Dark Purple
               ),
             ),
             const SizedBox(height: 20),
@@ -212,7 +157,7 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
                 style: TextStyle(fontSize: 18),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orangeAccent,
+                backgroundColor: Colors.yellow[800], // Light Gray
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
@@ -239,25 +184,7 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
                 style: TextStyle(fontSize: 18),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueAccent,
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                elevation: 5,
-                minimumSize: const Size.fromHeight(50),
-              ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton.icon(
-              onPressed: _fetchQuizData,
-              icon: const Icon(Icons.download, size: 24),
-              label: const Text(
-                'Fetch Quiz Data',
-                style: TextStyle(fontSize: 18),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.greenAccent,
+                backgroundColor: const Color(0xFF03A9F4), // Light Blue
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),

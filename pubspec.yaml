@@ -36,6 +36,9 @@ dependencies:
   image: ^4.2.0
   flutter_tesseract_ocr: ^0.4.26
   firebase_storage: ^12.3.2
+  syncfusion_flutter_pdf: ^27.1.51
+  google_fonts: ^6.2.1
+
 
 
 
@@ -55,6 +58,9 @@ flutter_icons:
   image_path: "assets/icon/Quizai_logo.png"
   adaptive_icon_background: "#FFFFFF"
   adaptive_icon_foreground: "assets/icon/Quizai_logo.png"
+
+
+
 
 # Flutter-specific configuration
 flutter:

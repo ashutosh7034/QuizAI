@@ -1,5 +1,7 @@
 // lib/models/achiever.dart
 
+import 'package:flutter/material.dart';
+
 class Achiever {
   final String name;
   final int score;
@@ -28,46 +30,94 @@ class Achiever {
 
   // Method to assign badge based on score
   void assignBadge() {
-    if (score >= 3000) {
+    if (score >= 2500) {
       badge = 'Galaxy Medal';
-    } else if (score >= 2500) {
-      badge = 'Meteorite Medal';
     } else if (score >= 2000) {
-      badge = 'Crystal Medal';
+      badge = 'Meteorite Medal';
     } else if (score >= 1800) {
-      badge = 'Onyx Medal';
+      badge = 'Crystal Medal';
     } else if (score >= 1600) {
-      badge = 'Titanium Medal';
+      badge = 'Onyx Medal';
     } else if (score >= 1400) {
-      badge = 'Opal Medal';
+      badge = 'Titanium Medal';
     } else if (score >= 1200) {
-      badge = 'Pearl Medal';
+      badge = 'Opal Medal';
     } else if (score >= 1000) {
-      badge = 'Jade Medal';
+      badge = 'Pearl Medal';
     } else if (score >= 900) {
-      badge = 'Topaz Medal';
+      badge = 'Jade Medal';
     } else if (score >= 800) {
-      badge = 'Amethyst Medal';
+      badge = 'Topaz Medal';
     } else if (score >= 700) {
-      badge = 'Obsidian Medal';
+      badge = 'Amethyst Medal';
     } else if (score >= 600) {
-      badge = 'Sapphire Medal';
+      badge = 'Obsidian Medal';
     } else if (score >= 500) {
-      badge = 'Emerald Medal';
+      badge = 'Sapphire Medal';
     } else if (score >= 400) {
-      badge = 'Ruby Medal';
+      badge = 'Emerald Medal';
     } else if (score >= 300) {
-      badge = 'Diamond Medal';
+      badge = 'Ruby Medal';
     } else if (score >= 200) {
-      badge = 'Platinum Medal';
+      badge = 'Diamond Medal';
     } else if (score >= 100) {
-      badge = 'Gold Medal';
+      badge = 'Platinum Medal';
     } else if (score >= 50) {
-      badge = 'Silver Medal';
+      badge = 'Gold Medal';
     } else if (score >= 20) {
+      badge = 'Silver Medal';
+    } else if (score >= 10) {
       badge = 'Bronze Medal';
     } else {
       badge = 'Copper Medal';
+    }
+  }
+
+  // Method to get the badge color
+  Color getBadgeColor() {
+    switch (badge) {
+      case 'Galaxy Medal':
+        return Colors.black; // You can set a custom color
+      case 'Meteorite Medal':
+        return Colors.grey[800]!;
+      case 'Crystal Medal':
+        return Colors.cyan;
+      case 'Onyx Medal':
+        return Colors.black;
+      case 'Titanium Medal':
+        return Colors.blueGrey;
+      case 'Opal Medal':
+        return Colors.teal;
+      case 'Pearl Medal':
+        return Colors.white;
+      case 'Jade Medal':
+        return Colors.green;
+      case 'Topaz Medal':
+        return Colors.amber;
+      case 'Amethyst Medal':
+        return Colors.purple;
+      case 'Obsidian Medal':
+        return Colors.black;
+      case 'Sapphire Medal':
+        return Colors.blue;
+      case 'Emerald Medal':
+        return Colors.greenAccent;
+      case 'Ruby Medal':
+        return Colors.red;
+      case 'Diamond Medal':
+        return Colors.blueAccent;
+      case 'Platinum Medal':
+        return Colors.lightBlue;
+      case 'Gold Medal':
+        return Colors.yellow;
+      case 'Silver Medal':
+        return Colors.grey;
+      case 'Bronze Medal':
+        return Colors.brown;
+      case 'Copper Medal':
+        return Colors.orange;
+      default:
+        return Colors.transparent; // Default color
     }
   }
 }
