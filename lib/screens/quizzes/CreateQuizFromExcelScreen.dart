@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:excel/excel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class CreateQuizFromExcelScreen extends StatefulWidget {
   const CreateQuizFromExcelScreen({Key? key}) : super(key: key);
@@ -39,7 +40,8 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
       try {
         final quizData = await _readExcelFile(_filePath!);
         if (quizData.isNotEmpty) {
-          await _uploadQuizToFirebase(quizData);
+          String fileUrl = await _uploadFileToFirebaseStorage(_filePath!);
+          await _uploadQuizToFirebase(quizData, fileUrl);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Quiz created from $_fileName successfully!')),
           );
@@ -70,53 +72,113 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
     List<Map<String, dynamic>> questions = [];
 
     for (var table in file.tables.keys) {
-      bool isHeaderRow = true; // Flag to skip the header row
+      bool isHeaderRow = true;
+
       for (var row in file.tables[table]!.rows) {
-        // Skip header row
         if (isHeaderRow) {
-          isHeaderRow = false;
+          isHeaderRow = false; // Skip the header row
           continue;
         }
 
-        // Check if the row is not empty before processing
-        if (row.isNotEmpty) {
-          String question = (row[0]?.value is String ? row[0]?.value.toString().trim() : '') ?? '';
-          String type = (row[1]?.value is String ? row[1]?.value.toString().trim() : '') ?? '';
-          String options = (row[2]?.value is String ? row[2]?.value.toString().trim() : '') ?? '';
-          String answer = (row[3]?.value is String ? row[3]?.value.toString().trim() : '') ?? '';
+        if (row.length >= 4) {
+          String question = row[0]?.value?.toString().trim() ?? '';
+          String type = row[1]?.value?.toString().trim() ?? '';
+          String options = row[2]?.value?.toString().trim() ?? '';
+          String answer = row[3]?.value?.toString().trim() ?? '';
+          int timePerQuestion = 5; // Default time per question
 
-          // Print for debugging
-          print("Row Data - Question: $question, Type: $type, Options: $options, Answer: $answer");
+          if (question.isNotEmpty && type.isNotEmpty && options.isNotEmpty && answer.isNotEmpty) {
+            // Split options correctly
+            List<String> optionsList = options.split(',').map((option) => options.trim()).toList();
 
-          // Validate and add to the questions list
-          if (question.isNotEmpty && type == 'multiple choice' && options.isNotEmpty && answer.isNotEmpty) {
-            List<String> optionsList = options.split(',').map((option) => option.trim()).toList();
+            // Debugging: Print the parsed data
+            print('Question: $question');
+            print('Type: $type');
+            print('Options: $optionsList');
+            print('Answer: $answer');
 
             questions.add({
               'text': question,
               'type': type,
-              'options': optionsList,
+              'options': optionsList, // Ensure options are stored as a list
               'answer': answer,
+              'timePerQuestion': timePerQuestion,
             });
           }
         }
       }
     }
-
-    print("Valid Questions: $questions"); // Print the final list of questions for debugging
+    print('Final Questions List: $questions'); // Print the final list
     return questions;
   }
 
-  Future<void> _uploadQuizToFirebase(List<Map<String, dynamic>> questions) async {
+  Future<String> _uploadFileToFirebaseStorage(String path) async {
+    File file = File(path);
+    String fileName = file.path.split('/').last;
+    Reference storageReference = FirebaseStorage.instance.ref().child('quizzes/$fileName');
+    UploadTask uploadTask = storageReference.putFile(file);
+    await uploadTask;
+    String fileUrl = await storageReference.getDownloadURL();
+    return fileUrl;
+  }
+
+  Future<void> _uploadQuizToFirebase(List<Map<String, dynamic>> questions, String fileUrl) async {
     final quizData = {
       'title': _fileName,
       'description': 'Quiz created from $_fileName',
+      'fileUrl': fileUrl,
       'questions': questions,
       'created_at': FieldValue.serverTimestamp(),
-      'createdBy': 'excel', // Set createdBy to 'excel'
+      'createdBy': 'excel',
     };
 
     await FirebaseFirestore.instance.collection('quizzes').add(quizData);
+  }
+
+  Future<void> _fetchQuizData() async {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final CollectionReference _quizCollection = _firestore.collection('quizzes');
+
+    try {
+      QuerySnapshot querySnapshot = await _quizCollection.get();
+      if (querySnapshot.docs.isEmpty) {
+        print('No quizzes found in Firestore.');
+        return;
+      }
+
+      for (var doc in querySnapshot.docs) {
+        final quizData = doc.data() as Map<String, dynamic>?;
+        if (quizData == null) {
+          print('Quiz data is null.');
+          continue;
+        }
+
+        print('Quiz Title: ${quizData['title']}');
+        final questions = quizData['questions'] as List<dynamic>?;
+        if (questions == null || questions.isEmpty) {
+          print('No questions found in quiz: ${quizData['title']}');
+          continue;
+        }
+
+        for (var question in questions) {
+          final questionData = question as Map<String, dynamic>?;
+          if (questionData == null) {
+            print('Question data is null.');
+            continue;
+          }
+
+          print('Question Text: ${questionData['text']}');
+          final options = questionData['options'];
+          if (options == null) {
+            print('No options found for question: ${questionData['text']}');
+          } else {
+            print('Options for question "${questionData['text']}": $options');
+          }
+        }
+      }
+    } catch (e) {
+      print('Error fetching quiz data: $e');
+    }
   }
 
   @override
@@ -178,6 +240,24 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blueAccent,
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                elevation: 5,
+                minimumSize: const Size.fromHeight(50),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: _fetchQuizData,
+              icon: const Icon(Icons.download, size: 24),
+              label: const Text(
+                'Fetch Quiz Data',
+                style: TextStyle(fontSize: 18),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.greenAccent,
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),

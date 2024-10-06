@@ -1,7 +1,6 @@
 // File: lib/screens/quiz_screen.dart
 
 import 'dart:async'; // Import Timer class
-
 import 'package:flutter/material.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -199,8 +198,8 @@ class _QuizScreenState extends State<QuizScreen>
                         : null,
                     style: ElevatedButton.styleFrom(
                       foregroundColor: const Color(0xFF9C27B0), backgroundColor: currentQuestionIndex > 0
-                          ? Colors.white
-                          : Colors.white54,
+                        ? Colors.white
+                        : Colors.white54,
                       padding: const EdgeInsets.symmetric(
                           vertical: 12.0, horizontal: 20.0),
                       shape: RoundedRectangleBorder(
@@ -231,8 +230,7 @@ class _QuizScreenState extends State<QuizScreen>
                       currentQuestionIndex < widget.questions.length - 1
                           ? "Next"
                           : "Submit",
-                      style:
-                      const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -247,13 +245,11 @@ class _QuizScreenState extends State<QuizScreen>
   Widget _buildAnswerInput(int index) {
     String questionType = widget.questions[index]['type'];
 
-    TextEditingController textController = TextEditingController(
-      text: userAnswers[index] ?? '',
-    );
-
     if (questionType == 'Multiple Choice') {
+      // Ensure options are available
+      var options = widget.questions[index]['options'] ?? [];
       return Column(
-        children: widget.questions[index]['options'].map<Widget>((option) {
+        children: options.map<Widget>((option) {
           return RadioListTile<String>(
             title: Text(option, style: const TextStyle(color: Colors.white)),
             value: option,
@@ -267,10 +263,8 @@ class _QuizScreenState extends State<QuizScreen>
           );
         }).toList(),
       );
-    } else if (questionType == 'Short Answer' ||
-        questionType == 'Paragraph') {
+    } else if (questionType == 'Short Answer' || questionType == 'Paragraph') {
       return TextField(
-        controller: textController,
         onChanged: (value) {
           setState(() {
             userAnswers[index] = value;
@@ -305,22 +299,23 @@ class _QuizScreenState extends State<QuizScreen>
       }
     }
 
-    // Optionally, you can navigate to the QuizAnalysisScreen here
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
-        title: const Text("Quiz Completed"),
-        content: Text("Your score is $score/${widget.questions.length}"),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Close the dialog
-              Navigator.of(context).pop(); // Navigate back
-            },
-            child: const Text("OK"),
-          ),
-        ],
-      ),
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Quiz Completed'),
+          content: Text('Your score is: $score/${widget.questions.length}'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context); // Return to the previous screen after quiz completion
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
