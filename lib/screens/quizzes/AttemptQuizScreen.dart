@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'my_quizzes_screen.dart'; // Import the MyQuizzesScreen
+import '../categories/PracticeProgrammingQuiz.dart';
+import 'Start_Your_Quiz.dart';
+// Import the MyQuizzesScreen
 
 class AttemptQuizScreen extends StatelessWidget {
   @override
@@ -75,11 +77,12 @@ class AttemptQuizScreen extends StatelessWidget {
                   // Navigate to MyQuizzesScreen when the button is pressed
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyQuizzesScreen()),
+                    MaterialPageRoute(builder: (context) => StartYourQuiz()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Color(0xFF9C27B0), // Text color
+                  foregroundColor: Colors.white,
+                  backgroundColor: Color(0xFF9C27B0), // Text color
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.0),
@@ -93,7 +96,43 @@ class AttemptQuizScreen extends StatelessWidget {
                     Icon(Icons.play_arrow, size: 24, color: Colors.white),
                     SizedBox(width: 10),
                     Text(
-                      'Start Quiz',
+                      'Start Your Quiz',
+                      style: TextStyle(
+                        fontSize: 20, // Increased font size for button
+                        fontWeight: FontWeight.bold, // Bold text
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+
+              // Practice Programming Quiz Button
+              ElevatedButton(
+                onPressed: () {
+                  // Navigate to CategoriesScreen when the button is pressed
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PracticeProgrammingQuiz()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Color(0xFF9C27B0), // Text color
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  elevation: 5,
+                  minimumSize: const Size.fromHeight(50),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.code, size: 24, color: Colors.white), // Use an appropriate icon
+                    SizedBox(width: 10),
+                    Text(
+                      'Practice Programming Quiz',
                       style: TextStyle(
                         fontSize: 20, // Increased font size for button
                         fontWeight: FontWeight.bold, // Bold text
