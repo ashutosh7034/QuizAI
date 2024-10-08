@@ -38,6 +38,7 @@ dependencies:
   firebase_storage: ^12.3.2
   syncfusion_flutter_pdf: ^27.1.51
   google_fonts: ^6.2.1
+  flutter_spinkit: ^5.2.1
 
 
 
@@ -79,6 +80,7 @@ flutter:
     - assets/google.png
     - assets/facebook.png
     - assets/quiz.png
+    - assets/default_profile.png
 
 
 

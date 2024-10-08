@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:excel/excel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
 
 class CreateQuizFromExcelScreen extends StatefulWidget {
   const CreateQuizFromExcelScreen({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
   String? _fileName;
   String? _filePath;
   bool isLoading = false;
+  final FirebaseAuth _auth = FirebaseAuth.instance; // Initialize Firebase Auth
 
   Future<void> _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -114,13 +116,16 @@ class _CreateQuizFromExcelScreenState extends State<CreateQuizFromExcelScreen> {
   }
 
   Future<void> _uploadQuizToFirebase(List<Map<String, dynamic>> questions, String fileUrl) async {
+    final currentUser = _auth.currentUser; // Get the current user
+
     final quizData = {
       'title': _fileName,
       'description': 'Quiz created from $_fileName',
       'fileUrl': fileUrl,
       'questions': questions,
       'created_at': FieldValue.serverTimestamp(),
-      'createdBy': 'excel',
+      'createdBy': currentUser?.uid, // Store the user's ID
+      'creationMethod': 'Excel', // Store the creation method as "excel"
     };
 
     await FirebaseFirestore.instance.collection('quizzes').add(quizData);

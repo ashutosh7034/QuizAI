@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'Create_Quiz_manually.dart';
-import 'EditQuizDetailsScreen.dart'; // Import the new screen
+import 'CreateQuizFromExcelScreen.dart';
+import 'EditExcelQuizScreen.dart'; // Import the screen for editing Excel-based quizzes
 
-class ManageYourQuizzes extends StatefulWidget {
-  const ManageYourQuizzes({Key? key}) : super(key: key);
+class ManageExcelQuizzes extends StatefulWidget {
+  const ManageExcelQuizzes({Key? key}) : super(key: key);
 
   @override
-  _ManageYourQuizzesState createState() => _ManageYourQuizzesState();
+  _ManageExcelQuizzesState createState() => _ManageExcelQuizzesState();
 }
 
-class _ManageYourQuizzesState extends State<ManageYourQuizzes>
+class _ManageExcelQuizzesState extends State<ManageExcelQuizzes>
     with SingleTickerProviderStateMixin {
   // List to hold fetched quizzes
   List<Map<String, dynamic>> quizzes = [];
@@ -34,13 +34,13 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
     ));
   }
 
-  // Function to fetch quizzes from Firestore
+  // Function to fetch Excel-created quizzes from Firestore
   Future<void> fetchQuizzes() async {
     try {
-      // Only fetch quizzes created manually
+      // Only fetch quizzes created from Excel
       QuerySnapshot snapshot = await FirebaseFirestore.instance
           .collection('quizzes')
-          .where('createdBy', isEqualTo: 'manual') // Adjust this field as per your Firestore structure
+          .where('creationMethod', isEqualTo: 'Excel') // Filter for Excel-based quizzes
           .get();
       setState(() {
         quizzes = snapshot.docs.map((doc) {
@@ -55,7 +55,6 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
     } catch (e) {
       // Handle error
       print("Error fetching quizzes: $e");
-      // Optionally, show a snackbar or dialog to inform the user
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to fetch quizzes: $e")),
       );
@@ -66,7 +65,6 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
   Future<void> _deleteQuiz(String quizId) async {
     try {
       await FirebaseFirestore.instance.collection('quizzes').doc(quizId).delete();
-      // Remove the deleted quiz from the local list
       setState(() {
         quizzes.removeWhere((quiz) => quiz['id'] == quizId);
       });
@@ -76,7 +74,6 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
       );
     } catch (e) {
       print("Error deleting quiz: $e");
-      // Handle error (show a message to the user)
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to delete quiz: $e")),
       );
@@ -94,25 +91,24 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Manage Your Quizzes",
+          "Manage Excel Quizzes",
           style: TextStyle(color: Colors.white), // Make text white
         ),
         backgroundColor: const Color(0xFF9C27B0), // Dark Purple
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Your Quizzes",
+              "Your Excel Quizzes",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF9C27B0)), // Dark Purple
             ),
             const SizedBox(height: 20),
             Expanded(
               child: quizzes.isEmpty
-                  ? Center(child: Text("No quizzes found. Create a new quiz!"))
+                  ? const Center(child: Text("No quizzes found. Create a new quiz!"))
                   : FadeTransition(
                 opacity: _fadeAnimation,
                 child: ListView.builder(
@@ -135,15 +131,14 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
                           ],
                         ),
                         onTap: () {
-                          // Navigate to EditQuizDetailsScreen with the selected quiz data
+                          // Navigate to EditExcelQuizScreen with the selected quiz data
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => EditQuizDetailsScreen(quiz: quiz),
+                              builder: (context) => EditExcelQuizScreen(quiz: quiz),
                             ),
                           ).then((_) {
-                            // Refresh the list after returning from the edit screen
-                            fetchQuizzes();
+                            fetchQuizzes(); // Refresh the list after returning from the edit screen
                           });
                         },
                         trailing: IconButton(
@@ -182,10 +177,10 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
             ),
             ElevatedButton(
               onPressed: () {
-                // Navigate to CreateQuizScreen to create a new quiz
+                // Navigate to CreateQuizFromExcel screen to create a new Excel quiz
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const CreateQuizScreen()),
+                  MaterialPageRoute(builder: (context) => const CreateQuizFromExcelScreen()),
                 ).then((_) {
                   fetchQuizzes(); // Refresh quizzes after creating a new one
                 });
@@ -205,7 +200,7 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
                 ),
               ),
               child: const Text(
-                "Create New Quiz",
+                "Create New Excel Quiz",
                 style: TextStyle(
                   color: Colors.white, // Ensure text is white for contrast
                 ),

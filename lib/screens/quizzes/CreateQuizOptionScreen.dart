@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'ManageYourQuizzes.dart'; // Import your ManageYourQuizzes
+import 'ManageExcelQuizzesScreen.dart';
+import 'ManageYourManuallyQuizzes.dart'; // Import your ManageYourQuizzes
 import 'CreateQuizFromFileScreen.dart';
 import 'CreateQuizFromExcelScreen.dart'; // Import the new screen for Excel
 
@@ -63,7 +64,7 @@ class CreateQuizOptionScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const CreateQuizFromExcelScreen()),
+                  MaterialPageRoute(builder: (context) => const ManageExcelQuizzes()),
                 );
               },
             ),

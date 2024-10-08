@@ -60,6 +60,8 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
       return;
     }
 
+    final currentUser = _auth.currentUser; // Get the current user
+
     final quizData = {
       'title': _formTitleController.text,
       'description': _formDescriptionController.text,
@@ -68,7 +70,8 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
       'limitResponses': limitResponses,
       'timePerQuestion': timePerQuestion,
       'created_at': FieldValue.serverTimestamp(),
-      'createdBy': 'manual',
+      'createdBy': currentUser?.uid, // Store the user's ID here
+      'creationMethod': 'manually', // Store the creation method as "manually"
     };
 
     setState(() {
@@ -90,6 +93,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
       });
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -290,80 +294,19 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
       children: [
         ElevatedButton(
           style: ElevatedButton.styleFrom(backgroundColor: primaryColor),
-          onPressed: _previewQuiz,
-          child: const Text("Preview", style: TextStyle(color: Colors.white)),
+          onPressed: _createQuiz,
+          child: isLoading
+              ? CircularProgressIndicator(color: Colors.white)
+              : const Text("Create Quiz", style: TextStyle(color: Colors.white)),
         ),
-        GestureDetector(
-          onTap: _createQuiz,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-            decoration: BoxDecoration(
-              color: primaryColor,
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-            child: isLoading
-                ? const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
-                : const Text("Share", style: TextStyle(color: Colors.white)),
-          ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(backgroundColor: primaryColor),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text("Cancel", style: TextStyle(color: Colors.white)),
         ),
       ],
-    );
-  }
-
-  void _previewQuiz() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text("Quiz Preview"),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("Title: ${_formTitleController.text}", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                const SizedBox(height: 10),
-                Text("Description: ${_formDescriptionController.text}", style: const TextStyle(fontSize: 16, color: Colors.black54)),
-                const SizedBox(height: 20),
-                const Text("Questions:", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                const SizedBox(height: 10),
-                for (var question in questions)
-                  Card(
-                    margin: const EdgeInsets.symmetric(vertical: 8.0),
-                    elevation: 4,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(question['text'], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                          if (question['type'] == 'Multiple Choice') ...[
-                            const SizedBox(height: 10),
-                            for (var option in question['options'])
-                              Text("- $option", style: const TextStyle(fontSize: 14)),
-                          ],
-                          if (question['correctAnswer'] != null)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text("Correct Answer: ${question['correctAnswer']}", style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.green)),
-                            ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text("Close"),
-            ),
-          ],
-        );
-      },
     );
   }
 }

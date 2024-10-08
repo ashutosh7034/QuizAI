@@ -139,7 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Create Your Account"),
+        title: const Text("Create Your Account", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.purple[200],
@@ -170,7 +170,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     child: const Text(
                       'Register',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -184,7 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       child: const Text(
                         "Already registered? Login here.",
-                        style: TextStyle(color: Colors.blue),
+                        style: TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                     ),
                   ),
@@ -201,7 +201,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(fontSize: 16, color: Colors.black)),
+        Text(label, style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600)),
         const SizedBox(height: 8),
         TextFormField(
           controller: controller,
@@ -229,7 +229,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(fontSize: 16, color: Colors.black)),
+        Text(label, style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600)),
         const SizedBox(height: 8),
         TextFormField(
           controller: controller,
@@ -258,12 +258,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
             if (value == null || value.isEmpty) {
               return 'Please enter your $label';
             }
-            if (!isConfirm && value.length < 6) {
-              return 'Password must be at least 6 characters';
-            } else if (isConfirm && value != _passwordController.text) {
+
+            // Initialize criteria checks
+            bool hasUppercase = value.contains(RegExp(r'[A-Z]'));
+            bool hasLowercase = value.contains(RegExp(r'[a-z]'));
+            bool hasDigit = value.contains(RegExp(r'\d'));
+            bool hasSpecialCharacter = value.contains(RegExp(r'[@$!%*?&]'));
+
+            // Create a list to hold the missing criteria
+            List<String> missingCriteria = [];
+
+            // Check for each requirement and add to missing criteria if not met
+            if (!hasUppercase) {
+              missingCriteria.add('• At least one uppercase letter');
+            }
+            if (!hasLowercase) {
+              missingCriteria.add('• At least one lowercase letter');
+            }
+            if (!hasDigit) {
+              missingCriteria.add('• At least one digit');
+            }
+            if (!hasSpecialCharacter) {
+              missingCriteria.add('• At least one special character (e.g., @, \$, !)');
+            }
+
+            // If there are missing criteria, return the error message
+            if (missingCriteria.isNotEmpty) {
+              return 'Password must include:\n' + missingCriteria.join('\n');
+            }
+
+            // Confirm password logic
+            if (isConfirm && value != _passwordController.text) {
               return 'Passwords do not match';
             }
-            return null;
+
+            return null; // Return null if validation passes
           },
         ),
         const SizedBox(height: 16),
@@ -276,7 +305,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       children: [
         Checkbox(
           value: _isAgreed,
-          onChanged: (bool? value) {
+          onChanged: (value) {
             setState(() {
               _isAgreed = value ?? false;
             });
@@ -286,16 +315,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: RichText(
             text: TextSpan(
               children: [
-                const TextSpan(text: 'I agree to the ', style: TextStyle(color: Colors.black)),
+                const TextSpan(
+                  text: "I agree to the ",
+                  style: TextStyle(color: Colors.black, fontSize: 14),
+                ),
                 TextSpan(
-                  text: 'Privacy Policy',
-                  style: const TextStyle(color: Colors.blue),
+                  text: "Privacy Policy",
+                  style: const TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
                   recognizer: TapGestureRecognizer()..onTap = _openPrivacyPolicy,
                 ),
-                const TextSpan(text: ' and ', style: TextStyle(color: Colors.black)),
+                const TextSpan(
+                  text: " and ",
+                  style: TextStyle(color: Colors.black, fontSize: 14),
+                ),
                 TextSpan(
-                  text: 'Terms of Service',
-                  style: const TextStyle(color: Colors.blue),
+                  text: "Terms of Use",
+                  style: const TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
                   recognizer: TapGestureRecognizer()..onTap = _openTermsOfUse,
                 ),
               ],

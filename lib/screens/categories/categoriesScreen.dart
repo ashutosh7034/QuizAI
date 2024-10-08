@@ -1,5 +1,3 @@
-// File: lib/screens/categories_screen.dart
-
 import 'package:flutter/material.dart';
 import '../../data/category_data.dart';
 import '../../models/category.dart';
@@ -12,50 +10,76 @@ import 'dart_quiz.dart';
 class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Programming Languages',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+    // Get the screen size
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    return WillPopScope(
+      onWillPop: () async => false, // Prevent back gesture
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Programming Languages',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
+          automaticallyImplyLeading: false, // Disable the back button in the app bar
+          centerTitle: true,
+          backgroundColor: Color(0xFF9C27B0),
+          elevation: 0,
         ),
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        backgroundColor: Color(0xFF9C27B0),
-        elevation: 0,
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF9C27B0), Color(0xFF03A9F4)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF9C27B0), Color(0xFF03A9F4)],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
           ),
-        ),
-        child: GridView.builder(
-          padding: const EdgeInsets.all(16),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
+          child: GridView.builder(
+            padding: EdgeInsets.symmetric(
+                vertical: screenHeight * 0.02, horizontal: screenWidth * 0.04),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: _getCrossAxisCount(screenWidth),
+              childAspectRatio: _getChildAspectRatio(screenWidth, screenHeight),
+              crossAxisSpacing: screenWidth * 0.04,
+              mainAxisSpacing: screenHeight * 0.02,
+            ),
+            itemCount: categories.length,
+            itemBuilder: (context, index) {
+              final Category category = categories[index];
+              return GestureDetector(
+                onTap: () => _navigateToQuizScreen(context, category),
+                child: _buildCategoryCard(category, screenWidth),
+              );
+            },
           ),
-          itemCount: categories.length,
-          itemBuilder: (context, index) {
-            final Category category = categories[index];
-            return GestureDetector(
-              onTap: () => _navigateToQuizScreen(context, category),
-              child: _buildCategoryCard(category),
-            );
-          },
         ),
       ),
     );
   }
 
-  Widget _buildCategoryCard(Category category) {
+  // Helper to dynamically determine the number of grid columns
+  int _getCrossAxisCount(double screenWidth) {
+    if (screenWidth < 600) {
+      return 2; // For phones
+    } else {
+      return 3; // For tablets
+    }
+  }
+
+  // Helper to adjust the aspect ratio of the grid items
+  double _getChildAspectRatio(double screenWidth, double screenHeight) {
+    if (screenWidth < 600) {
+      return 3 / 2; // For phones
+    } else {
+      return 4 / 3; // For tablets
+    }
+  }
+
+  Widget _buildCategoryCard(Category category, double screenWidth) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
@@ -76,41 +100,51 @@ class CategoriesScreen extends StatelessWidget {
         ),
         elevation: 8,
         shadowColor: Color(0xFF9C27B0).withOpacity(0.5),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12.0),
-              child: category.isAsset
-                  ? Image.asset(
-                      category.imageUrl,
-                      height: 80,
-                      errorBuilder: (context, error, stackTrace) => const Icon(
-                          Icons.error,
-                          size: 80,
-                          color: Colors.redAccent),
-                      fit: BoxFit.cover,
-                    )
-                  : Image.network(
-                      category.imageUrl,
-                      height: 80,
-                      errorBuilder: (context, error, stackTrace) => const Icon(
-                          Icons.error,
-                          size: 80,
-                          color: Colors.redAccent),
-                      fit: BoxFit.cover,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12.0),
+                  child: category.isAsset
+                      ? Image.asset(
+                    category.imageUrl,
+                    height: screenWidth * 0.2, // Adjust size dynamically
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => const Icon(
+                      Icons.error,
+                      size: 80,
+                      color: Colors.redAccent,
                     ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              category.name,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF9C27B0), // Title color
+                  )
+                      : Image.network(
+                    category.imageUrl,
+                    height: screenWidth * 0.2, // Adjust size dynamically
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => const Icon(
+                      Icons.error,
+                      size: 80,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 10),
+              Flexible(
+                child: Text(
+                  category.name,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF9C27B0),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

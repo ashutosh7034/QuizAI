@@ -20,9 +20,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   bool _isPasswordVisible = false;
+  bool _isLoading = false; // Loading state variable
 
   // Method to handle Google Sign-In
   Future<void> _handleGoogleSignIn() async {
+    setState(() {
+      _isLoading = true; // Set loading to true
+    });
     try {
       await _googleSignIn.signOut(); // Ensures a clean login
       final googleUser = await _googleSignIn.signIn();
@@ -34,7 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
         );
 
         final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-        // Save user info to Firestore
         await _saveUserInfo(userCredential.user!.uid, userCredential.user!.email!);
 
         _showLoginSuccessMessage();
@@ -45,18 +48,24 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     } catch (error) {
       _showErrorDialog('Google Sign-In failed: $error');
+    } finally {
+      setState(() {
+        _isLoading = false; // Set loading to false
+      });
     }
   }
 
   // Method to handle Facebook Sign-In
   Future<void> _handleFacebookSignIn() async {
+    setState(() {
+      _isLoading = true; // Set loading to true
+    });
     try {
       await FacebookAuth.instance.logOut(); // Ensures a clean login
       final result = await FacebookAuth.instance.login();
       if (result.status == LoginStatus.success) {
         final credential = FacebookAuthProvider.credential(result.accessToken! as String);
         final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-        // Save user info to Firestore
         await _saveUserInfo(userCredential.user!.uid, userCredential.user!.email!);
 
         _showLoginSuccessMessage();
@@ -67,13 +76,19 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     } catch (error) {
       _showErrorDialog('Facebook Sign-In failed: $error');
+    } finally {
+      setState(() {
+        _isLoading = false; // Set loading to false
+      });
     }
   }
 
   // Method to handle Email Sign-In with Firebase
-  // Method to handle Email Sign-In with Firebase
   Future<void> _handleEmailSignIn() async {
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true; // Set loading to true
+      });
       try {
         final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
@@ -83,16 +98,13 @@ class _LoginScreenState extends State<LoginScreen> {
         User? user = userCredential.user;
 
         if (user != null) {
-          // Check if the user's email is verified
           if (!user.emailVerified) {
             await FirebaseAuth.instance.signOut();
             _showErrorDialog('Please verify your email before logging in.');
             return;
           }
 
-          // Update only the last login timestamp in Firestore
           await _updateLastLogin(user.uid);
-
           _showLoginSuccessMessage();
           Navigator.pushReplacement(
             context,
@@ -101,9 +113,14 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       } catch (error) {
         _showErrorDialog('Invalid email or password. Please try again.');
+      } finally {
+        setState(() {
+          _isLoading = false; // Set loading to false
+        });
       }
     }
   }
+
 
 // Method to save user information to Firestore
   Future<void> _saveUserInfo(String uid, String email) async {
@@ -166,16 +183,23 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: const Text(
           "Login",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 24, // Increase font size
+            fontWeight: FontWeight.bold, // Make it bold
+          ),
         ),
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
+
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
-          child: Form(
+          child: _isLoading // Show loading indicator if loading
+              ? Center(child: CircularProgressIndicator())
+              : Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -277,6 +301,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 30),
 
                 // Login button
+                // Login button
                 ElevatedButton(
                   onPressed: _handleEmailSignIn,
                   style: ElevatedButton.styleFrom(
@@ -285,17 +310,23 @@ class _LoginScreenState extends State<LoginScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    backgroundColor: Color(0xFF9C27B0),
-                    elevation: 5,
+                    backgroundColor: const Color(0xFF9C27B0), // Use your primary color
+                    elevation: 5, // Add elevation for a shadow effect
                   ),
                   child: const Text(
                     'Login',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.5,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 15),
 
-                // Register button
+                const SizedBox(height: 20), // Add space between buttons
+
+// Register button
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/register');
@@ -306,16 +337,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    backgroundColor: Colors.grey.shade300,
-                    elevation: 0,
+                    backgroundColor: Colors.grey.shade300, // A lighter color
+                    elevation: 0, // No shadow for this button
                   ),
                   child: const Text(
                     'Register',
-                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold, // Make text bold
+                      letterSpacing: 1.5, // Add letter spacing for attractiveness
+                    ),
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 30), // Add space between buttons
+
 
                 // Or continue with social login text
                 Center(
@@ -343,9 +380,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.1),
-                              spreadRadius: 2,
                               blurRadius: 5,
-                              offset: const Offset(0, 3),
+                              offset: Offset(0, 2),
                             ),
                           ],
                         ),
@@ -370,7 +406,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 10), // Space between buttons
                     GestureDetector(
                       onTap: _handleFacebookSignIn,
                       child: Container(
@@ -381,9 +416,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.1),
-                              spreadRadius: 2,
                               blurRadius: 5,
-                              offset: const Offset(0, 3),
+                              offset: Offset(0, 2),
                             ),
                           ],
                         ),
