@@ -2662,7 +2662,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
   List<String> selectedAnswers = [];
   int totalQuestions = 0;
   Timer? _timer;
-  int _timeLeft = 5; // Time limit for each question
+  int _timeLeft = 10; // Time limit for each question (changed to 10 seconds)
   bool _answered = false; // Track if the current question is answered
 
   @override
@@ -2675,7 +2675,7 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('JavaScript Quiz', style: TextStyle(color: Colors.white)),
+        title: const Text('Javascript Quiz', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.deepPurple,
       ),
       body: Container(
@@ -2695,7 +2695,8 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
   }
 
   Widget _buildQuestionInput() {
-    final TextEditingController questionCountController = TextEditingController();
+    final TextEditingController questionCountController =
+    TextEditingController();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -2723,7 +2724,8 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
             int? count = int.tryParse(questionCountController.text);
             if (count != null && count > 0) {
               setState(() {
-                totalQuestions = count > questions.length ? questions.length : count;
+                totalQuestions =
+                count > questions.length ? questions.length : count;
                 selectedQuestions = _getRandomQuestions(totalQuestions);
                 selectedAnswers = List.filled(totalQuestions, '');
                 currentQuestionIndex = 0;
@@ -2745,18 +2747,23 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
         height: MediaQuery.of(context).size.height, // Ensures full height
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.deepPurple.withOpacity(0.7), Colors.purpleAccent.withOpacity(0.7)],
+            colors: [
+              Colors.deepPurple.withOpacity(0.7),
+              Colors.purpleAccent.withOpacity(0.7)
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
         ),
-        child: SingleChildScrollView( // Scrollable content
+        child: SingleChildScrollView(
+          // Scrollable content
           child: Column(
             key: ValueKey<int>(currentQuestionIndex),
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding:
+                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(10),
@@ -2778,7 +2785,8 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
                 style: TextStyle(fontSize: 18, color: Colors.redAccent),
               ),
               const SizedBox(height: 20),
-              Column( // Options in a Column for better scrolling
+              Column(
+                // Options in a Column for better scrolling
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: selectedQuestions[currentQuestionIndex]['options']
                     .map<Widget>((option) {
@@ -2790,7 +2798,8 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.purpleAccent,
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0)),
                       ),
                       onPressed: _answered ? null : () => selectAnswer(option),
                       child: Text(option, style: const TextStyle(fontSize: 18)),
@@ -2810,9 +2819,8 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
     );
   }
 
-
   void _startTimer() {
-    _timeLeft = 5;
+    _timeLeft = 10; // Time set to 10 seconds
     _answered = false;
     _timer?.cancel();
 
@@ -2842,7 +2850,8 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
 
   List<Map<String, dynamic>> _getRandomQuestions(int count) {
     final random = Random();
-    List<Map<String, dynamic>> shuffledQuestions = List.from(questions)..shuffle(random);
+    List<Map<String, dynamic>> shuffledQuestions = List.from(questions)
+      ..shuffle(random);
     return shuffledQuestions.take(count).toList();
   }
 
@@ -2852,6 +2861,8 @@ class _JavaScriptQuizScreenState extends State<JavaScriptQuizScreen> {
       _answered = true;
       _timer?.cancel();
     });
+    // Automatically move to the next question after selecting an answer
+    Future.delayed(const Duration(seconds: 1), moveToNextQuestion);
   }
 
   void _showResultDialog() {

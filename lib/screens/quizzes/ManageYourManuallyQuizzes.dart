@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Import FirebaseAuth
 import 'Create_Quiz_manually.dart';
 import 'EditManualQuizScreen.dart'; // Import the new screen
 
@@ -16,6 +17,7 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
   List<Map<String, dynamic>> quizzes = [];
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
+  final FirebaseAuth _auth = FirebaseAuth.instance; // FirebaseAuth instance
 
   @override
   void initState() {
@@ -37,11 +39,18 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
   // Function to fetch quizzes from Firestore
   Future<void> fetchQuizzes() async {
     try {
-      // Only fetch quizzes created manually
+      User? user = _auth.currentUser; // Get the current user
+      if (user == null) {
+        throw Exception("User is not logged in");
+      }
+
+      // Only fetch quizzes created manually and by the current user
       QuerySnapshot snapshot = await FirebaseFirestore.instance
           .collection('quizzes')
-          .where('creationMethod', isEqualTo: 'manually') // Adjust this field as per your Firestore structure
+          .where('creationMethod', isEqualTo: 'manually') // Filter for manually created quizzes
+          .where('createdBy', isEqualTo: user.uid) // Filter for quizzes created by the current user
           .get();
+
       setState(() {
         quizzes = snapshot.docs.map((doc) {
           var data = doc.data() as Map<String, dynamic>;
@@ -50,12 +59,12 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
           return data;
         }).toList();
       });
+
       // Start the animation after fetching quizzes
       _animationController.forward();
     } catch (e) {
       // Handle error
       print("Error fetching quizzes: $e");
-      // Optionally, show a snackbar or dialog to inform the user
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to fetch quizzes: $e")),
       );
@@ -66,17 +75,14 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
   Future<void> _deleteQuiz(String quizId) async {
     try {
       await FirebaseFirestore.instance.collection('quizzes').doc(quizId).delete();
-      // Remove the deleted quiz from the local list
       setState(() {
         quizzes.removeWhere((quiz) => quiz['id'] == quizId);
       });
-      print("Quiz deleted successfully");
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Quiz deleted successfully")),
+        const SnackBar(content: Text("Quiz deleted successfully")),
       );
     } catch (e) {
       print("Error deleting quiz: $e");
-      // Handle error (show a message to the user)
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to delete quiz: $e")),
       );
@@ -99,7 +105,6 @@ class _ManageYourQuizzesState extends State<ManageYourQuizzes>
         ),
         backgroundColor: const Color(0xFF9C27B0), // Dark Purple
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

@@ -2187,7 +2187,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
   List<String> selectedAnswers = [];
   int totalQuestions = 0;
   Timer? _timer;
-  int _timeLeft = 10; // Time limit for each question
+  int _timeLeft = 10; // Time limit for each question (changed to 10 seconds)
   bool _answered = false; // Track if the current question is answered
 
   @override
@@ -2221,7 +2221,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
 
   Widget _buildQuestionInput() {
     final TextEditingController questionCountController =
-        TextEditingController();
+    TextEditingController();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -2250,10 +2250,11 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
             if (count != null && count > 0) {
               setState(() {
                 totalQuestions =
-                    count > questions.length ? questions.length : count;
+                count > questions.length ? questions.length : count;
                 selectedQuestions = _getRandomQuestions(totalQuestions);
                 selectedAnswers = List.filled(totalQuestions, '');
                 currentQuestionIndex = 0;
+                _answered = false;
                 _startTimer();
               });
             }
@@ -2268,25 +2269,26 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 300),
       child: Container(
-        // New Container with a gradient background
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height, // Ensures full height
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.deepPurple, Colors.purpleAccent],
+            colors: [
+              Colors.deepPurple.withOpacity(0.7),
+              Colors.purpleAccent.withOpacity(0.7)
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
         ),
         child: SingleChildScrollView(
-          // Wrap the Column in SingleChildScrollView
+          // Scrollable content
           child: Column(
             key: ValueKey<int>(currentQuestionIndex),
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(10),
@@ -2309,7 +2311,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
               ),
               const SizedBox(height: 20),
               Column(
-                // Nested Column for options
+                // Options in a Column for better scrolling
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: selectedQuestions[currentQuestionIndex]['options']
                     .map<Widget>((option) {
@@ -2343,7 +2345,7 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
   }
 
   void _startTimer() {
-    _timeLeft = 5;
+    _timeLeft = 10; // Time set to 10 seconds
     _answered = false;
     _timer?.cancel();
 
@@ -2384,6 +2386,8 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
       _answered = true;
       _timer?.cancel();
     });
+    // Automatically move to the next question after selecting an answer
+    Future.delayed(const Duration(seconds: 1), moveToNextQuestion);
   }
 
   void _showResultDialog() {
@@ -2393,31 +2397,14 @@ class _CPlusPlusQuizScreenState extends State<CPlusPlusQuizScreen> {
         score++;
       }
     }
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Quiz Completed!',
-            style: TextStyle(color: Colors.deepPurple)),
-        content: Text('Your score is $score out of $totalQuestions',
-            style: const TextStyle(color: Colors.black)),
-        actions: [
-          TextButton(
-            child: const Text('OK', style: TextStyle(color: Colors.deepPurple)),
-            onPressed: () {
-              Navigator.of(context).pop(); // Close dialog
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => QuizAnalysisScreen(
-                    score: score,
-                    totalQuestions: totalQuestions,
-                    selectedQuestions: selectedQuestions,
-                    selectedAnswers: selectedAnswers,
-                  ),
-                ),
-              );
-            },
-          ),
-        ],
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => QuizAnalysisScreen(
+          score: score,
+          totalQuestions: totalQuestions,
+          selectedQuestions: selectedQuestions,
+          selectedAnswers: selectedAnswers,
+        ),
       ),
     );
   }

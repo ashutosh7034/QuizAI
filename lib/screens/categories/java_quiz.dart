@@ -1668,7 +1668,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
   List<String> selectedAnswers = [];
   int totalQuestions = 0;
   Timer? _timer;
-  int _timeLeft = 5; // Time limit for each question
+  int _timeLeft = 10; // Time limit for each question (changed to 10 seconds)
   bool _answered = false; // Track if the current question is answered
 
   @override
@@ -1826,7 +1826,7 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
   }
 
   void _startTimer() {
-    _timeLeft = 5;
+    _timeLeft = 10; // Time set to 10 seconds
     _answered = false;
     _timer?.cancel();
 
@@ -1867,6 +1867,8 @@ class _JavaQuizScreenState extends State<JavaQuizScreen> {
       _answered = true;
       _timer?.cancel();
     });
+    // Automatically move to the next question after selecting an answer
+    Future.delayed(const Duration(seconds: 1), moveToNextQuestion);
   }
 
   void _showResultDialog() {

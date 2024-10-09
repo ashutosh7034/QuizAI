@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
 
-class CreateQuizFromFileScreen extends StatefulWidget {
-  const CreateQuizFromFileScreen({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class CreateQuizFromPDFScreen extends StatefulWidget {
+  const CreateQuizFromPDFScreen({Key? key}) : super(key: key);
 
   @override
-  _CreateQuizFromFileScreenState createState() => _CreateQuizFromFileScreenState();
+  _CreateQuizFromPDFScreenState createState() => _CreateQuizFromPDFScreenState();
 }
 
-class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
+class _CreateQuizFromPDFScreenState extends State<CreateQuizFromPDFScreen> {
   String? _fileName;
   String? _fileContent;
 
+  // File picking method
   Future<void> _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -27,6 +32,7 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
     }
   }
 
+  // Quiz creation from PDF file content
   Future<void> _createQuiz() async {
     if (_fileContent != null) {
       print('Creating quiz from file content: $_fileContent');
@@ -51,9 +57,11 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
     }
   }
 
+  // Parse file content into quiz questions
   List<Map<String, dynamic>> _parseFileContent(String content) {
     List<Map<String, dynamic>> questions = [];
 
+    // Split content by new lines
     List<String> lines = content.split('\n');
     for (String line in lines) {
       if (line.trim().isNotEmpty) {
@@ -68,6 +76,7 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
     return questions;
   }
 
+  // Upload quiz data to Firebase Firestore
   Future<void> _uploadQuizToFirebase(List<Map<String, dynamic>> questions) async {
     final quizData = {
       'title': _fileName,
@@ -77,14 +86,16 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
       'createdBy': 'file',
     };
 
+    // Add to Firestore
     await FirebaseFirestore.instance.collection('quizzes').add(quizData);
   }
 
+  // UI Build
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Quizai", style: TextStyle(color: Colors.white)),
+        title: const Text("QuizAI", style: TextStyle(color: Colors.white)),
         centerTitle: true,
         elevation: 0,
         backgroundColor: const Color(0xFF9C27B0), // Dark Purple
@@ -103,6 +114,7 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
               ),
             ),
             const SizedBox(height: 20),
+            // File Picker Button
             ElevatedButton.icon(
               onPressed: _pickFile,
               icon: const Icon(Icons.upload_file, size: 24),
@@ -111,7 +123,7 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
                 style: TextStyle(fontSize: 18),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.yellow[800], // Light Blue
+                backgroundColor: Colors.yellow[800], // Yellow color
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
@@ -122,17 +134,19 @@ class _CreateQuizFromFileScreenState extends State<CreateQuizFromFileScreen> {
             ),
             const SizedBox(height: 20),
             if (_fileName != null) ...[
+              // Display selected file name and content preview
               Text(
                 'Selected File: $_fileName',
                 style: const TextStyle(fontSize: 16, color: Colors.black87),
               ),
               const SizedBox(height: 10),
               Text(
-                'File Content: $_fileContent',
+                'File Content: ${_fileContent != null ? _fileContent!.substring(0, 100) : ''}...',
                 style: const TextStyle(fontSize: 14, color: Colors.black54),
               ),
               const SizedBox(height: 20),
             ],
+            // Create Quiz Button
             ElevatedButton.icon(
               onPressed: _createQuiz,
               icon: const Icon(Icons.check_circle, size: 24),

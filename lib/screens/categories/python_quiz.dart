@@ -4029,7 +4029,7 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
   List<String> selectedAnswers = [];
   int totalQuestions = 0;
   Timer? _timer;
-  int _timeLeft = 5; // Time limit for each question
+  int _timeLeft = 10; // Time limit for each question (changed to 10 seconds)
   bool _answered = false; // Track if the current question is answered
 
   @override
@@ -4063,7 +4063,7 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
 
   Widget _buildQuestionInput() {
     final TextEditingController questionCountController =
-        TextEditingController();
+    TextEditingController();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -4092,7 +4092,7 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
             if (count != null && count > 0) {
               setState(() {
                 totalQuestions =
-                    count > questions.length ? questions.length : count;
+                count > questions.length ? questions.length : count;
                 selectedQuestions = _getRandomQuestions(totalQuestions);
                 selectedAnswers = List.filled(totalQuestions, '');
                 currentQuestionIndex = 0;
@@ -4130,7 +4130,7 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
             children: [
               Container(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(10),
@@ -4187,7 +4187,7 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
   }
 
   void _startTimer() {
-    _timeLeft = 5;
+    _timeLeft = 10; // Time set to 10 seconds
     _answered = false;
     _timer?.cancel();
 
@@ -4228,6 +4228,8 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
       _answered = true;
       _timer?.cancel();
     });
+    // Automatically move to the next question after selecting an answer
+    Future.delayed(const Duration(seconds: 1), moveToNextQuestion);
   }
 
   void _showResultDialog() {

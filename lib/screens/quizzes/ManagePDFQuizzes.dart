@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // Import for getting the current user
-import 'CreateQuizFromExcelScreen.dart';
-import 'EditExcelQuizScreen.dart'; // Import the screen for editing Excel-based quizzes
+import 'CreateQuizFromFileScreen.dart';
+import 'EditPDFQuizScreen.dart'; // Import the screen for editing PDF-based quizzes
 
-class ManageExcelQuizzes extends StatefulWidget {
-  const ManageExcelQuizzes({Key? key}) : super(key: key);
+class ManagePDFQuizzes extends StatefulWidget {
+  const ManagePDFQuizzes({Key? key}) : super(key: key);
 
   @override
-  _ManageExcelQuizzesState createState() => _ManageExcelQuizzesState();
+  _ManagePDFQuizzesState createState() => _ManagePDFQuizzesState();
 }
 
-class _ManageExcelQuizzesState extends State<ManageExcelQuizzes>
+class _ManagePDFQuizzesState extends State<ManagePDFQuizzes>
     with SingleTickerProviderStateMixin {
   // List to hold fetched quizzes
   List<Map<String, dynamic>> quizzes = [];
@@ -36,13 +36,13 @@ class _ManageExcelQuizzesState extends State<ManageExcelQuizzes>
     ));
   }
 
-  // Function to fetch Excel-created quizzes from Firestore
+  // Function to fetch PDF-created quizzes from Firestore
   Future<void> fetchQuizzes() async {
     try {
-      // Only fetch quizzes created from Excel by the current user
+      // Only fetch quizzes created from PDF by the current user
       QuerySnapshot snapshot = await FirebaseFirestore.instance
           .collection('quizzes')
-          .where('creationMethod', isEqualTo: 'Excel') // Filter for Excel-based quizzes
+          .where('creationMethod', isEqualTo: 'PDF') // Filter for PDF-based quizzes
           .where('userId', isEqualTo: currentUserId) // Filter for quizzes created by the current user
           .get();
       setState(() {
@@ -94,7 +94,7 @@ class _ManageExcelQuizzesState extends State<ManageExcelQuizzes>
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Manage Excel Quizzes",
+          "Manage PDF Quizzes",
           style: TextStyle(color: Colors.white), // Make text white
         ),
         backgroundColor: const Color(0xFF9C27B0), // Dark Purple
@@ -105,7 +105,7 @@ class _ManageExcelQuizzesState extends State<ManageExcelQuizzes>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Your Excel Quizzes",
+              "Your PDF Quizzes",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF9C27B0)), // Dark Purple
             ),
             const SizedBox(height: 20),
@@ -134,11 +134,11 @@ class _ManageExcelQuizzesState extends State<ManageExcelQuizzes>
                           ],
                         ),
                         onTap: () {
-                          // Navigate to EditExcelQuizScreen with the selected quiz data
+                          // Navigate to EditPDFQuizScreen with the selected quiz data
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => EditExcelQuizScreen(quiz: quiz),
+                              builder: (context) => EditPDFQuizScreen(quiz: quiz),
                             ),
                           ).then((_) {
                             fetchQuizzes(); // Refresh the list after returning from the edit screen
@@ -180,10 +180,10 @@ class _ManageExcelQuizzesState extends State<ManageExcelQuizzes>
             ),
             ElevatedButton(
               onPressed: () {
-                // Navigate to CreateQuizFromExcel screen to create a new Excel quiz
+                // Navigate to CreateQuizFromPDF screen to create a new PDF quiz
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const CreateQuizFromExcelScreen()),
+                  MaterialPageRoute(builder: (context) => const CreateQuizFromPDFScreen()),
                 ).then((_) {
                   fetchQuizzes(); // Refresh quizzes after creating a new one
                 });
@@ -203,7 +203,7 @@ class _ManageExcelQuizzesState extends State<ManageExcelQuizzes>
                 ),
               ),
               child: const Text(
-                "Create New Excel Quiz",
+                "Create New PDF Quiz",
                 style: TextStyle(
                   color: Colors.white, // Ensure text is white for contrast
                 ),
