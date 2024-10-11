@@ -4042,7 +4042,7 @@ class _PythonQuizScreenState extends State<PythonQuizScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Python Quiz', style: TextStyle(color: Colors.white)),
+        title: const Text('Javascript Quiz', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.deepPurple,
       ),
       body: Container(
