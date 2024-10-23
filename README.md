@@ -68,34 +68,6 @@ Before you can build and run QuizAI, make sure you have the following:
 1. Set up an AI model in Google Cloud to process uploaded PDFs and generate quiz questions.
 2. Integrate the model with your Flutter app by calling Google Cloud functions.
 
-## Folder Structure
-
-```bash
-.
-├── android/              # Android-specific files
-├── ios/                  # iOS-specific files
-├── lib/                  # Flutter source code
-│   ├── models/           # Data models
-│   ├── screens/          # Application screens (Login, Register, Quiz, etc.)
-│   ├── services/         # Firebase services and backend logic
-│   └── widgets/          # Custom reusable widgets
-└── pubspec.yaml          # Project dependencies
-
-**Contributions**
-We welcome contributions from the community to help improve and expand QuizAI. If you'd like to contribute:
-
-Fork the repository: Create a personal copy of the repository by forking it.
-Create a new branch: Work on your changes on a feature branch (git checkout -b feature-branch).
-Make changes and commit: Once done, commit your changes (git commit -m 'Describe your feature').
-Push to your branch: Push the branch to your forked repository (git push origin feature-branch).
-Create a pull request: Open a pull request from your branch to the original repository, explaining your changes.
-License
-This project is licensed under the MIT License. You are free to use, modify, and distribute this software as long as you include the original copyright and license notice.
-
-See the LICENSE file for more details.
-
-**Contact**
-For any questions, suggestions, or issues, feel free to contact the maintainers:
 
 GitHub: QuizAI Repository
 Email: ashutosh3276s16@gmail.com
