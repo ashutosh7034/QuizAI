@@ -1,69 +1,82 @@
-QuizAI
-QuizAI is a cross-platform quiz application designed to enhance the learning experience for students, educators, and competitive programmers. It leverages artificial intelligence to generate quizzes from study materials, providing real-time progress tracking, leaderboards, and achievements to make learning engaging and efficient.
+# QuizAI
 
-Features
-AI-Generated Quizzes: Automatically generates quiz questions from uploaded PDFs using AI.
-Real-Time Data Synchronization: Data is synchronized across platforms (Android/iOS) using Firebase.
-User Profiles: Allows users to create profiles, track progress, and view achievements.
-Leaderboards & Achievements: Motivate users by allowing them to compete with others and earn badges.
-Cross-Platform Compatibility: Compatible with Android and iOS devices.
-Firebase Integration: Utilizes Firebase for user authentication, real-time data storage, and file handling.
-Tech Stack
-Frontend: Flutter (Dart)
-Backend: Firebase (Firestore, Authentication, Storage)
-AI Model: Google Cloud for generating quiz questions from PDF documents.
-Getting Started
-Prerequisites
+**QuizAI** is a cross-platform quiz application designed to enhance the learning experience for students, educators, and competitive programmers. It leverages artificial intelligence to generate quizzes from study materials, providing real-time progress tracking, leaderboards, and achievements to make learning engaging and efficient.
+
+## Features
+
+- **AI-Generated Quizzes**: Automatically generates quiz questions from uploaded PDFs using AI.
+- **Real-Time Data Synchronization**: Data is synchronized across platforms (Android/iOS) using Firebase.
+- **User Profiles**: Allows users to create profiles, track progress, and view achievements.
+- **Leaderboards & Achievements**: Motivate users by allowing them to compete with others and earn badges.
+- **Cross-Platform Compatibility**: Compatible with Android and iOS devices.
+- **Firebase Integration**: Utilizes Firebase for user authentication, real-time data storage, and file handling.
+
+## Tech Stack
+
+- **Frontend**: Flutter (Dart)
+- **Backend**: Firebase (Firestore, Authentication, Storage)
+- **AI Model**: Google Cloud for generating quiz questions from PDF documents.
+  
+## Getting Started
+
+### Prerequisites
+
 Before you can build and run QuizAI, make sure you have the following:
 
-Flutter SDK: Download here
-Firebase Account: Create Firebase project
-Google Cloud Account: Set up Google Cloud to host the AI model for quiz generation.
-Installation
-Clone the repository:
+- **Flutter SDK**: [Download here](https://flutter.dev/docs/get-started/install)
+- **Firebase Account**: [Create Firebase project](https://console.firebase.google.com/)
+- **Google Cloud Account**: Set up Google Cloud to host the AI model for quiz generation.
 
-bash
-Copy code
-git clone https://github.com/ashutosh7034/QuizAI.git
-Navigate to the project directory:
+### Installation
 
-bash
-Copy code
-cd QuizAI
-Install dependencies:
+1. **Clone the repository**:
 
-bash
-Copy code
-flutter pub get
-Configure Firebase:
+    ```bash
+    git clone https://github.com/ashutosh7034/QuizAI.git
+    ```
 
-Add your Firebase configuration files (google-services.json for Android and GoogleService-Info.plist for iOS).
-Ensure Firestore, Authentication, and Storage are enabled in your Firebase project.
-Run the app:
+2. **Navigate to the project directory**:
 
-bash
-Copy code
-flutter run
-Firebase Setup
-Firestore: Structure your Firestore database to store quizzes, users, and results.
-Authentication: Enable Google Sign-In and Email/Password authentication in Firebase.
-Storage: Use Firebase Storage to handle PDF uploads from which quizzes will be generated.
-Google Cloud Setup
-Set up an AI model in Google Cloud to process uploaded PDFs and generate quiz questions.
-Integrate the model with your Flutter app by calling Google Cloud functions.
-Contributions
-Contributions are welcome! If you'd like to contribute:
+    ```bash
+    cd QuizAI
+    ```
 
-Fork the repository.
-Create a new branch (git checkout -b feature-branch).
-Make your changes and commit (git commit -m 'Add new feature').
-Push to your branch (git push origin feature-branch).
-Open a Pull Request.
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+3. **Install dependencies**:
 
-Contact
-For any inquiries or issues, feel free to reach out:
+    ```bash
+    flutter pub get
+    ```
 
-GitHub: QuizAI Repository
-Email: ashutosh3276s16@gmail.com
+4. **Configure Firebase**:
+   - Add your Firebase configuration files (`google-services.json` for Android and `GoogleService-Info.plist` for iOS).
+   - Ensure Firestore, Authentication, and Storage are enabled in your Firebase project.
+   
+5. **Run the app**:
+
+    ```bash
+    flutter run
+    ```
+
+### Firebase Setup
+
+1. **Firestore**: Structure your Firestore database to store quizzes, users, and results.
+2. **Authentication**: Enable Google Sign-In and Email/Password authentication in Firebase.
+3. **Storage**: Use Firebase Storage to handle PDF uploads from which quizzes will be generated.
+
+### Google Cloud Setup
+
+1. Set up an AI model in Google Cloud to process uploaded PDFs and generate quiz questions.
+2. Integrate the model with your Flutter app by calling Google Cloud functions.
+
+## Folder Structure
+
+```bash
+.
+├── android/              # Android-specific files
+├── ios/                  # iOS-specific files
+├── lib/                  # Flutter source code
+│   ├── models/           # Data models
+│   ├── screens/          # Application screens (Login, Register, Quiz, etc.)
+│   ├── services/         # Firebase services and backend logic
+│   └── widgets/          # Custom reusable widgets
+└── pubspec.yaml          # Project dependencies
