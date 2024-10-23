@@ -69,5 +69,5 @@ Before you can build and run QuizAI, make sure you have the following:
 2. Integrate the model with your Flutter app by calling Google Cloud functions.
 
 
-GitHub: QuizAI Repository
+<b>Contact us</b> 
 Email: ashutosh3276s16@gmail.com
